@@ -2,7 +2,9 @@ package modmuss50.network.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.network.NetworkCore;
 import modmuss50.network.api.ILinkedTile;
+import modmuss50.network.netty.packets.PacketSetRemoteTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -80,6 +82,7 @@ public class ItemWifiLinker extends Item {
                      System.out.println(((ILinkedTile) world.getTileEntity(x, y, z)).getLocation().getY());
                      System.out.println(((ILinkedTile) world.getTileEntity(x, y, z)).getLocation().getZ());
                  }
+                NetworkCore.packetPipeline.sendToServer(new PacketSetRemoteTile(new Location(x, y, z), new Location(modemX, modemY, modemZ)));
                 return true;
             }
         }

@@ -1,15 +1,5 @@
 package modmuss50.network.netty;
 
-import java.util.*;
-
-import modmuss50.network.netty.packets.PacketLight;
-import modmuss50.network.netty.packets.PacketRemoteGui;
-import modmuss50.network.netty.packets.PacketServer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.INetHandler;
-import net.minecraft.network.NetHandlerPlayServer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLOutboundHandler;
@@ -22,6 +12,17 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
+import modmuss50.network.netty.packets.PacketLight;
+import modmuss50.network.netty.packets.PacketRemoteGui;
+import modmuss50.network.netty.packets.PacketServer;
+import modmuss50.network.netty.packets.PacketSetRemoteTile;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.INetHandler;
+import net.minecraft.network.NetHandlerPlayServer;
+
+import java.util.*;
 
 /**
  * Packet pipeline class. Directs all registered packet data to be handled by
@@ -125,6 +126,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
 		registerPacket(PacketLight.class);
 		registerPacket(PacketServer.class);
 		registerPacket(PacketRemoteGui.class);
+        registerPacket(PacketSetRemoteTile.class);
 	}
 
 	// Method to call from FMLPostInitializationEvent
