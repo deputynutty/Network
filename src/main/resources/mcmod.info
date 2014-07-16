@@ -1,0 +1,17 @@
+[
+{
+  "modid": "network",
+  "name": "Network",
+  "description": "A mod that adds networking items and blocks to the game",
+  "version": "0.01",
+  "mcversion": "1.6.4",
+  "logoFile": "/assets/network/logo.png",
+  "url": "http://github.com/modmuss50/Network",
+  "updateUrl": "",
+  "authors": ["Modmuss50", "klmDF14J"],
+  "credits": "Made by Modmuss50 and klmDF14J",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

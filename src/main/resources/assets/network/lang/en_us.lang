@@ -1,0 +1,36 @@
+itemGroup.network=Network
+
+network.light.dye.0=Use red, green or blue dye 
+network.light.dye.1=to change the RGB value
+network.light.dye.2=The dye must be in a stack of 2 or more
+network.light.dye.3=Use any dye in a stack of 1 in order to set the light to the colour of the dye used
+
+tile.networkRail.name=Network Rail
+tile.server.name=Server
+tile.networkCable.name=Network Cable
+tile.monitor.name=Monitor
+tile.computer.name=Computer
+tile.tabletCrafter.name=Tablet Crafter
+tile.modem.name=Modem
+
+tile.lightPeripheral.name=Light Peripheral
+tile.radioPeripheral.name=Radio Peripheral
+tile.networkPeripheral.name=Network Peripheral
+
+tile.robotMK1.name=Robot MK I
+tile.robotMK2.name=Robot MK II
+tile.robotMK3.name=Robot MK III
+
+item.tablet_0.name=Basic Tablet (Uncharged)
+item.tablet_1.name=Basic Tablet (Charged)
+item.tablet_2.name=Basic Tablet (Broken)
+item.tablet_3.name=Basic+ Tablet (Uncharged)
+item.tablet_4.name=Basic+ Tablet (Charged)
+item.tablet_5.name=Basic+ Tablet (Broken)
+item.tablet_6.name=Advanced Tablet (Uncharged)
+item.tablet_7.name=Advanced Tablet (Charged)
+item.tablet_8.name=Advanced Tablet (Broken)
+
+item.serverCart.name=Server Cart
+item.wifiLinker.name=Wifi Linker
+item.wifiGoggles.name=Wifi Goggles

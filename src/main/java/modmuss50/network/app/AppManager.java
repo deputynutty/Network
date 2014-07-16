@@ -1,0 +1,28 @@
+package modmuss50.network.app;
+
+import java.util.ArrayList;
+
+import modmuss50.network.app.apps.AppBlockBreaker;
+import modmuss50.network.app.apps.AppBrowser;
+import modmuss50.network.app.apps.AppFileExplorer;
+import modmuss50.network.app.apps.AppSettings;
+import cpw.mods.fml.common.FMLLog;
+
+public class AppManager {
+
+	public static ArrayList<App>	apps	= new ArrayList<App>();
+
+	public static void init() {
+		FMLLog.info("[NetworkAppManager] Initialising app database");
+
+		addApp(new AppSettings());
+		addApp(new AppBrowser());
+		addApp(new AppFileExplorer());
+		addApp(new AppBlockBreaker());
+	}
+
+	public static void addApp(App app) {
+		apps.add(app);
+		FMLLog.info("[NetworkAppManager] Adding " + app.getAppName() + " to app database");
+	}
+}
