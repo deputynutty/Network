@@ -1,15 +1,15 @@
 package modmuss50.network.client.gui;
 
-import java.util.ArrayList;
-
+import cpw.mods.fml.client.GuiModList;
+import cpw.mods.fml.common.network.IGuiHandler;
 import modmuss50.network.blocks.Containers.*;
 import modmuss50.network.blocks.tileentities.*;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.GuiModList;
-import cpw.mods.fml.common.network.IGuiHandler;
+
+import java.util.ArrayList;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -24,6 +24,7 @@ public class GuiHandler implements IGuiHandler {
 	public static int	NetworkedFurnace		= 8;
 	public static int	BlockMoverID			= 9;
 	public static int	BlockRemoteUserID		= 10;
+    public static int   TeleporterID            = 11;
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -139,6 +140,12 @@ public class GuiHandler implements IGuiHandler {
 													return new GuiRemoteUser(player.inventory, (TileEntityRemoteUser) te);
 												}
 											}
+                                            else
+                                            if (ID == TeleporterID) {
+                                                if (te instanceof TileEntityTeleporter) {
+                                                    return new GuiTeleporter((TileEntityTeleporter) te);
+                                                }
+                                            }
 
 		return null;
 	}

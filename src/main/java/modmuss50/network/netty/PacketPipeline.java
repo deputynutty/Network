@@ -12,10 +12,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
-import modmuss50.network.netty.packets.PacketLight;
-import modmuss50.network.netty.packets.PacketRemoteGui;
-import modmuss50.network.netty.packets.PacketServer;
-import modmuss50.network.netty.packets.PacketSetRemoteTile;
+import modmuss50.network.netty.packets.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -127,6 +124,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
 		registerPacket(PacketServer.class);
 		registerPacket(PacketRemoteGui.class);
         registerPacket(PacketSetRemoteTile.class);
+        registerPacket(PacketSetTeleporterFQ.class);
 	}
 
 	// Method to call from FMLPostInitializationEvent

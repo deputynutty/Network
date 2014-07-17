@@ -1,27 +1,28 @@
 package modmuss50.network.blocks.tileentities;
 
-import modmuss50.network.api.ILinkedTile;
 import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.api.IPeripheral;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.client.IColour;
 import sourceteam.mods.lib.client.IRGBColour;
 
 /**
  * Created by Mark on 19/04/14.
  */
-public class TileEntityTeleporter extends TileEntityCable implements IPeripheral, INetworkComponent, IColour, IRGBColour, ILinkedTile, IFluidHandler {
+public class TileEntityTeleporter extends TileEntityCable implements IPeripheral, INetworkComponent, IColour, IRGBColour,IFluidHandler {
 	int			ticktime	= 0;
 	boolean		goingdown	= false;
 
     int colour = 0;
 
-    Location remoteTile;
+   public int fq = 0;
 
 
     public FluidTank tank				= new FluidTank(1000) {
@@ -83,23 +84,6 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
 		}
 
 
-        if(this.hasServerPos()){
-            if(getLocation() != null && tank.getFluid() != null && tank.getFluidAmount() < 10){
-                if(worldObj.getTileEntity(getLocation().getX(), getLocation().getY(), getLocation().getZ()) != null){
-                    if(worldObj.getTileEntity(getLocation().getX(), getLocation().getY(), getLocation().getZ()) instanceof TileEntityTeleporter){
-                        if(((TileEntityTeleporter) worldObj.getTileEntity(getLocation().getX(), getLocation().getY(), getLocation().getZ())).getSerX() == getSerX() && ((TileEntityTeleporter) worldObj.getTileEntity(getLocation().getX(), getLocation().getY(), getLocation().getZ())).getSerY() == getSerY() && ((TileEntityTeleporter) worldObj.getTileEntity(getLocation().getX(), getLocation().getY(), getLocation().getZ())).getSerZ() == getSerZ()){
-                            TileEntityTeleporter remote = (TileEntityTeleporter) worldObj.getTileEntity(getLocation().getX(), getLocation().getY(), getLocation().getZ());
-                            if(remote.canFill(ForgeDirection.DOWN, tank.getFluid().getFluid())){
-                                remote.fill(ForgeDirection.DOWN, drain(ForgeDirection.DOWN, 10, true), true);
-                                System.out.println("Moving!");
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
 
 	}
 
@@ -143,21 +127,40 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
         return 0;
 	}
 
-    @Override
-    public TileEntity[] conectableTiles() {
-        return new TileEntity[]{this};
+
+
+    public Packet getDescriptionPacket() {
+        NBTTagCompound nbtTag = new NBTTagCompound();
+        writeToNBT(nbtTag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
     }
 
     @Override
-    public boolean setLocation(Location loc) {
-        remoteTile = loc;
-        return true;
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+        worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+        readFromNBT(packet.func_148857_g());
+    }
+
+    public void syncTile() {
+        ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
+      //  NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(xCoord, yCoord, zCoord), fq));
     }
 
     @Override
-    public Location getLocation() {
-        return remoteTile;
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        fq = tag.getInteger("fq");
+       // if(fq != 0)
+       // syncTile();
     }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        tag.setInteger("fq", fq);
+        System.out.println("TEP " +fq);
+    }
+
 
     //FLUID STUFSS
 

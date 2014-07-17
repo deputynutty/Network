@@ -1,12 +1,15 @@
 package modmuss50.network.blocks;
 
+import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
+import modmuss50.network.client.gui.GuiHandler;
+import modmuss50.network.netty.packets.PacketSetTeleporterFQ;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import sourceteam.mods.lib.Location;
 
 /**
  * Created by Mark on 19/04/14.
@@ -26,14 +29,13 @@ public class BlockTeleporter extends BlockBase{
 
 
 	@Override
-	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+        if(par1World.getTileEntity(x, y, z) instanceof TileEntityTeleporter)
 
-		TileEntityTeleporter te;
-		te = (TileEntityTeleporter) par1World.getTileEntity(par2, par3, par4);
+        if(par1World.isRemote)
+            NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(x, y, z), ((TileEntityTeleporter) par1World.getTileEntity(x, y, z)).fq));
 
-		if (!par1World.isRemote)
-			par5EntityPlayer.addChatMessage(new ChatComponentText("The Cable is conected to:" + Integer.toString(te.getSerX()) + " " + Integer.toString(te.getSerY()) + " " + Integer.toString(te.getSerZ())));
-
+        par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.TeleporterID, par1World, x, y, z);
 		return true;
 	}
 
