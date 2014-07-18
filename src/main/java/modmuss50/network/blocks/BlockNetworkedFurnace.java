@@ -43,7 +43,7 @@ public class BlockNetworkedFurnace extends BlockBase {
 		TileEntityNetworkedFurnace tileentityfurnace = (TileEntityNetworkedFurnace) world.getTileEntity(x, y, z);
 
 		if (tileentityfurnace != null) {
-			player.openGui(NetworkCore.instance, GuiHandler.NetworkedFurnace, world, x, y, z);
+			player.openGui(NetworkCore.instance, 8, world, x, y, z);
 		}
 
 		return true;

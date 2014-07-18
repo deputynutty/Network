@@ -35,7 +35,7 @@ public class BlockTeleporter extends BlockBase{
         if(par1World.isRemote)
             NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(x, y, z), ((TileEntityTeleporter) par1World.getTileEntity(x, y, z)).fq));
 
-        par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.TeleporterID, par1World, x, y, z);
+        par5EntityPlayer.openGui(NetworkCore.instance, 11, par1World, x, y, z);
 		return true;
 	}
 

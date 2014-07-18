@@ -67,7 +67,7 @@ public class BlockMover extends BlockBase {
 			return true;
 		}
 
-		player.openGui(NetworkCore.instance, GuiHandler.BlockMoverID, world, x, y, z);
+		player.openGui(NetworkCore.instance, 9, world, x, y, z);
 
 		return true;
 	}

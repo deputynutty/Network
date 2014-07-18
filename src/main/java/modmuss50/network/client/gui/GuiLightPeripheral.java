@@ -92,7 +92,7 @@ public class GuiLightPeripheral extends GuiScreen {
 					super.keyTyped(par1, par2);
 				}
 
-        NetworkCore.packetPipeline.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
+        NetworkCore.packetPipeline.sendToAll(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
 	}
 
 	@Override
@@ -104,7 +104,7 @@ public class GuiLightPeripheral extends GuiScreen {
 		te.blue = getRGBfromString("0" + blueValue.getText());
 		te.updateBlock();
 
-        NetworkCore.packetPipeline.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
+        NetworkCore.packetPipeline.sendToAll(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
 
 	}
 
