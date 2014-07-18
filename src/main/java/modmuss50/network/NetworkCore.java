@@ -56,11 +56,7 @@ public class NetworkCore implements ISourceMod {
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(ServerCart.class, "DiamondCart", entityID);
 		EntityRegistry.registerModEntity(ServerCart.class, "DiamondCart", 2, instance, 64, 5, true);
-
-		if (FMLCommonHandler.instance().getSide().isClient()) {
-			NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		}
-
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		MinecraftForge.EVENT_BUS.register(new DropItemEvent());
 
 	}
