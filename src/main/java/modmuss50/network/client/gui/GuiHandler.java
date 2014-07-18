@@ -1,15 +1,11 @@
 package modmuss50.network.client.gui;
 
-import cpw.mods.fml.client.GuiModList;
 import cpw.mods.fml.common.network.IGuiHandler;
 import modmuss50.network.blocks.Containers.*;
 import modmuss50.network.blocks.tileentities.*;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -77,15 +73,15 @@ public class GuiHandler implements IGuiHandler {
 				}
 			}
 			else
-				if (ID == robotGuiID) {
-					if (te instanceof TileEntityRobot) {
-						ArrayList<String> strings = new ArrayList<String>();
-						strings.add("Test instruction");
-						return new GuiRobot(new GuiModList(new GuiMainMenu()), strings, 30);
-					}
-				}
+//				if (ID == robotGuiID) {
+//					if (te instanceof TileEntityRobot) {
+//						ArrayList<String> strings = new ArrayList<String>();
+//						strings.add("Test instruction");
+//						return new GuiRobot(new GuiModList(new GuiMainMenu()), strings, 30);
+//					}
+//				}
 
-				else
+				//else
 					if (ID == MonitorGuiID) {
 						if (te instanceof TileEntityMonitor) {
 							return new GuiMonitor((TileEntityMonitor) te);
