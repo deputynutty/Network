@@ -15,15 +15,13 @@ public class GuiNetworkedFurnace extends GuiContainer {
 	private static final ResourceLocation	GuiTextures	= new ResourceLocation("network", "textures/gui/BasePoweredGui.png");
 	private TileEntityNetworkedFurnace		tile;
 	public EntityPlayer						player;
-	public ContainerNetworkedFurnace		containerNetworkedFurnace;
+
 
 	public GuiNetworkedFurnace(EntityPlayer par1InventoryPlayer, TileEntityNetworkedFurnace par2TileEntityFurnace) {
 
 		super(new ContainerNetworkedFurnace(par2TileEntityFurnace, par1InventoryPlayer));
 		this.tile = par2TileEntityFurnace;
 
-		this.player = player;
-		this.containerNetworkedFurnace = (new ContainerNetworkedFurnace(par2TileEntityFurnace, par1InventoryPlayer));
 		xSize = 176;
 		ySize = 166;
 	}
@@ -33,10 +31,7 @@ public class GuiNetworkedFurnace extends GuiContainer {
 	 * the items)
 	 */
 	protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-		int temp = containerNetworkedFurnace.te.timeSmelted;
 		this.mc.renderEngine.bindTexture(GuiTextures);
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
 
 		String s = "Networked Furnace";
 		this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, GuiContants.guiColour);
