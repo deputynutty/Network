@@ -78,9 +78,6 @@ public class ItemWifiLinker extends Item {
             } else if(hasModem){
                  if(canlink(world.getTileEntity(x, y,z), new Location(modemX, modemY, modemZ), world)){
                      ((ILinkedTile) world.getTileEntity(x, y,z)).setLocation(new Location(modemX, modemY, modemZ));
-                     System.out.println(((ILinkedTile) world.getTileEntity(x, y, z)).getLocation().getX());
-                     System.out.println(((ILinkedTile) world.getTileEntity(x, y, z)).getLocation().getY());
-                     System.out.println(((ILinkedTile) world.getTileEntity(x, y, z)).getLocation().getZ());
                  }
                 NetworkCore.packetPipeline.sendToServer(new PacketSetRemoteTile(new Location(x, y, z), new Location(modemX, modemY, modemZ)));
                 return true;

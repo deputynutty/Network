@@ -60,7 +60,6 @@ public class PacketLight extends AbstractPacket {
 
 	@Override
 	public void handleClientSide(EntityPlayer player) {
-		int dimensionID = player.dimension;
 		World worldObj = player.worldObj;
 
 		if (worldObj.getBlock(posX, posY, posZ) == NetworkBlocks.lightPeripheral) {
@@ -69,14 +68,9 @@ public class PacketLight extends AbstractPacket {
 				te.red = this.r;
 				te.green = this.g;
 				te.red = this.r;
-				// te.markDirty();
-				te.getWorldObj().markBlockForUpdate(posX, posY, posZ);
 				te.getWorldObj().markBlockRangeForRenderUpdate(posX, posY, posZ, posX, posY, posZ);
 			}
 		}
-
-		// System.out.println("YEYEYEYYEYEYEYEYEYEYEYE");
-
 	}
 
 	@Override
@@ -92,7 +86,6 @@ public class PacketLight extends AbstractPacket {
                 te.red = this.r;
             }
         }
-
 	}
 
 }
