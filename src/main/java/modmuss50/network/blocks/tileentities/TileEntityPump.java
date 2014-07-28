@@ -12,6 +12,9 @@ public class TileEntityPump extends BaseTile {
 
     @Override
     public void updateEntity(){
+        if(true == true){
+           return;
+        }
         for (int i = 0; i < ForgeDirection.values().length; i++) {
             TileEntity tile = worldObj.getTileEntity(this.xCoord + ForgeDirection.values()[i].offsetX, this.yCoord + ForgeDirection.values()[i].offsetY, this.zCoord + ForgeDirection.values()[i].offsetY);
             if(tile != null && tile instanceof IFluidHandler && !Multipart.hasPartPipe(tile)){

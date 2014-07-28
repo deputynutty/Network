@@ -23,6 +23,7 @@ public class NetworkBlocks {
 	public static Block	networkPeripheral;
 	public static Block	RTeleporter;
 	public static Block	NetworkedFurnace;
+    public static Block infusionFurnace;
 	public static Block	BlockMover;
 	public static Block	BlockMoving;
 	public static Block	BlockRemoteUser;

@@ -15,6 +15,7 @@ import modmuss50.network.client.Render.RenderPipeLine;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
@@ -22,6 +23,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import sourceteam.mods.lib.Functions;
@@ -703,4 +705,10 @@ public class PartPipeLine extends TMultiPart implements TSlottedPart, JNormalOcc
 		}
 		return partPipeLine;
 	}
+
+    //for ewyboy
+    //give the cords of the block the player is going to stand in
+    public boolean canPlayerFitInSpace(World world, EntityPlayer player, int x, int y , int z){
+        return world.getBlock(x, y, z) == Blocks.air && world.getBlock(x, y + 1, z) == Blocks.air;
+    }
 }

@@ -79,6 +79,10 @@ public class initBlocks {
 		GameRegistry.registerBlock(NetworkBlocks.NetworkedFurnace, prefix + "NetworkedFurnace");
 		GameRegistry.registerTileEntity(TileEntityNetworkedFurnace.class, prefix + "TileEntityNetworkedFurnace");
 
+        NetworkBlocks.infusionFurnace = new BlockInfusionFurnace().setBlockName(prefix + "BlockInfusionFurnace").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockInfusionFurnace");
+        GameRegistry.registerBlock(NetworkBlocks.infusionFurnace, prefix + "infusionFurnace");
+        GameRegistry.registerTileEntity(TileEntityInfusionFurnace.class, prefix + "TileEntityInfusionFurnace");
+
 		NetworkBlocks.BlockRemoteUser = new BlockRemoteUser().setBlockName(prefix + "BlockRemoteUser").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockRemoteUser");
 		GameRegistry.registerBlock(NetworkBlocks.BlockRemoteUser, prefix + "BlockRemoteUser");
 		GameRegistry.registerTileEntity(TileEntityRemoteUser.class, prefix + "TileEntityRemoteUser");
