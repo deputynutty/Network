@@ -564,22 +564,22 @@ public class PartPipeLine extends TMultiPart implements TSlottedPart, JNormalOcc
 	}
 
 	public void onTick() {
-		if (canConnectTo(ForgeDirection.UP)) {
-			TileEntity tile = world().getTileEntity(x(), y() + 1, z());
-			if (tile instanceof IFluidHandler) {
-				if (!Multipart.hasPartPipe(tile)) {
-					IFluidHandler fluidHandler = (IFluidHandler) world().getTileEntity(x(), y() + 1, z());
-					FluidTankInfo[] fluidTankInfo = fluidHandler.getTankInfo(ForgeDirection.DOWN);
-					PartPipeLine partPipeLine = this;
-					if (partPipeLine.tank.getCapacity() == partPipeLine.tank.getFluidAmount()) {
-						partPipeLine = findnextPipeline();
-					}
-					if (partPipeLine != null && canFillwithLiquid(partPipeLine.tank.getFluid(), this.tank.getFluid())) {
-						partPipeLine.fill(ForgeDirection.UP, fluidHandler.drain(ForgeDirection.DOWN, 10, true), true);
-					}
-				}
-			}
-		}
+//		if (canConnectTo(ForgeDirection.UP)) {
+//			TileEntity tile = world().getTileEntity(x(), y() + 1, z());
+//			if (tile instanceof IFluidHandler) {
+//				if (!Multipart.hasPartPipe(tile)) {
+//					IFluidHandler fluidHandler = (IFluidHandler) world().getTileEntity(x(), y() + 1, z());
+//					FluidTankInfo[] fluidTankInfo = fluidHandler.getTankInfo(ForgeDirection.DOWN);
+//					PartPipeLine partPipeLine = this;
+//					if (partPipeLine.tank.getCapacity() == partPipeLine.tank.getFluidAmount()) {
+//						partPipeLine = findnextPipeline();
+//					}
+//					if (partPipeLine != null && canFillwithLiquid(partPipeLine.tank.getFluid(), this.tank.getFluid())) {
+//						partPipeLine.fill(ForgeDirection.UP, fluidHandler.drain(ForgeDirection.DOWN, 10, true), true);
+//					}
+//				}
+//			}
+//		}
 
 		if (canConnectTo(ForgeDirection.DOWN)) {
 			TileEntity tile = world().getTileEntity(x(), y() - 1, z());

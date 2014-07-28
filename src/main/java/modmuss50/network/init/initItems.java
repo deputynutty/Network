@@ -1,4 +1,4 @@
-package modmuss50.network.loaders;
+package modmuss50.network.init;
 
 import modmuss50.network.NetworkCore;
 import modmuss50.network.items.*;
@@ -10,31 +10,33 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class LoadItems {
+public class initItems {
+
+    public static String prefix = "modmuss50.network.";
 
 	public static void loadItems() {
 		NetworkItems.tablet = new ItemTablet().setCreativeTab(NetworkCore.Network);
 		registerItem(NetworkItems.tablet);
 
-		NetworkItems.serverCart = new ItemBlockCart(15).setCreativeTab(NetworkCore.Network).setUnlocalizedName("serverCart");
+		NetworkItems.serverCart = new ItemBlockCart(15).setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "serverCart");
 		registerItem(NetworkItems.serverCart);
 
-		NetworkItems.wifiLinker = new ItemWifiLinker().setCreativeTab(NetworkCore.Network).setUnlocalizedName("wifiLinker").setTextureName("network:wifiLinker");
+		NetworkItems.wifiLinker = new ItemWifiLinker().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "wifiLinker").setTextureName("network:wifiLinker");
 		registerItem(NetworkItems.wifiLinker);
 
-		NetworkItems.wifiGoggles = new ItemArmor(ArmorMaterial.IRON, 0, 0).setCreativeTab(NetworkCore.Network).setUnlocalizedName("wifiGoggles").setTextureName("network:wifiGoggles");
+		NetworkItems.wifiGoggles = new ItemArmor(ArmorMaterial.IRON, 0, 0).setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "wifiGoggles").setTextureName("network:wifiGoggles");
 		registerItem(NetworkItems.wifiGoggles);
 
-		NetworkItems.ItemBattery = new ItemBattery().setCreativeTab(NetworkCore.Network).setUnlocalizedName("ItemBattery").setTextureName("network:Battery");
+		NetworkItems.ItemBattery = new ItemBattery().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "ItemBattery").setTextureName("network:Battery");
 		registerItem(NetworkItems.ItemBattery);
 
-		NetworkItems.parts = new ItemPart().setCreativeTab(NetworkCore.Network).setUnlocalizedName("ItemPart").setTextureName("network:ItemPart");
+		NetworkItems.parts = new ItemPart().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "ItemPart").setTextureName("network:ItemPart");
 		registerItem(NetworkItems.parts);
 
 	}
 
 	public static void registerItem(Item item) {
-		GameRegistry.registerItem(item, item.getUnlocalizedName().replace("item.", ""));
+		GameRegistry.registerItem(item, prefix +  item.getUnlocalizedName());
 	}
 
 	public static void Recipes() {

@@ -5,32 +5,32 @@ network.light.dye.1=to change the RGB value
 network.light.dye.2=The dye must be in a stack of 2 or more
 network.light.dye.3=Use any dye in a stack of 1 in order to set the light to the colour of the dye used
 
-tile.networkRail.name=Network Rail
-tile.server.name=Server
-tile.networkCable.name=Network Cable
-tile.monitor.name=Monitor
-tile.computer.name=Computer
-tile.tabletCrafter.name=Tablet Crafter
-tile.modem.name=Modem
+tile.modmuss50.network.networkRail.name=Network Rail
+tile.modmuss50.network.server.name=Server
+tile.modmuss50.network.networkCable.name=Network Cable
+tile.modmuss50.network.monitor.name=Monitor
+tile.modmuss50.network.computer.name=Computer
+tile.modmuss50.network.tabletCrafter.name=Tablet Crafter
+tile.modmuss50.network.modem.name=Modem
 
-tile.lightPeripheral.name=Light Peripheral
-tile.radioPeripheral.name=Radio Peripheral
-tile.networkPeripheral.name=Network Peripheral
+tile.modmuss50.network.lightPeripheral.name=Light Peripheral
+tile.modmuss50.network.radioPeripheral.name=Radio Peripheral
+tile.modmuss50.network.networkPeripheral.name=Network Peripheral
 
-tile.robotMK1.name=Robot MK I
-tile.robotMK2.name=Robot MK II
-tile.robotMK3.name=Robot MK III
+tile.modmuss50.network.robotMK1.name=Robot MK I
+tile.modmuss50.network.robotMK2.name=Robot MK II
+tile.modmuss50.network.robotMK3.name=Robot MK III
 
-item.tablet_0.name=Basic Tablet (Uncharged)
-item.tablet_1.name=Basic Tablet (Charged)
-item.tablet_2.name=Basic Tablet (Broken)
-item.tablet_3.name=Basic+ Tablet (Uncharged)
-item.tablet_4.name=Basic+ Tablet (Charged)
-item.tablet_5.name=Basic+ Tablet (Broken)
-item.tablet_6.name=Advanced Tablet (Uncharged)
-item.tablet_7.name=Advanced Tablet (Charged)
-item.tablet_8.name=Advanced Tablet (Broken)
+item.modmuss50.network.tablet_0.name=Basic Tablet (Uncharged)
+item.modmuss50.network.tablet_1.name=Basic Tablet (Charged)
+item.modmuss50.network.tablet_2.name=Basic Tablet (Broken)
+item.modmuss50.network.tablet_3.name=Basic+ Tablet (Uncharged)
+item.modmuss50.network.tablet_4.name=Basic+ Tablet (Charged)
+item.modmuss50.network.tablet_5.name=Basic+ Tablet (Broken)
+item.modmuss50.network.tablet_6.name=Advanced Tablet (Uncharged)
+item.modmuss50.network.tablet_7.name=Advanced Tablet (Charged)
+item.modmuss50.network.tablet_8.name=Advanced Tablet (Broken)
 
-item.serverCart.name=Server Cart
-item.wifiLinker.name=Wifi Linker
-item.wifiGoggles.name=Wifi Goggles
+item.modmuss50.network.serverCart.name=Server Cart
+item.modmuss50.network.wifiLinker.name=Wifi Linker
+item.modmuss50.network.wifiGoggles.name=Wifi Goggles

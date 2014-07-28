@@ -1,10 +1,10 @@
-package modmuss50.network.loaders;
+package modmuss50.network.init;
 
 import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
-public class LoadConfig {
+public class initConfig {
 	private static Configuration	config;
 
 	private static void initBlocks() {

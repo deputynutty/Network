@@ -27,6 +27,7 @@ public class NetworkBlocks {
 	public static Block	BlockMoving;
 	public static Block	BlockRemoteUser;
 	public static Block	CreativePower;
+    public static Block Pump;
 
 	public static Block	robotMK1;
 	public static Block	robotMK2;

@@ -1,6 +1,5 @@
 package modmuss50.network;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -19,7 +18,7 @@ import modmuss50.network.client.gui.GuiHandler;
 import modmuss50.network.entity.minecart.ServerCart;
 import modmuss50.network.event.DropItemEvent;
 import modmuss50.network.items.NetworkItems;
-import modmuss50.network.loaders.*;
+import modmuss50.network.init.*;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
 import net.minecraft.creativetab.CreativeTabs;
@@ -48,7 +47,7 @@ public class NetworkCore implements ISourceMod {
 	public void preInit(FMLPreInitializationEvent event) {
 		networkLog.info("Starting Network");
 
-		LoadConfig.loadConfig(event.getSuggestedConfigurationFile());
+		initConfig.loadConfig(event.getSuggestedConfigurationFile());
 
 		ModRegistry.registerMod(this);
 
@@ -63,20 +62,20 @@ public class NetworkCore implements ISourceMod {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		LoadLang.loadLang();
+		initLang.loadLang();
 
 		proxy.initRenderers();
 
 		packetPipeline.initalise();
 		ChannelHandler.setChannels(NetworkRegistry.INSTANCE.newChannel("Network_Sim", new ChannelHandler()));
 
-		LoadItems.loadItems();
+		initItems.loadItems();
 
-		LoadBlocks.loadBlocks();
+		initBlocks.loadBlocks();
 
 		AppManager.init();
 
-		LoadItems.Recipes();
+		initItems.Recipes();
 
 		Multipart.init();
 	}
@@ -89,7 +88,7 @@ public class NetworkCore implements ISourceMod {
 
 	@EventHandler
 	public void serverInit(FMLServerStartingEvent event) {
-		LoadCommand.loadcommands(event);
+		initCommand.loadcommands(event);
 	}
 
 	public static CreativeTabs	Network	= new CreativeTabs("network") {
