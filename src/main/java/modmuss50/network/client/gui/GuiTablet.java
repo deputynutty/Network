@@ -1,6 +1,8 @@
 package modmuss50.network.client.gui;
 
 import modmuss50.network.app.AppManager;
+import modmuss50.network.app.appUtil.GuiApp;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -15,24 +17,37 @@ public class GuiTablet extends GuiScreen {
     public void drawScreen(int par1, int par2, float par3) {
         int k = (this.width - 192) / 2 + 7;
         byte b0 = 2;
-
         RenderManager.instance.renderEngine.bindTexture(tabletTexture);
         this.drawTexturedModalRect(k, b0, 0, 0, 192, 256);
-
-
         drawString(this.fontRendererObj, "Apps:", k + 10, b0 + 10, Colors.Magenta);
+        super.drawScreen(par1, par2, par3);
     }
 
     @Override
     public void initGui(){
-       super.initGui();
         int k = (this.width - 192) / 2;
         int l = (this.height - 192) / 2;
-        //this.buttonList.clear();
+        this.buttonList.clear();
         for (int i = 0; i < AppManager.apps.size(); i++) {
-            this.buttonList.add(new GuiButton(i, k + 10, l + (20 * i), 20, 20, AppManager.apps.get(i).getAppName()));
-            System.out.println(AppManager.apps.get(i).getAppName());
+            this.buttonList.add(new GuiButton(i, k + 40, l + (20 * i), 70, 20, AppManager.apps.get(i).getAppName()));
+        }
+        super.initGui();
+    }
+
+    public boolean doesGuiPauseGame()
+    {
+        return false;
+    }
+
+
+    public void actionPerformed(GuiButton button) {
+        for (int i = 0; i < AppManager.apps.size(); i++) {
+                if(i == button.id){
+                    Minecraft.getMinecraft().displayGuiScreen(new GuiApp(AppManager.apps.get(i)));
+                }
         }
     }
+
+
 
 }

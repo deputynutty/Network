@@ -36,13 +36,6 @@ public class GuiRemoteUser extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
         String s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 + 27, 58 + 10, GuiContants.guiColour);
-
-        // for (int i = 0; i < tile.remotetiles.size(); i++) {
-        // this.fontRendererObj.drawString(tile.remotetiles.get(i).getBlockType().getLocalizedName()
-        // ,this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 , i *
-        // 10, GuiContants.guiColour);
-        // }
-
     }
 
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {

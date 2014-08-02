@@ -50,7 +50,8 @@ public class App {
 
     }
 
-    //This is suff to draw the gui of the app
+    //This is stuff to draw the gui of the app
+
 
     @SideOnly(Side.CLIENT)
     public void drawScreen(int par1, int par2, float par3, GuiApp gui){ }
