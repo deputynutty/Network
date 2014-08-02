@@ -1,7 +1,6 @@
 package modmuss50.network.app;
 
 import cpw.mods.fml.common.FMLLog;
-import modmuss50.network.app.apps.AppBlockBreaker;
 import modmuss50.network.app.apps.AppBrowser;
 import modmuss50.network.app.apps.AppFileExplorer;
 import modmuss50.network.app.apps.AppSettings;
@@ -18,7 +17,6 @@ public class AppManager {
         addApp(new AppSettings());
         addApp(new AppBrowser());
         addApp(new AppFileExplorer());
-        addApp(new AppBlockBreaker());
     }
 
     public static void addApp(App app) {

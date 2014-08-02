@@ -1,28 +1,24 @@
 package modmuss50.network.app;
 
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.network.app.appUtil.GuiApp;
 
 public class App {
 
     private String name, version;
-    private String[] authors;
 
     public App() {
-        this("Unnamed Game", "Unknown Version", new String[]{"Unknown Author"});
+        this("Unnamed Game", "Unknown Version");
     }
 
     public App(String name) {
-        this(name, "Unknown Version", new String[]{"Unknown Author"});
+        this(name, "Unknown Version");
     }
 
-    public App(String name, String[] authors) {
-        this(name, "Unknown Version", authors);
-    }
-
-    public App(String name, String version, String[] authors) {
+    public App(String name, String version) {
         this.name = name;
         this.version = version;
-        this.authors = authors;
     }
 
     /**
@@ -39,12 +35,6 @@ public class App {
         return version;
     }
 
-    /**
-     * @return A list containing the specified authors for this app
-     */
-    public String[] getAppAuthors() {
-        return authors;
-    }
 
     /**
      * Called when the app is opened
@@ -60,13 +50,20 @@ public class App {
 
     }
 
-    /**
-     * @param defaultInfo The default information that is stored such as app name, app
-     *                    version and a list of app authors
-     * @return The list, modified or not, so that the app information panel can
-     * render the information correctly
-     */
-    public List<String> getAppInfo(List<String> defaultInfo) {
-        return defaultInfo;
-    }
+    //This is suff to draw the gui of the app
+
+    @SideOnly(Side.CLIENT)
+    public void drawScreen(int par1, int par2, float par3, GuiApp gui){ }
+
+    @SideOnly(Side.CLIENT)
+    public void initGui(GuiApp gui) {}
+
+    @SideOnly(Side.CLIENT)
+    public void mouseClicked(int par1, int par2, int par3, GuiApp gui) {}
+
+    @SideOnly(Side.CLIENT)
+    public void keyTyped(char par1, int par2, GuiApp gui) {}
+
+    @SideOnly(Side.CLIENT)
+    public void onGuiClosed(GuiApp gui) {}
 }

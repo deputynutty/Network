@@ -5,7 +5,7 @@ import modmuss50.network.app.App;
 public class AppSettings extends App {
 
     public AppSettings() {
-        super("Settings", new String[]{"roboyobo"});
+        super("Settings");
     }
 
     @Override
