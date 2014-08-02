@@ -16,38 +16,32 @@ import sourceteam.mods.lib.client.IRGBColour;
 /**
  * Created by Mark on 19/04/14.
  */
-public class TileEntityTeleporter extends TileEntityCable implements IPeripheral, INetworkComponent, IColour, IRGBColour,IFluidHandler {
-	int			ticktime	= 0;
-	boolean		goingdown	= false;
-
-    int colour = 0;
-
-   public int fq = 0;
-
-
-    public FluidTank tank				= new FluidTank(1000) {
+public class TileEntityTeleporter extends TileEntityCable implements IPeripheral, INetworkComponent, IColour, IRGBColour, IFluidHandler {
+    public int fq = 0;
+    public FluidTank tank = new FluidTank(1000) {
         public FluidTank readFromNBT(NBTTagCompound nbt) {
             if (!nbt.hasKey("Empty")) {
                 FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt);
                 setFluid(fluid);
-            }
-            else {
+            } else {
                 setFluid(null);
             }
             return this;
         }
     };
+    int ticktime = 0;
+    boolean goingdown = false;
+    int colour = 0;
+    private FluidStack lastBeforeUpdate = null;
 
-    private FluidStack	lastBeforeUpdate	= null;
+    public TileEntityTeleporter() {
 
-	public TileEntityTeleporter() {
+    }
 
-	}
-
-	@Override
-	public boolean canConnectViaWireless() {
-		return false;
-	}
+    @Override
+    public boolean canConnectViaWireless() {
+        return false;
+    }
 
     //red = 0
     //red + green = 1
@@ -57,18 +51,17 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
     //blue + red = 5
 
 
-	@Override
-	public void updateEntity() {
-		super.updateEntity();
-		updateBlock();
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+        updateBlock();
 
-		if (ticktime >= 244) {
-			goingdown = true;
-		}
-		else{
+        if (ticktime >= 244) {
+            goingdown = true;
+        } else {
             if (ticktime == 0) {
                 goingdown = false;
-                if(colour ==  5){
+                if (colour == 5) {
                     colour = 0;
                 } else {
                     colour += 1;
@@ -76,57 +69,53 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
             }
         }
 
-		if (goingdown) {
-			ticktime -= 1;
-		}
-		else {
-			ticktime += 1;
-		}
+        if (goingdown) {
+            ticktime -= 1;
+        } else {
+            ticktime += 1;
+        }
 
 
+    }
 
-	}
+    public void updateBlock() {
 
-	public void updateBlock() {
-
-	}
-
+    }
 
 
-	@Override
-	public int colour() {
-		return 0;
-	}
+    @Override
+    public int colour() {
+        return 0;
+    }
 
-	@Override
-	public boolean isAnimated() {
-		return true;
-	}
+    @Override
+    public boolean isAnimated() {
+        return true;
+    }
 
-	@Override
-	public int Cred() {
-        if(colour == 0 || colour == 1 || colour == 5){
+    @Override
+    public int Cred() {
+        if (colour == 0 || colour == 1 || colour == 5) {
             return ticktime;
         }
         return 0;
-	}
+    }
 
-	@Override
-	public int Cgreen() {
-        if(colour == 1 || colour == 2|| colour == 3){
+    @Override
+    public int Cgreen() {
+        if (colour == 1 || colour == 2 || colour == 3) {
             return ticktime;
         }
         return 0;
-	}
+    }
 
-	@Override
-	public int Cblue() {
-        if(colour == 3 || colour == 4 || colour == 5){
+    @Override
+    public int Cblue() {
+        if (colour == 3 || colour == 4 || colour == 5) {
             return ticktime;
         }
         return 0;
-	}
-
+    }
 
 
     public Packet getDescriptionPacket() {
@@ -143,22 +132,22 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
 
     public void syncTile() {
         ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
-      //  NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(xCoord, yCoord, zCoord), fq));
+        //  NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(xCoord, yCoord, zCoord), fq));
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
         fq = tag.getInteger("fq");
-       // if(fq != 0)
-       // syncTile();
+        // if(fq != 0)
+        // syncTile();
     }
 
     @Override
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
         tag.setInteger("fq", fq);
-        System.out.println("TEP " +fq);
+        System.out.println("TEP " + fq);
     }
 
 
@@ -192,7 +181,7 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
         if (fluid != null) {
-                return true;
+            return true;
         }
         return false;
     }
@@ -241,7 +230,7 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
 
     public FluidTankInfo[] getTankInfo(boolean goToMainTank) {
         if (!goToMainTank)
-            return new FluidTankInfo[] { tank.getInfo() };
+            return new FluidTankInfo[]{tank.getInfo()};
 
         int amount = 0, capacity = 0;
         Fluid fluid = null;
@@ -284,7 +273,7 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
             break;
         }
 
-        return new FluidTankInfo[] { new FluidTankInfo(fluid != null ? new FluidStack(fluid, amount) : null, capacity) };
+        return new FluidTankInfo[]{new FluidTankInfo(fluid != null ? new FluidStack(fluid, amount) : null, capacity)};
     }
 
     public Fluid getFluid() {
@@ -301,20 +290,15 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
                     if (Math.abs(current.amount - lastBeforeUpdate.amount) >= 500) {
                         ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
                         lastBeforeUpdate = current.copy();
-                    }
-                    else
-                    if (lastBeforeUpdate.amount < tank.getCapacity() && current.amount == tank.getCapacity() || lastBeforeUpdate.amount == tank.getCapacity() && current.amount < tank.getCapacity()) {
+                    } else if (lastBeforeUpdate.amount < tank.getCapacity() && current.amount == tank.getCapacity() || lastBeforeUpdate.amount == tank.getCapacity() && current.amount < tank.getCapacity()) {
                         ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
                         lastBeforeUpdate = current.copy();
                     }
-                }
-                else {
+                } else {
                     ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
                     lastBeforeUpdate = current.copy();
                 }
-            }
-            else
-            if (lastBeforeUpdate != null) {
+            } else if (lastBeforeUpdate != null) {
                 ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
                 lastBeforeUpdate = null;
             }

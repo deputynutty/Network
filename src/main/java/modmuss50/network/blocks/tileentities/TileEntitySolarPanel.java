@@ -4,11 +4,11 @@ import modmuss50.network.api.IPowedTileEntity;
 
 public class TileEntitySolarPanel extends IPowedTileEntity {
 
-	@Override
-	public void doWorkTick() {
-		super.doWorkTick();
+    @Override
+    public void doWorkTick() {
+        super.doWorkTick();
 
 
-		addPowerServer(1);
-	}
+        addPowerServer(1);
+    }
 }

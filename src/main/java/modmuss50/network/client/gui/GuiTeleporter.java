@@ -11,7 +11,7 @@ import sourceteam.mods.lib.Location;
 
 public class GuiTeleporter extends GuiScreen {
 
-    private static final ResourceLocation lightPeripheralTexture	= new ResourceLocation("network:textures/gui/lightPeripheral.png");
+    private static final ResourceLocation lightPeripheralTexture = new ResourceLocation("network:textures/gui/lightPeripheral.png");
     private GuiTextField Value;
 
     private TileEntityTeleporter te;
@@ -46,33 +46,30 @@ public class GuiTeleporter extends GuiScreen {
     protected void keyTyped(char par1, int par2) {
         if (Value.textboxKeyTyped(par1, par2)) {
 
-        }
-        else {
+        } else {
             super.keyTyped(par1, par2);
         }
 
-        NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord),  getFQ()));
-        NetworkCore.packetPipeline.sendToServer(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord),  getFQ()));
+        NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord), getFQ()));
+        NetworkCore.packetPipeline.sendToServer(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord), getFQ()));
     }
 
     @Override
     public void onGuiClosed() {
         super.onGuiClosed();
-        NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord),  getFQ()));
+        NetworkCore.packetPipeline.sendToAll(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord), getFQ()));
         NetworkCore.packetPipeline.sendToServer(new PacketSetTeleporterFQ(new Location(te.xCoord, te.yCoord, te.zCoord), getFQ()));
 
     }
 
 
-    public int getFQ()
-    {
-        if(Value.getText() == "" || Value.getText().length() == 0)
+    public int getFQ() {
+        if (Value.getText() == "" || Value.getText().length() == 0)
             return 0;
 
         return Integer.parseInt(Value.getText());
 
     }
-
 
 
 }

@@ -6,12 +6,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockCreativePower extends BlockBase {
-	public BlockCreativePower() {
-		super(Material.iron);
-	}
+    public BlockCreativePower() {
+        super(Material.iron);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new TileEntityCreativePower();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World var1, int var2) {
+        return new TileEntityCreativePower();
+    }
 }

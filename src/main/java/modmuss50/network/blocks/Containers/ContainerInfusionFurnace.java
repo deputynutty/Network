@@ -3,7 +3,6 @@ package modmuss50.network.blocks.Containers;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.blocks.tileentities.TileEntityInfusionFurnace;
-import modmuss50.network.blocks.tileentities.TileEntityNetworkedFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -60,9 +59,7 @@ public class ContainerInfusionFurnace extends Container {
     public void updateProgressBar(int id, int data) {
         if (id == 0) {
             te.timeSmelted = data;
-        }
-        else
-        if (id == 1) {
+        } else if (id == 1) {
             te.currentPower = data;
         }
     }

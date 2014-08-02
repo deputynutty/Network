@@ -8,9 +8,9 @@ import net.minecraft.world.World;
  */
 public class NetworkParticleHelper {
 
-	public static void runWifiFX(World par1World, double x, double y, double z, double tx, double ty, double tz, float red, float green, float blue, int age) {
-		WifiFX wifi = new WifiFX(par1World, x, y, z, tx, ty, tz, red, green, blue, age);
-		Minecraft.getMinecraft().effectRenderer.addEffect(wifi);
-	}
+    public static void runWifiFX(World par1World, double x, double y, double z, double tx, double ty, double tz, float red, float green, float blue, int age) {
+        WifiFX wifi = new WifiFX(par1World, x, y, z, tx, ty, tz, red, green, blue, age);
+        Minecraft.getMinecraft().effectRenderer.addEffect(wifi);
+    }
 
 }

@@ -9,17 +9,17 @@ import net.minecraft.world.World;
 
 public class BlockNetworkPeripheral extends BlockBase implements IPeripheral, INetworkComponent {
 
-	public BlockNetworkPeripheral() {
-		super(Material.rock);
-	}
+    public BlockNetworkPeripheral() {
+        super(Material.rock);
+    }
 
-	@Override
-	public boolean canConnectViaWireless() {
-		return true;
-	}
+    @Override
+    public boolean canConnectViaWireless() {
+        return true;
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new TileEntityNetworkPeripheral();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World var1, int var2) {
+        return new TileEntityNetworkPeripheral();
+    }
 }

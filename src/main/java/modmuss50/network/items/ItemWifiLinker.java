@@ -19,20 +19,20 @@ import java.util.List;
  */
 public class ItemWifiLinker extends Item {
 
-	private int		modemX, modemY, modemZ;
+    private int modemX, modemY, modemZ;
 
-	private boolean	hasModem	= false;
+    private boolean hasModem = false;
 
-	public ItemWifiLinker() {
-		super();
+    public ItemWifiLinker() {
+        super();
         modemX = 0;
         modemY = 0;
         modemZ = 0;
-	}
+    }
 
-	@Override
-	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-		// if(!world.isRemote) {
+    @Override
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        // if(!world.isRemote) {
 //		Block block = world.getBlock(x, y, z);
 //		if (block == NetworkBlocks.modem) {
 //			modemX = x;
@@ -67,42 +67,42 @@ public class ItemWifiLinker extends Item {
 //			}
 //		// }
 
-        if(world.getTileEntity(x, y, z) instanceof ILinkedTile){
-            if(player.isSneaking()){
+        if (world.getTileEntity(x, y, z) instanceof ILinkedTile) {
+            if (player.isSneaking()) {
                 modemX = x;
                 modemY = y;
                 modemZ = z;
 
                 hasModem = true;
                 return true;
-            } else if(hasModem){
-                 if(canlink(world.getTileEntity(x, y,z), new Location(modemX, modemY, modemZ), world)){
-                     ((ILinkedTile) world.getTileEntity(x, y,z)).setLocation(new Location(modemX, modemY, modemZ));
-                 }
+            } else if (hasModem) {
+                if (canlink(world.getTileEntity(x, y, z), new Location(modemX, modemY, modemZ), world)) {
+                    ((ILinkedTile) world.getTileEntity(x, y, z)).setLocation(new Location(modemX, modemY, modemZ));
+                }
                 NetworkCore.packetPipeline.sendToServer(new PacketSetRemoteTile(new Location(x, y, z), new Location(modemX, modemY, modemZ)));
                 return true;
             }
         }
 
-		return false;
-	}
+        return false;
+    }
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean val) {
-		list.add("Linked to: ");
-		list.add("X: " + modemX);
-		list.add("Y: " + modemY);
-		list.add("Z: " + modemZ);
-	}
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean val) {
+        list.add("Linked to: ");
+        list.add("X: " + modemX);
+        list.add("Y: " + modemY);
+        list.add("Z: " + modemZ);
+    }
 
-    public boolean canlink(TileEntity tile, Location location, World world){
-        if(tile instanceof ILinkedTile){
+    public boolean canlink(TileEntity tile, Location location, World world) {
+        if (tile instanceof ILinkedTile) {
             for (int i = 0; i < ((ILinkedTile) tile).conectableTiles().length; i++) {
-              if( ((ILinkedTile) tile).conectableTiles()[i].getClass().getName().equals(world.getTileEntity(location.getX(), location.getY(), location.getZ()).getClass().getName())){
-                return true;
-              }
+                if (((ILinkedTile) tile).conectableTiles()[i].getClass().getName().equals(world.getTileEntity(location.getX(), location.getY(), location.getZ()).getClass().getName())) {
+                    return true;
+                }
             }
         }
         return false;

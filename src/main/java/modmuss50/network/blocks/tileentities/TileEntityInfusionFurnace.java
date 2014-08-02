@@ -3,11 +3,11 @@ package modmuss50.network.blocks.tileentities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.IRemoteTile;
+import modmuss50.network.api.InfusionFurnaceRecipes;
 import modmuss50.network.client.gui.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
@@ -19,28 +19,27 @@ import net.minecraftforge.common.util.Constants;
  * Created by Mark on 28/07/2014.
  */
 public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implements IInventory, IRemoteTile {
-    public ItemStack[]	items;
-    public boolean		isSmelting		= false;
-    public int			timeSmelted		= 0;
-    public int			maxSmeltTime	= 40;
+    public ItemStack[] items;
+    public boolean isSmelting = false;
+    public int timeSmelted = 0;
+    public int maxSmeltTime = 140;
 
     public TileEntityInfusionFurnace() {
         super();
         items = new ItemStack[getSizeInventory()];
-        PowerStorageSize = 10000;
+        PowerStorageSize = 100000;
     }
 
     @Override
     public int getSizeInventory() {
-        return 12;
+        return 3;
     }
 
     @Override
     public ItemStack getStackInSlot(int var1) {
         if (var1 < 12) {
             return items[var1];
-        }
-        else {
+        } else {
             return items[1];
         }
     }
@@ -52,8 +51,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         if (stack != null) {
             if (stack.stackSize <= count) {
                 setInventorySlotContents(slot, null);
-            }
-            else {
+            } else {
                 ItemStack stack2 = stack.splitStack(count);
             }
         }
@@ -67,8 +65,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         if (stack != null) {
             if (stack.stackSize + count > 64) {
                 stack.stackSize = 64;
-            }
-            else {
+            } else {
                 stack.stackSize += count;
             }
         }
@@ -79,32 +76,29 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
     public void determineIfSmelting() {
 
         if (this.getCurrentPower() >= this.getNeededPower()) {
-            if (!isSmelting && getStackInSlot(0) != null && FurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)) != null) {
+            if (!isSmelting && getStackInSlot(0) != null && InfusionFurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)) != null) {
                 ItemStack input = getStackInSlot(0);
                 ItemStack output = getStackInSlot(2);
 
                 if (!worldObj.isRemote) {
                     if (output != null) {
-                        if (output.getItem() == FurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)).getItem()) {
+                        if (output.getItem() == InfusionFurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)).getItem()) {
                             isSmelting = true;
-                        }
-                        else {
+                        } else {
 
                         }
-                    }
-                    else {
+                    } else {
                         isSmelting = true;
                     }
                 }
             }
-        }
-        else {
+        } else {
             isSmelting = false;
         }
     }
 
     public int getNeededPower() {
-        return 8;
+        return 12;
     }
 
     public void smelt() {
@@ -129,18 +123,16 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
                 isSmelting = false;
 
                 if (output != null) {
-                    if ((getStackInSlot(0) != null) && output.getItem() == FurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)).copy().getItem()) {
+                    if ((getStackInSlot(0) != null) && output.getItem() == InfusionFurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)).copy().getItem()) {
                         incrStackSize(2, 1);
                         decrStackSize(0, 1);
                         removePower = true;
-                    }
-                    else {
+                    } else {
 
                     }
-                }
-                else {
+                } else {
                     if (getStackInSlot(0) != null) {
-                        setInventorySlotContents(2, FurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)).copy());
+                        setInventorySlotContents(2, InfusionFurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)).copy());
                         decrStackSize(0, 1);
                         removePower = true;
                     }

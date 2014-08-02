@@ -3,7 +3,7 @@ package modmuss50.network.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.NetworkCore;
-import modmuss50.network.blocks.tileentities.TileEntityMover;
+import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,64 +16,72 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class BlockMover extends BlockBase {
+public class BlockPowerSink extends BlockBase {
 
-    private static IIcon[] tops = new IIcon[4];
-    private static IIcon[] outher = new IIcon[1];
     private final Random random = new Random();
-    public BlockMover() {
-        super(Material.iron);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World var1, int var2) {
-        return new TileEntityMover();
+    @SideOnly(Side.CLIENT)
+    private IIcon side;
+    @SideOnly(Side.CLIENT)
+    private IIcon other;
+    public BlockPowerSink() {
+        super(Material.anvil);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister icon) {
-        tops[0] = icon.registerIcon("network:ItemConvayor_0");
-        tops[1] = icon.registerIcon("network:ItemConvayor_1");
-        tops[2] = icon.registerIcon("network:ItemConvayor_2");
-        tops[3] = icon.registerIcon("network:ItemConvayor_3");
-        outher[0] = icon.registerIcon("network:ItemConvayor_side");
+        side = icon.registerIcon("network:powersink_side");
+        other = icon.registerIcon("network:powersink_other");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta) {
-        if (side == 0) {
-            return outher[0];
-        } else if (side == 1) {
-            return tops[meta];
+    public IIcon getIcon(int currentSide, int meta) {
+        if (currentSide == 0 || currentSide == 1) {
+            return other;
         } else {
-            return outher[0];
+            return side;
         }
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        TileEntityMover tile = (TileEntityMover) world.getTileEntity(x, y, z);
+    public TileEntity createNewTileEntity(World var1, int var2) {
+        return new TileEntityPowerSink();
+    }
 
-        if (player.isSneaking()) {
-            tile.active();
-            return true;
+    @Override
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+
+        TileEntityPowerSink tileentity = (TileEntityPowerSink) par1World.getTileEntity(par2, par3, par4);
+
+        par1World.markTileEntityChunkModified(par2, par3, par4, tileentity);
+
+        if (tileentity != null) {
+            par5EntityPlayer.openGui(NetworkCore.instance, 6, par1World, par2, par3, par4);
         }
-
-        player.openGui(NetworkCore.instance, 9, world, x, y, z);
 
         return true;
     }
+
+    // @Override
+    // public void breakBlock(World world, int x, int y, int z, Block par5, int
+    // par6)
+    // {
+    // ForgeChunkManager.releaseTicket(((TileEntityServer)
+    // world.getTileEntity(x, y, z)).heldChunk);
+    // super.breakBlock(world, x, y, z, par5, par6);
+    //
+    // }
 
     /**
      * ejects contained items into the world, and notifies neighbours of an
      * update, as appropriate
      */
     public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
-        TileEntityMover tileentitychest = (TileEntityMover) par1World.getTileEntity(par2, par3, par4);
+        TileEntityPowerSink tileentitychest = (TileEntityPowerSink) par1World.getTileEntity(par2, par3, par4);
 
         if (tileentitychest != null) {
             for (int j1 = 0; j1 < tileentitychest.getSizeInventory(); ++j1) {
@@ -115,9 +123,31 @@ public class BlockMover extends BlockBase {
      * blocks or ocelots on top of the chest, and double chests.
      */
     public IInventory getInventory(World par1World, int par2, int par3, int par4) {
-        Object object = (TileEntityMover) par1World.getTileEntity(par2, par3, par4);
+        Object object = (TileEntityPowerSink) par1World.getTileEntity(par2, par3, par4);
 
         return (IInventory) object;
+
+    }
+
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+
+        TileEntity t = world.getTileEntity(x, y, z);
+
+        if (t instanceof TileEntityPowerSink) {
+            TileEntityPowerSink tile = (TileEntityPowerSink) t;
+            int Netuu = tile.getNetworkNetUnits();
+
+            ItemStack stack = new ItemStack(world.getBlock(x, y, z), 1, metadata);
+            if (!stack.hasTagCompound()) {
+                stack.setTagCompound(new NBTTagCompound());
+            }
+            stack.getTagCompound().setInteger("netuu", Netuu);
+            items.add(stack);
+        }
+
+        return items;
 
     }
 

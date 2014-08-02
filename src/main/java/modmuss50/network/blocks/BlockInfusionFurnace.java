@@ -4,17 +4,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityInfusionFurnace;
-import modmuss50.network.blocks.tileentities.TileEntityNetworkedFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -25,7 +22,7 @@ import java.util.Random;
  * Created by Mark on 28/07/2014.
  */
 public class BlockInfusionFurnace extends BlockBase {
-    public IIcon[]	icons	= new IIcon[2];
+    public IIcon[] icons = new IIcon[2];
 
     public BlockInfusionFurnace() {
         super(Material.iron);
@@ -106,8 +103,6 @@ public class BlockInfusionFurnace extends BlockBase {
         this.icons[1] = p_149651_1_.registerIcon("network:FurnaceFront");
         this.icons[0] = p_149651_1_.registerIcon("network:ItemConvayor_side");
     }
-
-
 
 
 }

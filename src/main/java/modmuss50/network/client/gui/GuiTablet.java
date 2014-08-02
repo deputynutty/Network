@@ -6,13 +6,13 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiTablet extends GuiScreen {
 
-	private static final ResourceLocation	tabletTexture	= new ResourceLocation("network:textures/gui/tablet.png");
+    private static final ResourceLocation tabletTexture = new ResourceLocation("network:textures/gui/tablet.png");
 
-	@Override
-	public void drawScreen(int par1, int par2, float par3) {
-		RenderManager.instance.renderEngine.bindTexture(tabletTexture);
-		int k = (this.width - 192) / 2 + 7;
-		byte b0 = 2;
-		this.drawTexturedModalRect(k, b0, 0, 0, 192, 256);
-	}
+    @Override
+    public void drawScreen(int par1, int par2, float par3) {
+        RenderManager.instance.renderEngine.bindTexture(tabletTexture);
+        int k = (this.width - 192) / 2 + 7;
+        byte b0 = 2;
+        this.drawTexturedModalRect(k, b0, 0, 0, 192, 256);
+    }
 }

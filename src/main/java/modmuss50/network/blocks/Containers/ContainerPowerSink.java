@@ -1,6 +1,6 @@
 package modmuss50.network.blocks.Containers;
 
-import modmuss50.network.blocks.tileentities.TileEntityMover;
+import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -8,29 +8,24 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContinerBlockMover extends Container {
+public class ContainerPowerSink extends Container {
     private IInventory lowerChestInventory;
     private int numRows = 3;
 
-    private TileEntityMover tileEntity;
+    private TileEntityPowerSink tileEntity;
 
-    public ContinerBlockMover(InventoryPlayer player, TileEntityMover tile) {
+    public ContainerPowerSink(InventoryPlayer player, TileEntityPowerSink tile) {
         this.tileEntity = tile;
         lowerChestInventory = this.tileEntity;
 
-        this.addSlotToContainer(new Slot(this.tileEntity, 0, 8, 14)); // direction
-
-        this.addSlotToContainer(new Slot(this.tileEntity, 1, 50, 14)); // up
-
-        this.addSlotToContainer(new Slot(this.tileEntity, 2, 50, 32)); // down
-
-        this.addSlotToContainer(new Slot(this.tileEntity, 3, 90, 14)); // north
-
-        this.addSlotToContainer(new Slot(this.tileEntity, 4, 72, 32)); // west
-
-        this.addSlotToContainer(new Slot(this.tileEntity, 5, 108, 32)); // east
-
-        this.addSlotToContainer(new Slot(this.tileEntity, 6, 90, 50)); // south
+        int y = 5;
+        this.addSlotToContainer(new Slot(this.tileEntity, 0, 150, y));
+        y += 18;
+        this.addSlotToContainer(new Slot(this.tileEntity, 1, 150, y));
+        y += 18;
+        this.addSlotToContainer(new Slot(this.tileEntity, 2, 150, y));
+        y += 18;
+        this.addSlotToContainer(new Slot(this.tileEntity, 3, 150, y));
 
         this.bindPlayerInventory(player);
     }

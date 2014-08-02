@@ -8,12 +8,12 @@ import net.minecraft.world.World;
 
 public class BlockModem extends BlockBase implements IWirelessSignalProvider {
 
-	public BlockModem() {
-		super(Material.rock);
-	}
+    public BlockModem() {
+        super(Material.rock);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new TileEntityModem();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World var1, int var2) {
+        return new TileEntityModem();
+    }
 }

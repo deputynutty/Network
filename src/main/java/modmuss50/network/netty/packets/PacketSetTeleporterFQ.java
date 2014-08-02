@@ -23,7 +23,6 @@ public class PacketSetTeleporterFQ extends AbstractPacket {
     }
 
 
-
     @Override
     public void encodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
         buffer.writeInt(fq);
@@ -42,15 +41,15 @@ public class PacketSetTeleporterFQ extends AbstractPacket {
 
     @Override
     public void handleClientSide(EntityPlayer player) {
-      if(player.worldObj.getTileEntity(x, y, z) instanceof TileEntityTeleporter){
-          ((TileEntityTeleporter) player.worldObj.getTileEntity(x, y, z)).fq = fq;
-      }
+        if (player.worldObj.getTileEntity(x, y, z) instanceof TileEntityTeleporter) {
+            ((TileEntityTeleporter) player.worldObj.getTileEntity(x, y, z)).fq = fq;
+        }
         System.out.println("packet was recived on the client side");
     }
 
     @Override
     public void handleServerSide(EntityPlayer player) {
-        if(player.worldObj.getTileEntity(x, y, z) instanceof TileEntityTeleporter){
+        if (player.worldObj.getTileEntity(x, y, z) instanceof TileEntityTeleporter) {
             ((TileEntityTeleporter) player.worldObj.getTileEntity(x, y, z)).fq = fq;
         }
         System.out.println("packet was recived on the server side");

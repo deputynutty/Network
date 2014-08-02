@@ -13,15 +13,15 @@ import sourceteam.mods.lib.api.IRGB;
 /**
  * Created with IntelliJ IDEA. User: Mark Date: 25/02/14 Time: 13:11
  */
-public class TileEntityLightPeripheral extends BaseTile implements INetworkComponent , IRGB{
+public class TileEntityLightPeripheral extends BaseTile implements INetworkComponent, IRGB {
 
-	public int	red		= 255;
-	public int	green	= 255;
-	public int	blue	= 255;
+    public int red = 255;
+    public int green = 255;
+    public int blue = 255;
 
-	public TileEntityLightPeripheral() {
+    public TileEntityLightPeripheral() {
 
-	}
+    }
 
     @Override
     public void writeToNBT(NBTTagCompound compound) {
@@ -39,13 +39,12 @@ public class TileEntityLightPeripheral extends BaseTile implements INetworkCompo
         red = compound.getInteger("red");
         green = compound.getInteger("green");
         blue = compound.getInteger("blue");
-     //   updateBlock();
+        //   updateBlock();
     }
 
     public void updateBlock() {
         this.worldObj.markBlockRangeForRenderUpdate(this.xCoord, this.yCoord, this.zCoord, this.xCoord, this.yCoord, this.zCoord);
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-        // syncWithClient();
     }
 
     public Packet getDescriptionPacket() {
@@ -66,19 +65,18 @@ public class TileEntityLightPeripheral extends BaseTile implements INetworkCompo
         if (FMLCommonHandler.instance().getSide().isServer()) {
             NetworkCore.packetPipeline.sendToAll(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
         }
-
         updateBlock();
     }
 
 
-	@Override
-	public boolean canUpdate() {
-		return true;
-	}
+    @Override
+    public boolean canUpdate() {
+        return true;
+    }
 
 
     @Override
     public float[] getRGB() {
-        return new float[] {red / 255, green / 255, blue / 255};
+        return new float[]{red / 255, green / 255, blue / 255};
     }
 }

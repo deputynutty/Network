@@ -13,9 +13,9 @@ import sourceteam.mods.lib.client.GuiRenderHelper;
  * Created by Mark on 28/07/2014.
  */
 public class GuiInfusionFurnace extends GuiContainer {
-    private static final ResourceLocation GuiTextures	= new ResourceLocation("network", "textures/gui/BasePoweredGui.png");
-    private TileEntityInfusionFurnace tile;
+    private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");
     public EntityPlayer player;
+    private TileEntityInfusionFurnace tile;
 
 
     public GuiInfusionFurnace(EntityPlayer par1InventoryPlayer, TileEntityInfusionFurnace par2TileEntityFurnace) {
@@ -46,8 +46,7 @@ public class GuiInfusionFurnace extends GuiContainer {
             int perint2 = (perint1 / i2);
 
             s = Integer.toString(perint2) + "%";
-        }
-        else {
+        } else {
             s = "0%";
         }
 
@@ -63,8 +62,7 @@ public class GuiInfusionFurnace extends GuiContainer {
             int perint2 = (perint1 / i2);
 
             s = Integer.toString(perint2) + "%";
-        }
-        else {
+        } else {
             s = "0%";
         }
 

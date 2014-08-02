@@ -25,7 +25,6 @@ public class PacketSetRemoteTile extends AbstractPacket {
     }
 
 
-
     @Override
     public void encodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
         buffer.writeInt(ox);
@@ -55,8 +54,8 @@ public class PacketSetRemoteTile extends AbstractPacket {
 
     @Override
     public void handleServerSide(EntityPlayer player) {
-        if(player.worldObj.getTileEntity(ox, oy, oz) instanceof ILinkedTile){
-            ((ILinkedTile) player.worldObj.getTileEntity(ox, oy,oz)).setLocation(new Location(tx, ty, tz));
+        if (player.worldObj.getTileEntity(ox, oy, oz) instanceof ILinkedTile) {
+            ((ILinkedTile) player.worldObj.getTileEntity(ox, oy, oz)).setLocation(new Location(tx, ty, tz));
             System.out.println("Packet send and recived on the server side!");
 
         }

@@ -10,59 +10,59 @@ import java.util.List;
 
 public class ItemPart extends Item {
 
-	public static String[]	parts	= { "Reinforced Iron", "Hardened Iron", "Hardened Iron Plate", "Reinforced Iron Plate", "Scale", "North", "South", "East", "West", "Up", "Down", "Infused Iron", "Infused Iron Plate","GlassStrip", "ReinforcedGlassStrip", "InfusedGlassStrip", "FiberCable", "GlassPlate", "Coil",  "BasicTank", "ReinforcedTank", "InfusedTank", "Player", "Item", "Fluid"};
+    public static String[] parts = {"ReinforcedIron", "HardenedIron", "HardenedIronPlate", "ReinforcedIronPlate", "Scale", "North", "South", "East", "West", "Up", "Down", "InfusedIron", "InfusedIronPlate", "GlassStrip", "ReinforcedGlassStrip", "InfusedGlassStrip", "FiberCable", "GlassPlate", "Coil", "BasicTank", "ReinforcedTank", "InfusedTank", "Player", "Item", "Fluid"};
 
-	public IIcon[]			icons	= new IIcon[parts.length];
+    public IIcon[] icons = new IIcon[parts.length];
 
-	public ItemPart() {
-		super();
-		setMaxStackSize(64);
-		hasSubtypes = true;
-	}
+    public ItemPart() {
+        super();
+        setMaxStackSize(64);
+        hasSubtypes = true;
+    }
 
-	@Override
-	public void registerIcons(IIconRegister icon) {
-		for (int j = 0; j < parts.length; j++) {
-			icons[j] = icon.registerIcon("network:" + parts[j]);
-		}
-	}
+    public static ItemStack getItemstack(String name) {
+        return getItemstack(name, 1);
+    }
 
-	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		for (int j = 0; j < parts.length; j++) {
-			list.add(new ItemStack(item, 1, j));
-		}
-	}
+    public static ItemStack getItemstack(String name, int size) {
+        int meta = getMeta(name);
+        if (meta == 777666555)
+            return null;
+        return new ItemStack(NetworkItems.parts, size, meta);
+    }
 
-	@Override
-	public IIcon getIconFromDamage(int par1) {
-		return icons[par1];
-	}
+    public static int getMeta(String name) {
+        if (name.equals(parts[0]))
+            return 0;
+        for (int i = 0; i < parts.length; i++) {
+            if (parts[i].equals(name)) {
+                return i;
+            }
+        }
+        return 777666555;
+    }
 
-	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		return getUnlocalizedName() + "." + parts[itemstack.getItemDamage()];
-	}
+    @Override
+    public void registerIcons(IIconRegister icon) {
+        for (int j = 0; j < parts.length; j++) {
+            icons[j] = icon.registerIcon("network:" + parts[j]);
+        }
+    }
 
-	public static ItemStack getItemstack(String name) {
-		return getItemstack(name, 1);
-	}
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list) {
+        for (int j = 0; j < parts.length; j++) {
+            list.add(new ItemStack(item, 1, j));
+        }
+    }
 
-	public static ItemStack getItemstack(String name, int size) {
-		for (int i = 0; i < parts.length; i++) {
-			if (parts[i] == name) {
-				return new ItemStack(NetworkItems.parts, size, i);
-			}
-		}
-		return null;
-	}
+    @Override
+    public IIcon getIconFromDamage(int par1) {
+        return icons[par1];
+    }
 
-	public static int getMeta(String name) {
-		for (int i = 0; i < parts.length; i++) {
-			if (parts[i] == name) {
-				return i;
-			}
-		}
-		return 0;
-	}
+    @Override
+    public String getUnlocalizedName(ItemStack itemstack) {
+        return getUnlocalizedName() + "." + parts[itemstack.getItemDamage()];
+    }
 }
