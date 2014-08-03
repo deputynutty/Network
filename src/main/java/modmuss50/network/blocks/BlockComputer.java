@@ -3,12 +3,13 @@ package modmuss50.network.blocks;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityComputer;
+import modmuss50.network.client.gui.GuiHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -42,19 +43,9 @@ public class BlockComputer extends BlockBase {
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
 
-        TileEntityComputer te;
-        te = (TileEntityComputer) par1World.getTileEntity(par2, par3, par4);
-
-        if (par1World.isRemote) {
-            if (te.hasConectionServer()) {
-                par5EntityPlayer.addChatMessage(new ChatComponentText("Power: " + te.Getpower()));
-            } else {
-                par5EntityPlayer.addChatMessage(new ChatComponentText("ERROR: No Connection to server!"));
-            }
-        }
-
+        par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.computerGuiID, par1World,(int) x, (int) y,(int)  z);
         return true;
     }
 

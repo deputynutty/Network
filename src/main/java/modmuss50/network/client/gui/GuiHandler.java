@@ -22,6 +22,7 @@ public class GuiHandler implements IGuiHandler {
     public static int BlockRemoteUserID = 10;
     public static int TeleporterID = 11;
     public static int InfusedFurnace = 12;
+    public static int computerGuiID = 13;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -57,7 +58,11 @@ public class GuiHandler implements IGuiHandler {
         }
         if (ID == InfusedFurnace) {
             return new ContainerInfusionFurnace((TileEntityInfusionFurnace) te, player);
-        } else {
+        }
+        if (ID == computerGuiID) {
+            return null;
+        }
+        else {
             return null;
         }
 
@@ -125,10 +130,14 @@ public class GuiHandler implements IGuiHandler {
                 }
             }
 
-        if (ID == InfusedFurnace) {
+       else  if (ID == InfusedFurnace) {
             if (te instanceof TileEntityInfusionFurnace) {
                 return new GuiInfusionFurnace(player, (TileEntityInfusionFurnace) te);
             }
+        }
+
+       else if (ID == computerGuiID) {
+                return new GuiComputer();
         }
 
         return null;
