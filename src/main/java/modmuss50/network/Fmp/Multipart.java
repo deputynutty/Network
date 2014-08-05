@@ -17,19 +17,25 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
 
     public static final String codename = "tile.network.cable";
     public static final String Pipecodename = "tile.network.pipeLine";
+    public static final String wireName = "tile.network.wire";
     public static ItemPartCable cablepartitem;
     public static ItemPipeLine itemPipeLine;
+    public static ItemPartWire itemPartWire;
+
 
     public static void init() {
 
         MultiPartRegistry.registerParts(new Multipart(), new String[]{codename});
         MultiPartRegistry.registerParts(new Multipart(), new String[]{Pipecodename});
+        MultiPartRegistry.registerParts(new Multipart(), new String[]{wireName});
 
         cablepartitem = new ItemPartCable();
         itemPipeLine = new ItemPipeLine();
+        itemPartWire = new ItemPartWire();
 
         GameRegistry.registerItem(itemPipeLine, Pipecodename);
         GameRegistry.registerItem(cablepartitem, codename);
+        GameRegistry.registerItem(itemPartWire, wireName);
 
     }
 
@@ -134,12 +140,82 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
         return null;
     }
 
+
+
+
+
+
+    public static boolean hasPartWire(TileMultipart mp) {
+        boolean ret = false;
+        List<TMultiPart> t = mp.jPartList();
+        for (TMultiPart p : t) {
+            if (ret == false) {
+                if (p instanceof PartWire) {
+                    ret = true;
+                }
+            }
+        }
+        return ret;
+    }
+
+    public static boolean hasPartWire(TileEntity mp) {
+        if (mp instanceof TileMultipart) {
+            TileMultipart Tmp = (TileMultipart) mp;
+            boolean ret = false;
+            List<TMultiPart> t = Tmp.jPartList();
+            for (TMultiPart p : t) {
+                if (ret == false) {
+                    if (p instanceof PartWire) {
+                        ret = true;
+                    }
+                }
+            }
+            return ret;
+        }
+
+        return false;
+
+    }
+
+    public static PartWire getwire(TileMultipart mp) {
+        boolean ret = false;
+        List<TMultiPart> t = mp.jPartList();
+        for (TMultiPart p : t) {
+            if (ret == false) {
+                if (p instanceof PartWire) {
+                    return (PartWire) p;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static PartWire getWire(TileEntity mp) {
+        if (mp instanceof TileMultipart) {
+            TileMultipart Tmp = (TileMultipart) mp;
+            boolean ret = false;
+            List<TMultiPart> t = Tmp.jPartList();
+            for (TMultiPart p : t) {
+                if (ret == false) {
+                    if (p instanceof PartWire) {
+                        return (PartWire) p;
+                    }
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+
     @Override
     public TMultiPart createPart(String id, boolean client) {
         if (id.equals(codename)) {
             return new PartCable();
         } else if (id.equals(Pipecodename)) {
             return new PartPipeLine();
+        } else if (id.equals(wireName)){
+            return new PartWire();
         }
         System.out.println("There was an error!");
         return null;
