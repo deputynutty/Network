@@ -22,12 +22,14 @@ import modmuss50.network.items.NetworkItems;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import sourceteam.mods.core.client.BaseModGui;
 import sourceteam.mods.core.mod.ModRegistry;
 import sourceteam.mods.lib.mod.ISourceMod;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Mod(modid = "network", name = "Network", version = "0.01")
@@ -40,13 +42,17 @@ public class NetworkCore implements ISourceMod {
     @Instance("network")
     public static NetworkCore instance;
     public static Logger networkLog = Logger.getLogger("Network");
+
     public static CreativeTabs Network = new CreativeTabs("network") {
         @Override
         public Item getTabIconItem() {
             return NetworkItems.tablet;
         }
 
-    };
+        @Override
+        public boolean hasSearchBar () { return true;};
+
+    }.setBackgroundImageName("item_search.png");
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
