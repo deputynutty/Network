@@ -55,6 +55,7 @@ public class initItems {
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("InfusedIron"));
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedIronPlate"), ItemPart.getItemstack("InfusedIronPlate"));
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedGlassStrip"), ItemPart.getItemstack("InfusedGlassStrip"));
+        InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedTank"), ItemPart.getItemstack("InfusedTank"));
 
         GameRegistry.addRecipe(new ItemStack(Multipart.cablepartitem, 16), "ddd", "rrr", "ddd", 'r', ItemPart.getItemstack("FiberCable"), 'd', ItemPart.getItemstack("ReinforcedIron"));
         GameRegistry.addRecipe(new ItemStack(Multipart.itemPipeLine, 8), "ddd", "ggg", "ddd", 'g', Blocks.glass, 'd', ItemPart.getItemstack("ReinforcedIron"));

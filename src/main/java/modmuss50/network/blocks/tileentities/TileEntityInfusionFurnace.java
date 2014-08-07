@@ -22,7 +22,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
     public ItemStack[] items;
     public boolean isSmelting = false;
     public int timeSmelted = 0;
-    public int maxSmeltTime = 140;
+    public static int maxSmeltTime = 140;
 
     public TileEntityInfusionFurnace() {
         super();
@@ -34,6 +34,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
     public int getSizeInventory() {
         return 3;
     }
+
 
     @Override
     public ItemStack getStackInSlot(int var1) {
@@ -97,7 +98,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         }
     }
 
-    public int getNeededPower() {
+    public static int getNeededPower() {
         return 12;
     }
 
