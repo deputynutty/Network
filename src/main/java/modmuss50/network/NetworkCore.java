@@ -26,11 +26,13 @@ import modmuss50.network.netty.PacketPipeline;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemEnchantedBook;
 import net.minecraftforge.common.MinecraftForge;
 import sourceteam.mods.core.client.BaseModGui;
 import sourceteam.mods.core.mod.ModRegistry;
 import sourceteam.mods.lib.mod.ISourceMod;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -53,6 +55,35 @@ public class NetworkCore implements ISourceMod {
 
         @Override
         public boolean hasSearchBar () { return true;};
+
+        @Override
+        @SideOnly(Side.CLIENT)
+        public void displayAllReleventItems(List list){
+            Iterator iterator = Item.itemRegistry.iterator();
+
+            while (iterator.hasNext())
+            {
+                Item item = (Item)iterator.next();
+
+                if (item == null)
+                {
+                    continue;
+                }
+
+                for (CreativeTabs tab : item.getCreativeTabs())
+                {
+                    if (tab == this)
+                    {
+                        System.out.println(item.getUnlocalizedName());
+                        if(!item.getUnlocalizedName().contains("enchanted_book"))
+                        item.getSubItems(item, this, list);
+
+                    }
+                }
+            }
+        }
+
+
 
     }.setBackgroundImageName("item_search.png");
 

@@ -149,7 +149,11 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     @Override
     public boolean occlusionTest(TMultiPart npart) {
-        return NormalOcclusionTest.apply(this, npart);
+        try{
+            return NormalOcclusionTest.apply(this, npart);
+        } catch (NullPointerException npe){
+            return false;
+        }
     }
 
     @Override

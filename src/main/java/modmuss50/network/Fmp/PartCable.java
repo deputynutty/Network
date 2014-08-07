@@ -8,6 +8,7 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Vector3;
 import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
+import com.typesafe.config.ConfigException;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.INetworkComponent;
@@ -167,7 +168,11 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
     @Override
     public boolean occlusionTest(TMultiPart npart) {
-        return NormalOcclusionTest.apply(this, npart);
+        try{
+            return NormalOcclusionTest.apply(this, npart);
+        } catch (NullPointerException npe){
+            return false;
+        }
     }
 
     @Override
