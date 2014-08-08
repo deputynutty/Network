@@ -2,6 +2,7 @@ package modmuss50.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.tileentities.TileEntityLightPeripheral;
 import modmuss50.network.netty.AbstractPacket;
@@ -86,6 +87,7 @@ public class PacketLight extends AbstractPacket {
                 te.red = this.r;
             }
         }
+       NetworkCore.packetPipeline.sendToAll(new PacketLight(posX, posY, posZ,r, g, b));
     }
 
 }

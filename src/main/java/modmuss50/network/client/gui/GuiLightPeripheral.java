@@ -101,7 +101,7 @@ public class GuiLightPeripheral extends GuiScreen {
         te.updateBlock();
 
         NetworkCore.packetPipeline.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
-        NetworkCore.packetPipeline.sendToAll(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
+
     }
 
     /**

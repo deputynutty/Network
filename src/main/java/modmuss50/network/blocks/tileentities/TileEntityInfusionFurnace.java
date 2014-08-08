@@ -28,6 +28,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         super();
         items = new ItemStack[getSizeInventory()];
         PowerStorageSize = 100000;
+        powerimputspeed = 50;
     }
 
     @Override
