@@ -12,7 +12,10 @@ import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.blocks.BlockRobot;
 import modmuss50.network.client.Render.RenderWire;
+import modmuss50.network.client.Render.RenderWireNFC;
+import modmuss50.network.client.particles.NetworkParticleHelper;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,15 +26,17 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusion, ISidedHollowConnect {
+public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOcclusion, ISidedHollowConnect {
     public static Cuboid6[] boundingBoxes = new Cuboid6[14];
     public static float center = 0.6F;
     public static float offset = 0.10F;
     private static int expandBounds = -1;
     @SideOnly(Side.CLIENT)
-    private static RenderWire renderer;
+    private static RenderWireNFC renderer;
     @SideOnly(Side.CLIENT)
     private static IIcon breakIcon;
     private final boolean[] connectedSideFlags = new boolean[6];
@@ -39,10 +44,6 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     static {
         refreshBounding();
     }
-    boolean gotSerpos = false;
-    int ServX;
-    int ServY;
-    int ServZ;
     private Map<ForgeDirection, TileEntity> connectedSides;
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
@@ -52,7 +53,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     public static void refreshBounding() {
         float centerFirst = center - offset;
         double w = 0.2D / 2;
-        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w  - 0.5, centerFirst + w);
+        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w  - 0.3, centerFirst + w);
 
         int i = 0;
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
@@ -72,7 +73,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     @Override
     public String getType() {
-        return Multipart.wireName;
+        return Multipart.wireNfcName;
     }
 
     @Override
@@ -183,7 +184,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     public void renderDynamic(Vector3 pos, float frame, int pass) {
         if (pass == 0) {
             if (renderer == null) {
-                renderer = new RenderWire();
+                renderer = new RenderWireNFC();
             }
             renderer.doRender(pos.x, pos.y, pos.z, connectedSides);
         }
@@ -194,7 +195,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
         if (entity instanceof TileMultipart) {
             List<TMultiPart> t = ((TileMultipart) entity).jPartList();
 
-            if (Multipart.hasPartWire((TileMultipart) entity) || Multipart.hasPartWireNFC((TileMultipart) entity)) {
+            if (Multipart.hasPartWireNFC((TileMultipart) entity) || Multipart.hasPartWire((TileMultipart) entity)) {
                 if (!((TileMultipart) entity).canAddPart(new NormallyOccludedPart(boundingBoxes[opposite])))
                     return false;
             }
@@ -207,20 +208,19 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
             }
 
             for (TMultiPart p : t) {
-                if (p instanceof PartWire && caller.equals(this)) {
-                    ((PartWire) p).checkConnectedSides(this);
-                }
-
-                if (p instanceof PartWire) {
-                    return ((PartWire) p).canConnectTo(dir.getOpposite());
-                }
-
                 if (p instanceof PartWireNFC && caller.equals(this)) {
                     ((PartWireNFC) p).checkConnectedSides(this);
                 }
 
                 if (p instanceof PartWireNFC) {
                     return ((PartWireNFC) p).canConnectTo(dir.getOpposite());
+                }
+                if (p instanceof PartWire && caller.equals(this)) {
+                    ((PartWire) p).checkConnectedSides(this);
+                }
+
+                if (p instanceof PartWire) {
+                    return ((PartWire) p).canConnectTo(dir.getOpposite());
                 }
             }
 
@@ -278,7 +278,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     }
 
     public ItemStack getItem() {
-        return new ItemStack(Multipart.itemPartWire, 1);
+        return new ItemStack(Multipart.itemPartWireNFC, 1);
     }
 
     @Override
@@ -325,6 +325,18 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
                 connectedSidesHaveChanged = true;
             }
         }
+
+        int radius = 4;
+        for (int x = -radius; x < radius; x++) {
+            for (int y = -radius; y < radius; y++) {
+                for (int z = -radius; z < radius; z++) {
+                    if(this.world().getBlock(this.x() + x, this.y() + y, this.z() + z) instanceof BlockRobot){
+                        NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, this.x() + x + 0.5, this.y() + y+ 0.5, this.z() + z+ 0.5, 1F, 1F, 1F, 10);
+                    }
+                }
+            }
+        }
+
     }
 
     public Map<ForgeDirection, TileEntity> getConnectedSides() {

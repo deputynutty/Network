@@ -13,4 +13,8 @@ public class NetworkParticleHelper {
         Minecraft.getMinecraft().effectRenderer.addEffect(wifi);
     }
 
+    public static void runNFCFX(World par1World, double x, double y, double z, double tx, double ty, double tz, float red, float green, float blue, int age) {
+        NFCFX nfcfx = new NFCFX(par1World, x, y, z, tx, ty, tz, red, green, blue, age);
+        Minecraft.getMinecraft().effectRenderer.addEffect(nfcfx);
+    }
 }
