@@ -64,12 +64,6 @@ public class NFCFX extends EntityFX {
 
         this.particleMaxAge = age;
 
-        EntityLivingBase renderentity = FMLClientHandler.instance().getClient().renderViewEntity;
-        int visibleDistance = 100;
-        if (!FMLClientHandler.instance().getClient().gameSettings.fancyGraphics)
-            visibleDistance = 300;
-//        if (renderentity.getDistance(this.posX, this.posY, this.posZ) > visibleDistance)
-//            this.particleMaxAge = 0;
     }
 
     public void onUpdate() {
