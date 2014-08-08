@@ -25,6 +25,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
+import sourceteam.mods.lib.Location;
 
 import java.awt.*;
 import java.util.*;
@@ -40,7 +41,6 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     @SideOnly(Side.CLIENT)
     private static IIcon breakIcon;
     private final boolean[] connectedSideFlags = new boolean[6];
-    int ticks;
     static {
         refreshBounding();
     }
@@ -48,6 +48,9 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
+
+    private ArrayList<Location> conecatable = new ArrayList<Location>();
+    private int ticks;
 
 
     public static void refreshBounding() {
@@ -326,15 +329,36 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
             }
         }
 
-        int radius = 4;
-        for (int x = -radius; x < radius; x++) {
-            for (int y = -radius; y < radius; y++) {
-                for (int z = -radius; z < radius; z++) {
-                    if(this.world().getBlock(this.x() + x, this.y() + y, this.z() + z) instanceof BlockRobot){
-                        NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, this.x() + x + 0.5, this.y() + y+ 0.5, this.z() + z+ 0.5, 1F, 1F, 1F, 10);
-                    }
-                }
+
+
+       if(ticks == 0){
+           int radius = 4;
+           for (int x = -radius; x < radius; x++) {
+               for (int y = -radius; y < radius; y++) {
+                   for (int z = -radius; z < radius; z++) {
+                       if(Multipart.hasPartWireNFC(world().getTileEntity(this.x() + x, this.y() + y, this.z() + z))){
+                          conecatable.add(new Location(this.x() + x, this.y() + y, this.z() + z));
+                       }
+                   }
+               }
+           }
+       }
+
+        for (int i = 0; i < conecatable.size(); i++) {
+            if(conecatable.get(i) != null && Multipart.hasPartWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())) == true){
+                NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, conecatable.get(i).getX() + 0.5,  conecatable.get(i).getY() + 0.3, conecatable.get(i).getZ() + 0.5, 1F, 1F, 1F, 10);
+            } else {
+                conecatable.remove(i);
             }
+        }
+
+
+
+
+        if(ticks != 20){
+            ticks += 1;
+        } else {
+            ticks = 0;
         }
 
     }
@@ -387,6 +411,11 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     @Override
     public int getHollowSize(int arg0) {
         return 6;
+    }
+
+
+    public void onPlaced(){
+
     }
 
 }

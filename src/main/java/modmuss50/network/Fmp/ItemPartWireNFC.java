@@ -26,6 +26,9 @@ public class ItemPartWireNFC extends JItemMultiPart {
     @Override
     public TMultiPart newPart(ItemStack itemStack, EntityPlayer player, World world, BlockCoord blockCoord, int i, Vector3 vector3) {
         PartWireNFC w = (PartWireNFC) MultiPartRegistry.createPart(Multipart.wireNfcName, false);
+        if (w != null){
+           w.onPlaced();
+        }
         return w;
     }
 }

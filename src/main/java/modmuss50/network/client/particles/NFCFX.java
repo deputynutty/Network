@@ -160,7 +160,7 @@ public class NFCFX extends EntityFX {
         double var17b = 0.15D * size * this.endMod;
 
         GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
-        for (int t = 0; t < 3; t++) {
+        for (int t = 0; t < 1; t++) {
             double var29 = this.length * size * var9;
             double var31 = 0.0D;
             double var33 = 1.0D;
