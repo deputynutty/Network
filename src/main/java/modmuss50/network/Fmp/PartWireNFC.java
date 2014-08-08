@@ -332,6 +332,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
 
        if(ticks == 0){
+           conecatable.clear();
            int radius = 4;
            for (int x = -radius; x < radius; x++) {
                for (int y = -radius; y < radius; y++) {

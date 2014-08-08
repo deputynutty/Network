@@ -40,7 +40,7 @@ public class RenderWire extends TileEntitySpecialRenderer {
         }
 
 
-        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/wire.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/NFCWire.png"));
 
         GL11.glColor3f(0.8F, 0.8F, 0.8F);
         GL11.glPushMatrix();
