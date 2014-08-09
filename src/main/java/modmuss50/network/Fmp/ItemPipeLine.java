@@ -14,7 +14,7 @@ public class ItemPipeLine extends JItemMultiPart {
         super();
         setCreativeTab(NetworkCore.Network);
         setUnlocalizedName("Network.parts.pipeLine");
-        setTextureName("network:");
+        setTextureName("network:pipeline");
     }
 
     @Override

@@ -1,22 +1,35 @@
 package modmuss50.network.blocks.tileentities;
 
+import modmuss50.network.Fmp.Multipart;
+import modmuss50.network.Fmp.PartWire;
+import modmuss50.network.Fmp.PartWireNFC;
 import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.api.IPeripheral;
+import modmuss50.network.blocks.NetworkBlocks;
+import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.netty.ChannelHandler;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.client.IColour;
 import sourceteam.mods.lib.client.IRGBColour;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Created by Mark on 19/04/14.
  */
-public class TileEntityTeleporter extends TileEntityCable implements IPeripheral, INetworkComponent, IColour, IRGBColour, IFluidHandler {
+public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetworkComponent, IColour, IRGBColour, IFluidHandler {
     public int fq = 0;
     public FluidTank tank = new FluidTank(1000) {
         public FluidTank readFromNBT(NBTTagCompound nbt) {
@@ -75,7 +88,13 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
             ticktime += 1;
         }
 
+        if(update(this.worldObj, this.xCoord, this.yCoord, this.zCoord) != null){
+            System.out.println("not null");
+        } else {
+            System.out.println("null");
+        }
 
+     //   System.out.println(update(this.worldObj, this.xCoord, this.yCoord, this.zCoord));
     }
 
     public void updateBlock() {
@@ -312,5 +331,77 @@ public class TileEntityTeleporter extends TileEntityCable implements IPeripheral
     public float getRenderScale() {
         return (float) tank.getFluidAmount() / tank.getCapacity();
     }
+
+
+    public ArrayList<Location> scanned = new ArrayList<Location>();
+
+
+    public TileEntityTeleporter update(World world, int xs, int ys, int zs) {
+        scanned.clear();
+
+        List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
+        int cableMaxLenghth = 128;
+        Queue<WorldCoordinate> queue = new PriorityQueue<WorldCoordinate>();
+        WorldCoordinate start = new WorldCoordinate(xs, ys, zs, 0);
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            WorldCoordinate element = queue.poll();
+
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    for (int z = -1; z <= 1; z++) {
+                        if (Math.abs(x) + Math.abs(y) + Math.abs(z) == 1) {
+                            WorldCoordinate target = new WorldCoordinate(element.getX() + x, element.getY() + y, element.getZ() + z, element.getDepth() + 1);
+                            if (!visited.contains(target)) {
+                                visited.add(target);
+                                if (element.getDepth() < cableMaxLenghth) {
+                                    Block block = worldObj.getBlock(target.getX(), target.getY(), target.getZ());
+                                    TileEntity tile = worldObj.getTileEntity(target.getX(), target.getY(), target.getZ());
+                                    int meta = worldObj.getBlockMetadata(target.getX(), target.getY(), target.getZ());
+                                    if (block == NetworkBlocks.RTeleporter) {
+                                        TileEntity tileEntity = worldObj.getTileEntity(target.getX(), target.getY(), target.getZ());
+                                        if (tileEntity != null && tileEntity instanceof TileEntityTeleporter) {
+                                            TileEntityTeleporter server = (TileEntityTeleporter) tileEntity;
+                                            return server;
+                                        }
+                                    } else if (isCable(tile) && target.getDepth() < cableMaxLenghth) {
+                                        queue.add(target);
+                                    }
+                                    if (Multipart.hasPartWireNFC(tile)) {
+                                        PartWireNFC wire = Multipart.getWireNFC(tile);
+                                        for (int i = 0; i < wire.conecatable.size(); i++) {
+                                           Location loc = wire.conecatable.get(i);
+                                                queue.add(new WorldCoordinate(loc.getX(), loc.getY(), loc.getZ()));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        return null;
+    }
+
+    public boolean hascanned(Location loc){
+        for (int i = 0; i < scanned.size(); i++) {
+           if(loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()){
+               return true;
+           }
+        }
+        return false;
+    }
+
+
+    public boolean isCable(TileEntity tile) {
+        if(Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
+            return true;
+        return tile instanceof TileEntityTeleporter;
+    }
+
 
 }

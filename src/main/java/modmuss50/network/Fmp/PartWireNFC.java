@@ -49,7 +49,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
 
-    private ArrayList<Location> conecatable = new ArrayList<Location>();
+    public ArrayList<Location> conecatable = new ArrayList<Location>();
     private int ticks;
 
 
@@ -211,13 +211,6 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
             }
 
             for (TMultiPart p : t) {
-                if (p instanceof PartWireNFC && caller.equals(this)) {
-                    ((PartWireNFC) p).checkConnectedSides(this);
-                }
-
-                if (p instanceof PartWireNFC) {
-                    return ((PartWireNFC) p).canConnectTo(dir.getOpposite());
-                }
                 if (p instanceof PartWire && caller.equals(this)) {
                     ((PartWire) p).checkConnectedSides(this);
                 }

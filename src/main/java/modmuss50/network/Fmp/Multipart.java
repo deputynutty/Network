@@ -240,7 +240,7 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
 
     }
 
-    public static PartWireNFC getwireNFC(TileMultipart mp) {
+    public static PartWireNFC getWireNFC(TileMultipart mp) {
         boolean ret = false;
         List<TMultiPart> t = mp.jPartList();
         for (TMultiPart p : t) {
