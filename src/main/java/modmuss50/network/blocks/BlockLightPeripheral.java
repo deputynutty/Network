@@ -46,7 +46,7 @@ public class BlockLightPeripheral extends ColoredNetworkBlock implements IPeriph
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) {
-        return new TileEntityLightPeripheral(var2);
+        return new TileEntityLightPeripheral();
     }
 
     @Override

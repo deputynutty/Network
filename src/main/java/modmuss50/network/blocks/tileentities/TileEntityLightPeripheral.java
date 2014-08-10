@@ -3,7 +3,6 @@ package modmuss50.network.blocks.tileentities;
 import cpw.mods.fml.common.FMLCommonHandler;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.api.INetworkComponent;
-import modmuss50.network.netty.networkWrapper;
 import modmuss50.network.netty.packets.PacketLight;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -20,10 +19,8 @@ public class TileEntityLightPeripheral extends BaseTile implements INetworkCompo
     public int green = 255;
     public int blue = 255;
 
-    public int dim;
+    public TileEntityLightPeripheral() {
 
-    public TileEntityLightPeripheral(int dim) {
-        this.dim = dim;
     }
 
     @Override
@@ -66,7 +63,7 @@ public class TileEntityLightPeripheral extends BaseTile implements INetworkCompo
         // checks to see if the tile enity is not no the client then sneds the
         // data to the client when called.
         if (FMLCommonHandler.instance().getSide().isServer()) {
-            networkWrapper.networkWrapper.sendToAll(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue, dim));
+            NetworkCore.packetPipeline.sendToAll(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
         }
         updateBlock();
     }

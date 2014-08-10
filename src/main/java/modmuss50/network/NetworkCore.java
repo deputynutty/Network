@@ -23,7 +23,6 @@ import modmuss50.network.items.NetworkItems;
 import modmuss50.network.nei.InfusionNei;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
-import modmuss50.network.netty.networkWrapper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -96,8 +95,8 @@ public class NetworkCore implements ISourceMod {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
+
         packetPipeline.postInitialise();
-        networkWrapper.postInit();
     }
 
     @EventHandler

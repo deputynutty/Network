@@ -2,7 +2,6 @@ package modmuss50.network.client.gui;
 
 import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityLightPeripheral;
-import modmuss50.network.netty.networkWrapper;
 import modmuss50.network.netty.packets.PacketLight;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
@@ -88,8 +87,8 @@ public class GuiLightPeripheral extends GuiScreen {
             super.keyTyped(par1, par2);
         }
 
-      //  networkWrapper.networkWrapper.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText()), te.dim));
-
+        NetworkCore.packetPipeline.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
+        NetworkCore.packetPipeline.sendToAll(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
     }
 
     @Override
@@ -101,7 +100,7 @@ public class GuiLightPeripheral extends GuiScreen {
         te.blue = getRGBfromString("0" + blueValue.getText());
         te.updateBlock();
 
-        networkWrapper.networkWrapper.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText()), te.dim));
+        NetworkCore.packetPipeline.sendToServer(new PacketLight(te.xCoord, te.yCoord, te.zCoord, getRGBfromString("0" + redValue.getText()), getRGBfromString("0" + greenValue.getText()), getRGBfromString("0" + blueValue.getText())));
 
     }
 
