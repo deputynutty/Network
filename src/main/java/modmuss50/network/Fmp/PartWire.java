@@ -12,6 +12,7 @@ import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.client.Render.RenderWire;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -201,7 +202,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
             for (TMultiPart p : t) {
 
-                if (p instanceof INetworkComponent) {
+                if (p instanceof IDataPer) {
                     return true;
                 }
             }
@@ -226,7 +227,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
             return false;
         } else {
-            if (entity instanceof INetworkComponent) {
+            if (entity instanceof IDataPer) {
                 return true;
             } else {
                 return false;

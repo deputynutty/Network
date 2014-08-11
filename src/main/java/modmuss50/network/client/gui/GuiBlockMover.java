@@ -27,7 +27,7 @@ public class GuiBlockMover extends GuiContainer {
         s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 - 35, 68, GuiContants.guiColour);
 
-        s = "Blocks: " + this.tile.blocksToMove();
+        s = "blocks: " + this.tile.blocksToMove();
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 - 60, 52, GuiContants.guiColour);
 
     }

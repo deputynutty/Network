@@ -59,12 +59,11 @@ public class TileEntityLightPeripheral extends BaseTile implements INetworkCompo
         readFromNBT(packet.func_148857_g());
     }
 
-    public void syncWithClient() {
+    public void syncWithServer() {
         // checks to see if the tile enity is not no the client then sneds the
         // data to the client when called.
-        if (FMLCommonHandler.instance().getSide().isServer()) {
-            NetworkCore.packetPipeline.sendToAll(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
-        }
+            NetworkCore.packetPipeline.sendToServer(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
+
         updateBlock();
     }
 

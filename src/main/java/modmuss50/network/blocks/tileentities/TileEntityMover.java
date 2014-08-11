@@ -184,14 +184,14 @@ public class TileEntityMover extends TileEntityPowerUserBase implements IInvento
         int Ez = target.getZ();
 
         if (world.getBlock(Ex, Ey, Ez) == Blocks.air && world.getBlock(Sx, Sy, Sz) != Blocks.air) {
-            // For Blocks without a tile entity
+            // For blocks without a tile entity
             if (world.getTileEntity(Sx, Sy, Sz) == null) {
                 Block block = world.getBlock(Sx, Sy, Sz);
                 int meta = world.getBlockMetadata(Sx, Sy, Sz);
                 world.setBlockToAir(Sx, Sy, Sz);
                 world.setBlock(Ex, Ey, Ez, block, meta, 2);
             } else {
-                // For Blocks with a tile entity
+                // For blocks with a tile entity
                 Block block = world.getBlock(Sx, Sy, Sz);
                 int meta = world.getBlockMetadata(Sx, Sy, Sz);
                 TileEntity tile = world.getTileEntity(Sx, Sy, Sz);

@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.Fmp.Multipart;
 import modmuss50.network.app.AppManager;
 import modmuss50.network.client.gui.GuiHandler;
+import modmuss50.network.dataSystems.itemSystem.ItemSystem;
 import modmuss50.network.entity.minecart.ServerCart;
 import modmuss50.network.event.DropItemEvent;
 import modmuss50.network.init.*;
@@ -68,11 +69,12 @@ public class NetworkCore implements ISourceMod {
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new DropItemEvent());
 
+        ItemSystem.preInit(event);
+
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        initLang.loadLang();
 
         proxy.initRenderers();
 
@@ -89,7 +91,9 @@ public class NetworkCore implements ISourceMod {
 
         initItems.Recipes();
 
-        API.registerRecipeHandler(new InfusionNei());
+    //
+
+        ItemSystem.init(event);
 
     }
 
@@ -97,6 +101,7 @@ public class NetworkCore implements ISourceMod {
     public void postInit(FMLPostInitializationEvent event) {
 
         packetPipeline.postInitialise();
+        ItemSystem.postInit(event);
     }
 
     @EventHandler

@@ -57,7 +57,7 @@ public class BlockLightPeripheral extends ColoredNetworkBlock implements IPeriph
             player.openGui(NetworkCore.instance, 1, world, x, y, z);
             TileEntity te = world.getTileEntity(x, y, z);
             TileEntityLightPeripheral telp = (TileEntityLightPeripheral) te;
-            telp.syncWithClient();
+         //   telp.syncWithClient();
         } else if (item != null && item == Items.dye) {
             TileEntity te = world.getTileEntity(x, y, z);
             if (te != null && te instanceof TileEntityLightPeripheral) {
@@ -92,7 +92,7 @@ public class BlockLightPeripheral extends ColoredNetworkBlock implements IPeriph
         telp.green = green;
         telp.blue = blue;
 
-        telp.syncWithClient();
+        telp.syncWithServer();
     }
 
     private void setColourHex(TileEntityLightPeripheral telp, int hex) {
@@ -101,7 +101,7 @@ public class BlockLightPeripheral extends ColoredNetworkBlock implements IPeriph
         telp.green = color.getGreen() / 255;
         telp.blue = color.getBlue() / 255;
 
-        telp.syncWithClient();
+        telp.syncWithServer();
     }
 
     @Override

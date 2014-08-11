@@ -49,8 +49,8 @@ public class initItems {
         GameRegistry.addShapelessRecipe(ItemPart.getItemstack("HardenedIronPlate", 1), ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("HardenedIron"));
         GameRegistry.addShapelessRecipe(ItemPart.getItemstack("ReinforcedIronPlate", 1), ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("ReinforcedIron"));
 
-//		GameRegistry.addRecipe(new ItemStack(NetworkItems.tablet, 1), "ddd", "ddd", "ddd", 'd', Blocks.dirt);
-//		GameRegistry.addRecipe(new ItemStack(NetworkItems.serverCart, 1), "ddd", "ddd", "ddd", 'd', Blocks.sand);
+//		GameRegistry.addRecipe(new ItemStack(NetworkItems.tablet, 1), "ddd", "ddd", "ddd", 'd', blocks.dirt);
+//		GameRegistry.addRecipe(new ItemStack(NetworkItems.serverCart, 1), "ddd", "ddd", "ddd", 'd', blocks.sand);
 
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("InfusedIron"));
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedIronPlate"), ItemPart.getItemstack("InfusedIronPlate"));

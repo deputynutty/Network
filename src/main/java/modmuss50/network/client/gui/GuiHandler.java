@@ -3,6 +3,9 @@ package modmuss50.network.client.gui;
 import cpw.mods.fml.common.network.IGuiHandler;
 import modmuss50.network.blocks.Containers.*;
 import modmuss50.network.blocks.tileentities.*;
+import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
+import modmuss50.network.dataSystems.itemSystem.gui.GuiStorageChest;
+import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -23,6 +26,7 @@ public class GuiHandler implements IGuiHandler {
     public static int TeleporterID = 11;
     public static int InfusedFurnace = 12;
     public static int computerGuiID = 13;
+    public static int StorageChest = 14;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -62,10 +66,15 @@ public class GuiHandler implements IGuiHandler {
         if (ID == computerGuiID) {
             return null;
         }
-        else {
-            return null;
+        if (ID == StorageChest) {
+            if (te != null && te instanceof TileEntityBlockStorageContainer) {
+                TileEntityBlockStorageContainer icte = (TileEntityBlockStorageContainer) te;
+                return new ContainerStorageChest(player.inventory, icte, 0, 0);
+            }
         }
 
+
+        return null;
     }
 
     @Override
@@ -139,6 +148,10 @@ public class GuiHandler implements IGuiHandler {
        else if (ID == computerGuiID) {
                 return new GuiComputer();
         }
+
+            else if (ID == StorageChest) {
+                return new GuiStorageChest(player.inventory, (TileEntityBlockStorageContainer)te);
+            }
 
         return null;
     }

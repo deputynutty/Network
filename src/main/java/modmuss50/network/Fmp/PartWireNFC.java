@@ -12,6 +12,7 @@ import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.blocks.BlockRobot;
 import modmuss50.network.client.Render.RenderWire;
 import modmuss50.network.client.Render.RenderWireNFC;
@@ -205,7 +206,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
             for (TMultiPart p : t) {
 
-                if (p instanceof INetworkComponent) {
+                if (p instanceof IDataPer) {
                     return true;
                 }
             }
@@ -222,7 +223,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
             return false;
         } else {
-            if (entity instanceof INetworkComponent) {
+            if (entity instanceof IDataPer) {
                 return true;
             } else {
                 return false;
