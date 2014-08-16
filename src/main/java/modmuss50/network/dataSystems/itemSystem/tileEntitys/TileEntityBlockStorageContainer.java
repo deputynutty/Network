@@ -26,8 +26,6 @@ import java.util.List;
  */
 public class TileEntityBlockStorageContainer extends BaseTile implements IDataPer , IInventory {
     private int ticksSinceSync = -1;
-    public float prevLidAngle;
-    public float lidAngle;
     private int numUsingPlayers;
     public ItemStack[] chestContents;
     private ItemStack[] topStacks;
@@ -51,7 +49,7 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
     @Override
     public int getSizeInventory()
     {
-        return 108;
+        return 108 + 500;
     }
 
     public int getFacing()
@@ -284,41 +282,6 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
         }
 
         this.ticksSinceSync++;
-        prevLidAngle = lidAngle;
-        float f = 0.1F;
-        if (numUsingPlayers > 0 && lidAngle == 0.0F)
-        {
-            double d = (double) xCoord + 0.5D;
-            double d1 = (double) zCoord + 0.5D;
-            worldObj.playSoundEffect(d, (double) yCoord + 0.5D, d1, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-        }
-        if (numUsingPlayers == 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F)
-        {
-            float f1 = lidAngle;
-            if (numUsingPlayers > 0)
-            {
-                lidAngle += f;
-            }
-            else
-            {
-                lidAngle -= f;
-            }
-            if (lidAngle > 1.0F)
-            {
-                lidAngle = 1.0F;
-            }
-            float f2 = 0.5F;
-            if (lidAngle < f2 && f1 >= f2)
-            {
-                double d2 = (double) xCoord + 0.5D;
-                double d3 = (double) zCoord + 0.5D;
-                worldObj.playSoundEffect(d2, (double) yCoord + 0.5D, d3, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
-            }
-            if (lidAngle < 0.0F)
-            {
-                lidAngle = 0.0F;
-            }
-        }
     }
 
     @Override

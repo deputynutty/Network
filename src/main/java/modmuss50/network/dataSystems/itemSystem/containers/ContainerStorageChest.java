@@ -24,6 +24,19 @@ public class ContainerStorageChest extends Container {
         player = ((InventoryPlayer) playerInventory).player;
         chestInventory.openInventory();
         layoutContainer(playerInventory, chestInventory, xSize, ySize);
+
+        int y = 174;
+        this.addSlotToContainer(new Slot(chest, 200, 7, y));
+        this.addSlotToContainer(new Slot(chest, 201, 7 + 208, y));
+        y += 18;
+        this.addSlotToContainer(new Slot(chest, 202, 7, y));
+        this.addSlotToContainer(new Slot(chest, 203, 7 + 208, y));
+        y += 18;
+        this.addSlotToContainer(new Slot(chest, 204, 7, y));
+        this.addSlotToContainer(new Slot(chest, 205, 7 + 208, y));
+        y += 18;
+        this.addSlotToContainer(new Slot(chest, 206, 7, y));
+        this.addSlotToContainer(new Slot(chest, 207, 7 + 208, y));
     }
 
     public boolean canInteractWith(EntityPlayer player)
@@ -97,6 +110,9 @@ public class ContainerStorageChest extends Container {
         {
             this.addSlotToContainer(new Slot(playerInventory, hotbarSlot, leftCol + hotbarSlot * 18, ySize - 24));
         }
+
+
+
     }
 
     public EntityPlayer getPlayer()

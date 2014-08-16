@@ -33,8 +33,7 @@ import sourceteam.mods.lib.mod.ISourceMod;
 
 import java.util.logging.Logger;
 
-@Mod(modid = "network", name = "Network", version = "0.01")
-// , dependencies = "required-after:BuildCraft;")
+@Mod(modid = "network", name = "Network", version = "0.01" , dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultiPart;required-after:Forge@[10.13.0.1207)")
 public class NetworkCore implements ISourceMod {
 
     public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -50,9 +49,9 @@ public class NetworkCore implements ISourceMod {
             return NetworkItems.tablet;
         }
 
-//        @Override
-//        public boolean hasSearchBar () { return true;};
-    };//.setBackgroundImageName("item_search.png");
+        @Override
+        public boolean hasSearchBar () { return true;};
+    }.setBackgroundImageName("item_search.png");
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

@@ -5,7 +5,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.NetworkCore;
+import modmuss50.network.blocks.BlockBase;
+import modmuss50.network.dataSystems.itemSystem.blocks.BlockImport;
 import modmuss50.network.dataSystems.itemSystem.blocks.BlockStorageChest;
+import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEnityImport;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
 import modmuss50.network.init.initBlocks;
 import net.minecraft.block.Block;
@@ -16,18 +19,22 @@ import net.minecraft.block.Block;
 public class ItemSystem {
 
     public static Block storageChest;
-
+    public static Block importer;
 
     public static void preInit(FMLPreInitializationEvent event) {
 
     }
 
-
-
     public static void init(FMLInitializationEvent event) {
-            storageChest = new BlockStorageChest().setBlockName(initBlocks.prefix + "BlockStorageChest").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockStorageChest");
+        storageChest = new BlockStorageChest().setBlockName(initBlocks.prefix + "BlockStorageChest").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockStorageChest");
         GameRegistry.registerBlock(storageChest, initBlocks.prefix + "BlockStorageChest");
         GameRegistry.registerTileEntity(TileEntityBlockStorageContainer.class, initBlocks.prefix + "TileEntityBlockStorageContainer");
+
+
+        importer = new BlockImport().setBlockName(initBlocks.prefix + "import").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:import");
+        GameRegistry.registerBlock(importer,initBlocks.prefix + "import");
+        GameRegistry.registerTileEntity(TileEnityImport.class, initBlocks.prefix + "TileEnityImport");
+
     }
 
     public static void postInit(FMLPostInitializationEvent event) {
