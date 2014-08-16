@@ -37,8 +37,8 @@ public class initBlocks {
         GameRegistry.registerBlock(NetworkBlocks.computer, prefix + "computer");
         GameRegistry.registerTileEntity(TileEntityComputer.class, prefix + "TileEntityComputer");
 
-        NetworkBlocks.tabletCrafter = new BlockComputer().setBlockName(prefix + "tabletCrafter").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:tabletCrafter");
-        GameRegistry.registerBlock(NetworkBlocks.tabletCrafter, prefix + "tabletCrafter");
+//        NetworkBlocks.tabletCrafter = new BlockComputer().setBlockName(prefix + "tabletCrafter").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:tabletCrafter");
+//        GameRegistry.registerBlock(NetworkBlocks.tabletCrafter, prefix + "tabletCrafter");
 
         NetworkBlocks.modem = new BlockModem().setBlockName(prefix + "modem").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:modem");
         GameRegistry.registerBlock(NetworkBlocks.modem, prefix + "modem");
@@ -65,8 +65,8 @@ public class initBlocks {
         GameRegistry.registerBlock(NetworkBlocks.FluidGen, prefix + "BlockFluidGen");
         GameRegistry.registerTileEntity(TileEntityFluidGen.class, prefix + "TileEntityFluidGen");
 
-        NetworkBlocks.radioPeripheral = new BlockRadioPeripheral().setBlockName(prefix + "radioPeripheral").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:radioPeripheral");
-        GameRegistry.registerBlock(NetworkBlocks.radioPeripheral, prefix + "radioPeripheral");
+//        NetworkBlocks.radioPeripheral = new BlockRadioPeripheral().setBlockName(prefix + "radioPeripheral").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:radioPeripheral");
+//        GameRegistry.registerBlock(NetworkBlocks.radioPeripheral, prefix + "radioPeripheral");
 
         NetworkBlocks.networkPeripheral = new BlockNetworkPeripheral().setBlockName(prefix + "networkPeripheral").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:networkPeripheral");
         GameRegistry.registerBlock(NetworkBlocks.networkPeripheral, prefix + "networkPeripheral");
@@ -80,15 +80,18 @@ public class initBlocks {
         GameRegistry.registerBlock(NetworkBlocks.infusionFurnace, prefix + "infusionFurnace");
         GameRegistry.registerTileEntity(TileEntityInfusionFurnace.class, prefix + "TileEntityInfusionFurnace");
 
-        NetworkBlocks.BlockRemoteUser = new BlockRemoteUser().setBlockName(prefix + "BlockRemoteUser").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockRemoteUser");
+        //TODO fix texture
+        NetworkBlocks.BlockRemoteUser = new BlockRemoteUser().setBlockName(prefix + "BlockRemoteUser").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
         GameRegistry.registerBlock(NetworkBlocks.BlockRemoteUser, prefix + "BlockRemoteUser");
         GameRegistry.registerTileEntity(TileEntityRemoteUser.class, prefix + "TileEntityRemoteUser");
 
-        NetworkBlocks.CreativePower = new BlockCreativePower().setBlockName(prefix + "BlockCreativePower").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockCreativePower");
+        //TODO fix texture
+        NetworkBlocks.CreativePower = new BlockCreativePower().setBlockName(prefix + "BlockCreativePower").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
         GameRegistry.registerBlock(NetworkBlocks.CreativePower, prefix + "BlockCreativePower");
         GameRegistry.registerTileEntity(TileEntityCreativePower.class, prefix + "TileEntityCreativePower");
 
-        NetworkBlocks.Pump = new BlockPump().setBlockName(prefix + "BlockPump").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockPump");
+        //TODO fix texture
+        NetworkBlocks.Pump = new BlockPump().setBlockName(prefix + "BlockPump").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
         GameRegistry.registerBlock(NetworkBlocks.Pump, prefix + "Pump");
         GameRegistry.registerTileEntity(TileEntityPump.class, prefix + "TileEntityPump");
 
@@ -96,9 +99,9 @@ public class initBlocks {
         GameRegistry.registerBlock(NetworkBlocks.BlockMover, prefix + "BlockMover");
         GameRegistry.registerTileEntity(TileEntityMover.class, prefix + "TileEntityMover");
 
-        NetworkBlocks.BlockMoving = new BlockMovingBlock().setBlockName(prefix + "BlockMovingBlock").setHardness(10000F).setBlockUnbreakable().setResistance(100000F).setBlockTextureName("network:BlockMovingBlock");
-        GameRegistry.registerBlock(NetworkBlocks.BlockMoving, prefix + "BlockMovingBlock");
-        GameRegistry.registerTileEntity(TileEntityMovingBlock.class, prefix + "TileEntityMovingBlock");
+//        NetworkBlocks.BlockMoving = new BlockMovingBlock().setBlockName(prefix + "BlockMovingBlock").setHardness(10000F).setBlockUnbreakable().setResistance(100000F).setBlockTextureName("network:BlockMovingBlock");
+//        GameRegistry.registerBlock(NetworkBlocks.BlockMoving, prefix + "BlockMovingBlock");
+//        GameRegistry.registerTileEntity(TileEntityMovingBlock.class, prefix + "TileEntityMovingBlock");
 
         NetworkBlocks.robotMK1 = new BlockRobot(1).setBlockName(prefix + "robotMK1").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:robotMK1");
         GameRegistry.registerBlock(NetworkBlocks.robotMK1, prefix + "robotMK1");

@@ -26,12 +26,13 @@ public class ItemSystem {
     }
 
     public static void init(FMLInitializationEvent event) {
-        storageChest = new BlockStorageChest().setBlockName(initBlocks.prefix + "BlockStorageChest").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockStorageChest");
+        //TODO fix texture
+        storageChest = new BlockStorageChest().setBlockName(initBlocks.prefix + "BlockStorageChest").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
         GameRegistry.registerBlock(storageChest, initBlocks.prefix + "BlockStorageChest");
         GameRegistry.registerTileEntity(TileEntityBlockStorageContainer.class, initBlocks.prefix + "TileEntityBlockStorageContainer");
 
-
-        importer = new BlockImport().setBlockName(initBlocks.prefix + "import").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:import");
+        //TODO fix texture
+        importer = new BlockImport().setBlockName(initBlocks.prefix + "import").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
         GameRegistry.registerBlock(importer,initBlocks.prefix + "import");
         GameRegistry.registerTileEntity(TileEnityImport.class, initBlocks.prefix + "TileEnityImport");
 

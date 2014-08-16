@@ -19,7 +19,7 @@ public class ItemPartWireNFC extends JItemMultiPart {
     public ItemPartWireNFC() {
         super();
         setCreativeTab(NetworkCore.Network);
-        setUnlocalizedName("Network.parts.wirenfc");
+        setUnlocalizedName("Network.parts.wireNFC");
         setTextureName("network:wirenfc");
     }
 

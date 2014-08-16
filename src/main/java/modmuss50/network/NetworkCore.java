@@ -33,7 +33,7 @@ import sourceteam.mods.lib.mod.ISourceMod;
 
 import java.util.logging.Logger;
 
-@Mod(modid = "network", name = "Network", version = "0.01" , dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultiPart;required-after:Forge@[10.13.0.1207)")
+@Mod(modid = "network", name = "Network", version = "0.01" , dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
 public class NetworkCore implements ISourceMod {
 
     public static final PacketPipeline packetPipeline = new PacketPipeline();

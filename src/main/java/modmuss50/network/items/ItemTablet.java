@@ -30,7 +30,7 @@ public class ItemTablet extends IWirelessItem {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return "item.tablet_" + stack.getItemDamage();
+        return "item.modmuss50.network.tablet_" + stack.getItemDamage();
     }
 
     @Override

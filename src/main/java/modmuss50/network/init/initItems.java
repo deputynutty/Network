@@ -21,8 +21,9 @@ public class initItems {
         NetworkItems.tablet = new ItemTablet().setCreativeTab(NetworkCore.Network);
         registerItem(NetworkItems.tablet);
 
-        NetworkItems.serverCart = new ItemBlockCart(15).setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "serverCart");
-        registerItem(NetworkItems.serverCart);
+        //TODO add this back
+//        NetworkItems.serverCart = new ItemBlockCart(15).setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "serverCart");
+//        registerItem(NetworkItems.serverCart);
 
         NetworkItems.wifiLinker = new ItemWifiLinker().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "wifiLinker").setTextureName("network:wifiLinker");
         registerItem(NetworkItems.wifiLinker);
@@ -77,6 +78,8 @@ public class initItems {
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.infusionFurnace), "ldg", "cfc", "ehe", 'l', Blocks.lapis_block, 'd', Blocks.diamond_block, 'g', Blocks.gold_block, 'c', Multipart.cablepartitem, 'f', Blocks.furnace, 'e', Blocks.enchanting_table, 'h', Blocks.ender_chest);
         GameRegistry.addRecipe(new ItemStack(NetworkItems.ItemBattery), "ppp", "pfp", "pfp", 'p', ItemPart.getItemstack("InfusedIron"), 'f', ItemPart.getItemstack("FiberCable"));
         GameRegistry.addRecipe(new ItemStack(NetworkItems.wifiGoggles), "iii", "i i", "   ", 'i', ItemPart.getItemstack("InfusedIron"));
+        GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWire), "   ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"));
+        GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWireNFC), " d ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"), 'd', Items.diamond);
     }
 
 }

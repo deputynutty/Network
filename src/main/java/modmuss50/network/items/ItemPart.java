@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ItemPart extends Item {
 
-    public static String[] parts = {"ReinforcedIron", "HardenedIron", "HardenedIronPlate", "ReinforcedIronPlate", "Scale", "North", "South", "East", "West", "Up", "Down", "InfusedIron", "InfusedIronPlate", "GlassStrip", "ReinforcedGlassStrip", "InfusedGlassStrip", "FiberCable", "GlassPlate", "Coil", "BasicTank", "ReinforcedTank", "InfusedTank", "Player", "Item", "Fluid"};
+    public static String[] parts = {"ReinforcedIron", "HardenedIron", "HardenedIronPlate", "ReinforcedIronPlate", "Scale", "North", "South", "East", "West", "Up", "Down", "InfusedIron", "InfusedIronPlate", "GlassStrip", "ReinforcedGlassStrip", "InfusedGlassStrip", "FiberCable", "GlassPlate", "Coil", "BasicTank", "ReinforcedTank", "InfusedTank"};
 
     public IIcon[] icons = new IIcon[parts.length];
 
