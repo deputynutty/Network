@@ -2,13 +2,12 @@ package modmuss50.network.client.gui;
 
 import modmuss50.network.app.AppManager;
 import modmuss50.network.app.appUtil.GuiApp;
-import modmuss50.network.util.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-
+import sourceteam.mods.lib.api.Colors;
 
 public class GuiTablet extends GuiScreen {
 

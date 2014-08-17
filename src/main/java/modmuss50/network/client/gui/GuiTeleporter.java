@@ -3,12 +3,11 @@ package modmuss50.network.client.gui;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
 import modmuss50.network.netty.packets.PacketSetTeleporterFQ;
-import modmuss50.network.util.Location;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-
+import sourceteam.mods.lib.Location;
 
 public class GuiTeleporter extends GuiScreen {
 
