@@ -4,8 +4,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
 import modmuss50.network.netty.AbstractPacket;
+import modmuss50.network.util.Location;
 import net.minecraft.entity.player.EntityPlayer;
-import sourceteam.mods.lib.Location;
 
 public class PacketSetTeleporterFQ extends AbstractPacket {
 
