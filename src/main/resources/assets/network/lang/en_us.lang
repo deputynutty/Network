@@ -43,7 +43,6 @@ item.modmuss50.network.tablet_7.name=Advanced Tablet (Charged)
 item.modmuss50.network.tablet_8.name=Advanced Tablet (Broken)
 
 item.modmuss50.network.serverCart.name=Server Cart
-item.modmuss50.network.wifiLinker.name=Wifi Linker
 item.modmuss50.network.wifiGoggles.name=Wifi Goggles
 item.modmuss50.network.ItemBattery.name=Battery
 item.modmuss50.network.ItemPart.ReinforcedIron.name=Reinforced Iron
