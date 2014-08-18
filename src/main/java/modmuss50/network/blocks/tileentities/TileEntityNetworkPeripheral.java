@@ -1,6 +1,6 @@
 package modmuss50.network.blocks.tileentities;
 
-import modmuss50.network.api.ILinkedTile;
+
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.client.particles.NetworkParticleHelper;
 import modmuss50.network.items.NetworkItems;
@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import sourceteam.mods.lib.Location;
 
-public class TileEntityNetworkPeripheral extends BaseTile implements ILinkedTile {
+public class TileEntityNetworkPeripheral extends BaseTile {
 
     public int modemX, modemY, modemZ;
 
@@ -71,21 +71,4 @@ public class TileEntityNetworkPeripheral extends BaseTile implements ILinkedTile
         // yCoord, zCoord, modemX, modemY, modemZ));
     }
 
-    @Override
-    public TileEntity[] conectableTiles() {
-        return new TileEntity[]{this, new TileEntityModem()};
-    }
-
-    @Override
-    public boolean setLocation(Location loc) {
-        this.modemX = loc.getX();
-        this.modemY = loc.getY();
-        this.modemZ = loc.getZ();
-        return true;
-    }
-
-    @Override
-    public Location getLocation() {
-        return new Location(modemX, modemY, modemZ);
-    }
 }

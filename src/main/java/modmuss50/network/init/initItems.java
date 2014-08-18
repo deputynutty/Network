@@ -25,9 +25,6 @@ public class initItems {
 //        NetworkItems.serverCart = new ItemBlockCart(15).setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "serverCart");
 //        registerItem(NetworkItems.serverCart);
 
-        NetworkItems.wifiLinker = new ItemWifiLinker().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "wifiLinker").setTextureName("network:wifiLinker");
-        registerItem(NetworkItems.wifiLinker);
-
         NetworkItems.wifiGoggles = new ItemArmor(ArmorMaterial.IRON, 0, 0).setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "wifiGoggles").setTextureName("network:wifiGoggles");
         registerItem(NetworkItems.wifiGoggles);
 
