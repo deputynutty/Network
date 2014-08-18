@@ -90,8 +90,6 @@ public class NetworkCore implements ISourceMod {
 
         initItems.Recipes();
 
-    //
-
         ItemSystem.init(event);
 
     }

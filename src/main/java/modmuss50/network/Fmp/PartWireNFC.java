@@ -9,6 +9,7 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Vector3;
 import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.INetworkComponent;
@@ -341,6 +342,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
         for (int i = 0; i < conecatable.size(); i++) {
             if(conecatable.get(i) != null && Multipart.hasPartWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())) == true){
+                if(FMLCommonHandler.instance().getSide() == Side.CLIENT)
                 NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, conecatable.get(i).getX() + 0.5,  conecatable.get(i).getY() + 0.3, conecatable.get(i).getZ() + 0.5, 1F, 1F, 1F, 10);
             } else {
                 conecatable.remove(i);

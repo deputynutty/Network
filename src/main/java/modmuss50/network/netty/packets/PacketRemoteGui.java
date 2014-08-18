@@ -12,7 +12,7 @@ public class PacketRemoteGui extends AbstractPacket {
     int y;
     int z;
 
-    public PacketRemoteGui(int x, int y, int z, String name) {
+    public PacketRemoteGui(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -23,11 +23,9 @@ public class PacketRemoteGui extends AbstractPacket {
 
     @Override
     public void encodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
-
         buffer.writeInt(x);
         buffer.writeInt(y);
         buffer.writeInt(x);
-
     }
 
     @Override
@@ -48,9 +46,9 @@ public class PacketRemoteGui extends AbstractPacket {
         //Block irt = player.worldObj.getBlock(x, y, z);
         //irt.onBlockActivated(player.worldObj, x, y, z, player, 0, 0.5F, 0.5F, 0.5F);
 
-
-        player.worldObj.getBlock(x, y, z).onBlockActivated(player.worldObj, x, y, z, player, 1, 0F, 0F, 0F);
         System.out.println("The server say hi!");
+    //    player.worldObj.getBlock(x, y, z).onBlockActivated(player.worldObj, x, y, z, player, 1, 0F, 0F, 0F);
+
 
 
 //        TileEntityInfusionFurnace tileentityfurnace = (TileEntityInfusionFurnace) player.worldObj.getTileEntity(x, y, z);

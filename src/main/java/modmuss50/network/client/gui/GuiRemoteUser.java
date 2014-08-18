@@ -113,7 +113,7 @@ public class GuiRemoteUser extends GuiContainer {
 
 
                 //TODO this is badly broken and NEEDS fixing
-                NetworkCore.packetPipeline.sendToServer(new PacketRemoteGui(tile.remotetiles.get(i).xCoord, tile.remotetiles.get(i).yCoord, tile.remotetiles.get(i).zCoord, Minecraft.getMinecraft().thePlayer.getDisplayName()));
+                NetworkCore.packetPipeline.sendToServer(new PacketRemoteGui(tile.remotetiles.get(i).xCoord, tile.remotetiles.get(i).yCoord, tile.remotetiles.get(i).zCoord));
                 Minecraft.getMinecraft().thePlayer.worldObj.getBlock(tile.remotetiles.get(i).xCoord, tile.remotetiles.get(i).yCoord, tile.remotetiles.get(i).zCoord).onBlockActivated(Minecraft.getMinecraft().thePlayer.worldObj, tile.remotetiles.get(i).xCoord, tile.remotetiles.get(i).yCoord, tile.remotetiles.get(i).zCoord, Minecraft.getMinecraft().thePlayer, 1, 0F, 0F, 0F);
 
             }
