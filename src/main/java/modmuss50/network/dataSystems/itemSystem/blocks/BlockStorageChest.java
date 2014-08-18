@@ -32,9 +32,31 @@ public class BlockStorageChest extends BlockContainer {
 
     private Random random;
 
+    @SideOnly(Side.CLIENT)
+    private IIcon side;
+    @SideOnly(Side.CLIENT)
+    private IIcon other;
+
     public BlockStorageChest() {
         super(Material.iron);
         random = new Random();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister icon) {
+        side = icon.registerIcon("network:storagechest_side");
+        other = icon.registerIcon("network:storagechest_other");
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int currentSide, int meta) {
+        if (currentSide == 0 || currentSide == 1) {
+            return other;
+        } else {
+            return side;
+        }
     }
 
     @Override
