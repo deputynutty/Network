@@ -129,6 +129,6 @@ public class NetworkCore implements ISourceMod {
 
     @Override
     public String recomenedMinecraftVeriosion() {
-        return "1.7.2";
+        return "1.7.10";
     }
 }
