@@ -5,7 +5,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.NetworkCore;
-import modmuss50.network.blocks.BlockBase;
 import modmuss50.network.dataSystems.itemSystem.blocks.BlockImport;
 import modmuss50.network.dataSystems.itemSystem.blocks.BlockStorageChest;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEnityImport;
@@ -33,7 +32,7 @@ public class ItemSystem {
 
         //TODO fix texture
         importer = new BlockImport().setBlockName(initBlocks.prefix + "import").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
-        GameRegistry.registerBlock(importer,initBlocks.prefix + "import");
+        GameRegistry.registerBlock(importer, initBlocks.prefix + "import");
         GameRegistry.registerTileEntity(TileEnityImport.class, initBlocks.prefix + "TileEnityImport");
 
     }

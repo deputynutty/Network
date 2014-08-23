@@ -8,7 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 
-
 /**
  * Created by Mark on 11/08/2014.
  */
@@ -18,8 +17,7 @@ public class ContainerStorageChest extends Container {
 
     public int size = 108;
 
-    public ContainerStorageChest(IInventory playerInventory, IInventory chestInventory,  int xSize, int ySize)
-    {
+    public ContainerStorageChest(IInventory playerInventory, IInventory chestInventory, int xSize, int ySize) {
         chest = chestInventory;
         player = ((InventoryPlayer) playerInventory).player;
         chestInventory.openInventory();
@@ -39,37 +37,27 @@ public class ContainerStorageChest extends Container {
         this.addSlotToContainer(new Slot(chest, 207, 7 + 208, y));
     }
 
-    public boolean canInteractWith(EntityPlayer player)
-    {
+    public boolean canInteractWith(EntityPlayer player) {
         return chest.isUseableByPlayer(player);
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer p, int i)
-    {
+    public ItemStack transferStackInSlot(EntityPlayer p, int i) {
         ItemStack itemstack = null;
         Slot slot = (Slot) inventorySlots.get(i);
-        if (slot != null && slot.getHasStack())
-        {
+        if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
-            if (i < size)
-            {
-                if (!mergeItemStack(itemstack1, size, inventorySlots.size(), true))
-                {
+            if (i < size) {
+                if (!mergeItemStack(itemstack1, size, inventorySlots.size(), true)) {
                     return null;
                 }
-            }
-            else if (!mergeItemStack(itemstack1, 0, size, false))
-            {
+            } else if (!mergeItemStack(itemstack1, 0, size, false)) {
                 return null;
             }
-            if (itemstack1.stackSize == 0)
-            {
+            if (itemstack1.stackSize == 0) {
                 slot.putStack(null);
-            }
-            else
-            {
+            } else {
                 slot.onSlotChanged();
             }
         }
@@ -77,59 +65,47 @@ public class ContainerStorageChest extends Container {
     }
 
     @Override
-    public void onContainerClosed(EntityPlayer entityplayer)
-    {
+    public void onContainerClosed(EntityPlayer entityplayer) {
         super.onContainerClosed(entityplayer);
         chest.closeInventory();
     }
 
-    protected void layoutContainer(IInventory playerInventory, IInventory chestInventory,  int xSize, int ySize)
-    {
+    protected void layoutContainer(IInventory playerInventory, IInventory chestInventory, int xSize, int ySize) {
 
-            for (int chestRow = 0; chestRow < getRowCount(); chestRow++)
-            {
-                for (int chestCol = 0; chestCol < getRowLength(); chestCol++)
-                {
-                    this.addSlotToContainer(new Slot(chestInventory, chestCol + chestRow * getRowLength(), 12 + chestCol * 18, 8 + chestRow * 18));
-                }
+        for (int chestRow = 0; chestRow < getRowCount(); chestRow++) {
+            for (int chestCol = 0; chestCol < getRowLength(); chestCol++) {
+                this.addSlotToContainer(new Slot(chestInventory, chestCol + chestRow * getRowLength(), 12 + chestCol * 18, 8 + chestRow * 18));
             }
+        }
 
 
         int leftCol = (xSize - 162) / 2 + 1;
-        for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++)
-        {
-            for (int playerInvCol = 0; playerInvCol < 9; playerInvCol++)
-            {
+        for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++) {
+            for (int playerInvCol = 0; playerInvCol < 9; playerInvCol++) {
                 this.addSlotToContainer(new Slot(playerInventory, playerInvCol + playerInvRow * 9 + 9, leftCol + playerInvCol * 18, ySize - (4 - playerInvRow) * 18
                         - 10));
             }
 
         }
 
-        for (int hotbarSlot = 0; hotbarSlot < 9; hotbarSlot++)
-        {
+        for (int hotbarSlot = 0; hotbarSlot < 9; hotbarSlot++) {
             this.addSlotToContainer(new Slot(playerInventory, hotbarSlot, leftCol + hotbarSlot * 18, ySize - 24));
         }
 
 
-
     }
 
-    public EntityPlayer getPlayer()
-    {
+    public EntityPlayer getPlayer() {
         return player;
     }
 
-    public int getRowCount()
-    {
+    public int getRowCount() {
         return 108 / getRowLength();
     }
 
-    public int getRowLength()
-    {
+    public int getRowLength() {
         return 12;
     }
-
 
 
 }

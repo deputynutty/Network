@@ -2,7 +2,7 @@ package modmuss50.network.dataSystems.itemSystem.tileEntitys;
 
 import modmuss50.network.Fmp.Multipart;
 import modmuss50.network.Fmp.PartWireNFC;
-import modmuss50.network.blocks.NetworkBlocks;
+import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
@@ -24,7 +24,7 @@ import java.util.Queue;
  * Created by Mark on 11/08/2014.
  */
 
-public class TileEnityImport extends BaseTile implements IInventory {
+public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
 
     private ItemStack[] Contents = new ItemStack[1];
 
@@ -123,14 +123,14 @@ public class TileEnityImport extends BaseTile implements IInventory {
     }
 
     @Override
-    public void updateEntity(){
+    public void updateEntity() {
         super.updateEntity();
-        if(getStackInSlot(0) != null){
+        if (getStackInSlot(0) != null) {
             TileEntityBlockStorageContainer chest = getChest(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-            if(chest != null){
+            if (chest != null) {
                 int amount = invUtil.addToInventory(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
-                if(amount != 0)
-                this.decrStackSize(0, amount);
+                if (amount != 0)
+                    this.decrStackSize(0, amount);
             }
         }
     }
@@ -188,9 +188,9 @@ public class TileEnityImport extends BaseTile implements IInventory {
         return null;
     }
 
-    public boolean hascanned(Location loc){
+    public boolean hascanned(Location loc) {
         for (int i = 0; i < scanned.size(); i++) {
-            if(loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()){
+            if (loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()) {
                 return true;
             }
         }
@@ -199,7 +199,7 @@ public class TileEnityImport extends BaseTile implements IInventory {
 
 
     public boolean isCable(TileEntity tile) {
-        if(Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
+        if (Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
             return true;
         return tile instanceof TileEntityBlockStorageContainer;
     }

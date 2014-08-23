@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -24,7 +23,7 @@ import java.util.List;
 /**
  * Created by Mark on 11/08/2014.
  */
-public class TileEntityBlockStorageContainer extends BaseTile implements IDataPer , IInventory {
+public class TileEntityBlockStorageContainer extends BaseTile implements IDataPer, IInventory {
     private int ticksSinceSync = -1;
     private int numUsingPlayers;
     public ItemStack[] chestContents;
@@ -34,67 +33,55 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
     private boolean hadStuff;
 
 
-    public TileEntityBlockStorageContainer()
-    {
+    public TileEntityBlockStorageContainer() {
         super();
         this.chestContents = new ItemStack[getSizeInventory()];
         this.topStacks = new ItemStack[8];
     }
 
-    public ItemStack[] getContents()
-    {
+    public ItemStack[] getContents() {
         return chestContents;
     }
 
     @Override
-    public int getSizeInventory()
-    {
+    public int getSizeInventory() {
         return 108 + 500;
     }
 
-    public int getFacing()
-    {
+    public int getFacing() {
         return this.facing;
     }
 
     @Override
-    public String getInventoryName()
-    {
+    public String getInventoryName() {
         return "network.StorageConatainer";
     }
 
 
     @Override
-    public ItemStack getStackInSlot(int i)
-    {
+    public ItemStack getStackInSlot(int i) {
         inventoryTouched = true;
         return chestContents[i];
     }
 
     @Override
-    public void markDirty()
-    {
+    public void markDirty() {
         super.markDirty();
         sortTopStacks();
     }
 
-    protected void sortTopStacks()
-    {
-        if ((worldObj != null && worldObj.isRemote))
-        {
+    protected void sortTopStacks() {
+        if ((worldObj != null && worldObj.isRemote)) {
             return;
         }
         ItemStack[] tempCopy = new ItemStack[getSizeInventory()];
         boolean hasStuff = false;
         int compressedIdx = 0;
-        mainLoop: for (int i = 0; i < getSizeInventory(); i++)
-        {
-            if (chestContents[i] != null)
-            {
-                for (int j = 0; j < compressedIdx; j++)
-                {
-                    if (tempCopy[j].isItemEqual(chestContents[i]))
-                    {
+        mainLoop:
+        for (int i = 0; i < getSizeInventory(); i++) {
+            if (chestContents[i] != null) {
+                for (int j = 0; j < compressedIdx; j++) {
+                    if (tempCopy[j].isItemEqual(chestContents[i])) {
                         tempCopy[j].stackSize += chestContents[i].stackSize;
                         continue mainLoop;
                     }
@@ -103,15 +90,12 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
                 hasStuff = true;
             }
         }
-        if (!hasStuff && hadStuff)
-        {
+        if (!hasStuff && hadStuff) {
             hadStuff = false;
-            for (int i = 0; i < topStacks.length; i++)
-            {
+            for (int i = 0; i < topStacks.length; i++) {
                 topStacks[i] = null;
             }
-            if (worldObj != null)
-            {
+            if (worldObj != null) {
                 worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             }
             return;
@@ -130,76 +114,60 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
             }
         });
         int p = 0;
-        for (int i = 0; i < tempCopy.length; i++)
-        {
-            if (tempCopy[i] != null && tempCopy[i].stackSize > 0)
-            {
+        for (int i = 0; i < tempCopy.length; i++) {
+            if (tempCopy[i] != null && tempCopy[i].stackSize > 0) {
                 topStacks[p++] = tempCopy[i];
-                if (p == topStacks.length)
-                {
+                if (p == topStacks.length) {
                     break;
                 }
             }
         }
-        for (int i = p; i < topStacks.length; i++)
-        {
+        for (int i = p; i < topStacks.length; i++) {
             topStacks[i] = null;
         }
-        if (worldObj != null)
-        {
+        if (worldObj != null) {
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         }
     }
 
     @Override
-    public ItemStack decrStackSize(int i, int j)
-    {
-        if (chestContents[i] != null)
-        {
-            if (chestContents[i].stackSize <= j)
-            {
+    public ItemStack decrStackSize(int i, int j) {
+        if (chestContents[i] != null) {
+            if (chestContents[i].stackSize <= j) {
                 ItemStack itemstack = chestContents[i];
                 chestContents[i] = null;
                 markDirty();
                 return itemstack;
             }
             ItemStack itemstack1 = chestContents[i].splitStack(j);
-            if (chestContents[i].stackSize == 0)
-            {
+            if (chestContents[i].stackSize == 0) {
                 chestContents[i] = null;
             }
             markDirty();
             return itemstack1;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
     @Override
-    public void setInventorySlotContents(int i, ItemStack itemstack)
-    {
+    public void setInventorySlotContents(int i, ItemStack itemstack) {
         chestContents[i] = itemstack;
-        if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
-        {
+        if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
             itemstack.stackSize = getInventoryStackLimit();
         }
         markDirty();
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbttagcompound)
-    {
+    public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
         chestContents = new ItemStack[getSizeInventory()];
-        for (int i = 0; i < nbttaglist.tagCount(); i++)
-        {
+        for (int i = 0; i < nbttaglist.tagCount(); i++) {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound1.getByte("Slot") & 0xff;
-            if (j >= 0 && j < chestContents.length)
-            {
+            if (j >= 0 && j < chestContents.length) {
                 chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
@@ -208,14 +176,11 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbttagcompound)
-    {
+    public void writeToNBT(NBTTagCompound nbttagcompound) {
         super.writeToNBT(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
-        for (int i = 0; i < chestContents.length; i++)
-        {
-            if (chestContents[i] != null)
-            {
+        for (int i = 0; i < chestContents.length; i++) {
+            if (chestContents[i] != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                 nbttagcompound1.setByte("Slot", (byte) i);
                 chestContents[i].writeToNBT(nbttagcompound1);
@@ -224,59 +189,49 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
         }
 
         nbttagcompound.setTag("Items", nbttaglist);
-        nbttagcompound.setByte("facing", (byte)facing);
+        nbttagcompound.setByte("facing", (byte) facing);
     }
 
     @Override
-    public int getInventoryStackLimit()
-    {
+    public int getInventoryStackLimit() {
         return 64;
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer)
-    {
-        if (worldObj == null)
-        {
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+        if (worldObj == null) {
             return true;
         }
-        if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this)
-        {
+        if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
             return false;
         }
         return entityplayer.getDistanceSq((double) xCoord + 0.5D, (double) yCoord + 0.5D, (double) zCoord + 0.5D) <= 64D;
     }
 
     @Override
-    public void updateEntity()
-    {
+    public void updateEntity() {
         super.updateEntity();
         // Resynchronize clients with the server state
-        if (worldObj != null && !this.worldObj.isRemote && this.numUsingPlayers != 0 && (this.ticksSinceSync + this.xCoord + this.yCoord + this.zCoord) % 200 == 0)
-        {
+        if (worldObj != null && !this.worldObj.isRemote && this.numUsingPlayers != 0 && (this.ticksSinceSync + this.xCoord + this.yCoord + this.zCoord) % 200 == 0) {
             this.numUsingPlayers = 0;
             float var1 = 5.0F;
             @SuppressWarnings("unchecked")
             List<EntityPlayer> var2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox((double) ((float) this.xCoord - var1), (double) ((float) this.yCoord - var1), (double) ((float) this.zCoord - var1), (double) ((float) (this.xCoord + 1) + var1), (double) ((float) (this.yCoord + 1) + var1), (double) ((float) (this.zCoord + 1) + var1)));
             Iterator<EntityPlayer> var3 = var2.iterator();
 
-            while (var3.hasNext())
-            {
+            while (var3.hasNext()) {
                 EntityPlayer var4 = var3.next();
 
-                if (var4.openContainer instanceof ContainerStorageChest)
-                {
+                if (var4.openContainer instanceof ContainerStorageChest) {
                     ++this.numUsingPlayers;
                 }
             }
         }
 
-        if (worldObj != null && !worldObj.isRemote && ticksSinceSync < 0)
-        {
+        if (worldObj != null && !worldObj.isRemote && ticksSinceSync < 0) {
             worldObj.addBlockEvent(xCoord, yCoord, zCoord, ItemSystem.storageChest, 3, ((numUsingPlayers << 3) & 0xF8) | (facing & 0x7));
         }
-        if (!worldObj.isRemote && inventoryTouched)
-        {
+        if (!worldObj.isRemote && inventoryTouched) {
             inventoryTouched = false;
             sortTopStacks();
         }
@@ -285,18 +240,12 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
     }
 
     @Override
-    public boolean receiveClientEvent(int i, int j)
-    {
-        if (i == 1)
-        {
+    public boolean receiveClientEvent(int i, int j) {
+        if (i == 1) {
             numUsingPlayers = j;
-        }
-        else if (i == 2)
-        {
+        } else if (i == 2) {
             facing = (byte) j;
-        }
-        else if (i == 3)
-        {
+        } else if (i == 3) {
             facing = (byte) (j & 0x7);
             numUsingPlayers = (j & 0xF8) >> 3;
         }
@@ -304,101 +253,80 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
     }
 
     @Override
-    public void openInventory()
-    {
+    public void openInventory() {
         if (worldObj == null) return;
         numUsingPlayers++;
         worldObj.addBlockEvent(xCoord, yCoord, zCoord, ItemSystem.storageChest, 1, numUsingPlayers);
     }
 
     @Override
-    public void closeInventory()
-    {
+    public void closeInventory() {
         if (worldObj == null) return;
         numUsingPlayers--;
         worldObj.addBlockEvent(xCoord, yCoord, zCoord, ItemSystem.storageChest, 1, numUsingPlayers);
     }
 
-    public void setFacing(int facing2)
-    {
+    public void setFacing(int facing2) {
         this.facing = facing2;
     }
 
 
-    public ItemStack[] getTopItemStacks()
-    {
+    public ItemStack[] getTopItemStacks() {
         return topStacks;
     }
 
 
-
-
-    public int[] buildIntDataList()
-    {
-            int[] sortList = new int[topStacks.length * 3];
-            int pos = 0;
-            for (ItemStack is : topStacks)
-            {
-                if (is != null)
-                {
-                    sortList[pos++] = Item.getIdFromItem(is.getItem());
-                    sortList[pos++] = is.getItemDamage();
-                    sortList[pos++] = is.stackSize;
-                }
-                else
-                {
-                    sortList[pos++] = 0;
-                    sortList[pos++] = 0;
-                    sortList[pos++] = 0;
-                }
+    public int[] buildIntDataList() {
+        int[] sortList = new int[topStacks.length * 3];
+        int pos = 0;
+        for (ItemStack is : topStacks) {
+            if (is != null) {
+                sortList[pos++] = Item.getIdFromItem(is.getItem());
+                sortList[pos++] = is.getItemDamage();
+                sortList[pos++] = is.stackSize;
+            } else {
+                sortList[pos++] = 0;
+                sortList[pos++] = 0;
+                sortList[pos++] = 0;
             }
-            return sortList;
+        }
+        return sortList;
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int par1)
-    {
-        if (this.chestContents[par1] != null)
-        {
+    public ItemStack getStackInSlotOnClosing(int par1) {
+        if (this.chestContents[par1] != null) {
             ItemStack var2 = this.chestContents[par1];
             this.chestContents[par1] = null;
             return var2;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-    public void setMaxStackSize(int size)
-    {
+    public void setMaxStackSize(int size) {
 
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack)
-    {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         return true;
     }
 
     @Override
-    public boolean hasCustomInventoryName()
-    {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
-    void rotateAround(ForgeDirection axis)
-    {
-        setFacing((byte)ForgeDirection.getOrientation(facing).getRotation(axis).ordinal());
+    void rotateAround(ForgeDirection axis) {
+        setFacing((byte) ForgeDirection.getOrientation(facing).getRotation(axis).ordinal());
         worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, ItemSystem.storageChest, 2, getFacing());
     }
 
-    public void wasPlaced(EntityLivingBase entityliving, ItemStack itemStack)
-    {
+    public void wasPlaced(EntityLivingBase entityliving, ItemStack itemStack) {
     }
 
-    public void removeAdornments()
-    {
+    public void removeAdornments() {
 
     }
 }

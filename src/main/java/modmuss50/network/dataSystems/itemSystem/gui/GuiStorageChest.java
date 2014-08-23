@@ -2,7 +2,6 @@ package modmuss50.network.dataSystems.itemSystem.gui;
 
 import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -11,11 +10,10 @@ import org.lwjgl.opengl.GL11;
  * Created by Mark on 11/08/2014.
  */
 public class GuiStorageChest extends GuiContainer {
-        public static final ResourceLocation texture = new ResourceLocation("network:textures/gui/StorageChest.png");
+    public static final ResourceLocation texture = new ResourceLocation("network:textures/gui/StorageChest.png");
 
 
-    public GuiStorageChest(IInventory player, IInventory chest)
-    {
+    public GuiStorageChest(IInventory player, IInventory chest) {
         super(new ContainerStorageChest(player, chest, 238, 256));
         this.allowUserInput = false;
         this.xSize = 238;
@@ -23,8 +21,7 @@ public class GuiStorageChest extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
-    {
+    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         // new "bind tex"
         this.mc.getTextureManager().bindTexture(texture);
@@ -32,7 +29,6 @@ public class GuiStorageChest extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     }
-
 
 
 }
