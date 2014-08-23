@@ -1,6 +1,5 @@
 package modmuss50.network;
 
-import codechicken.nei.api.API;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -19,9 +18,11 @@ import modmuss50.network.client.gui.GuiHandler;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
 import modmuss50.network.entity.minecart.ServerCart;
 import modmuss50.network.event.DropItemEvent;
-import modmuss50.network.init.*;
+import modmuss50.network.init.initBlocks;
+import modmuss50.network.init.initCommand;
+import modmuss50.network.init.initConfig;
+import modmuss50.network.init.initItems;
 import modmuss50.network.items.NetworkItems;
-import modmuss50.network.nei.InfusionNei;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
 import net.minecraft.creativetab.CreativeTabs;
@@ -33,7 +34,7 @@ import sourceteam.mods.lib.mod.ISourceMod;
 
 import java.util.logging.Logger;
 
-@Mod(modid = "network", name = "Network", version = "0.01" , dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
+@Mod(modid = "network", name = "Network", version = "0.01", dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
 public class NetworkCore implements ISourceMod {
 
     public static final PacketPipeline packetPipeline = new PacketPipeline();
@@ -50,7 +51,11 @@ public class NetworkCore implements ISourceMod {
         }
 
         @Override
-        public boolean hasSearchBar () { return true;};
+        public boolean hasSearchBar() {
+            return true;
+        }
+
+        ;
     }.setBackgroundImageName("item_search.png");
 
     @EventHandler

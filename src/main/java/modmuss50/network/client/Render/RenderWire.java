@@ -27,7 +27,7 @@ public class RenderWire extends TileEntitySpecialRenderer {
 
     }
 
-    public void doRender(double x, double y, double z,  Map<ForgeDirection, TileEntity> connectedSides) {
+    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef((float) x, (float) y, (float) z);

@@ -1,7 +1,6 @@
 package modmuss50.network.client.Render;
 
 import modmuss50.network.client.models.NFCWire;
-import modmuss50.network.client.models.WireModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -28,7 +27,7 @@ public class RenderWireNFC extends TileEntitySpecialRenderer {
 
     }
 
-    public void doRender(double x, double y, double z,  Map<ForgeDirection, TileEntity> connectedSides) {
+    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef((float) x, (float) y, (float) z);

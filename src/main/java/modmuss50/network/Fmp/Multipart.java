@@ -206,8 +206,6 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
     }
 
 
-
-
     public static boolean hasPartWireNFC(TileMultipart mp) {
         boolean ret = false;
         List<TMultiPart> t = mp.jPartList();
@@ -276,9 +274,9 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
             return new PartCable();
         } else if (id.equals(Pipecodename)) {
             return new PartPipeLine();
-        } else if (id.equals(wireName)){
+        } else if (id.equals(wireName)) {
             return new PartWire();
-        }else if (id.equals(wireNfcName)){
+        } else if (id.equals(wireNfcName)) {
             return new PartWireNFC();
         }
         System.out.println("There was an error!");

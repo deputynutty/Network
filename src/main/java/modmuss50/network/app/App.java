@@ -7,7 +7,6 @@ import modmuss50.network.app.appUtil.GuiApp;
 public interface App {
 
 
-
     /**
      * @return The specified name of the app
      */

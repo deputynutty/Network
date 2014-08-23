@@ -137,20 +137,14 @@ public class GuiHandler implements IGuiHandler {
                 if (te instanceof TileEntityTeleporter) {
                     return new GuiTeleporter((TileEntityTeleporter) te);
                 }
-            }
-
-       else  if (ID == InfusedFurnace) {
-            if (te instanceof TileEntityInfusionFurnace) {
-                return new GuiInfusionFurnace(player, (TileEntityInfusionFurnace) te);
-            }
-        }
-
-       else if (ID == computerGuiID) {
+            } else if (ID == InfusedFurnace) {
+                if (te instanceof TileEntityInfusionFurnace) {
+                    return new GuiInfusionFurnace(player, (TileEntityInfusionFurnace) te);
+                }
+            } else if (ID == computerGuiID) {
                 return new GuiComputer();
-        }
-
-            else if (ID == StorageChest) {
-                return new GuiStorageChest(player.inventory, (TileEntityBlockStorageContainer)te);
+            } else if (ID == StorageChest) {
+                return new GuiStorageChest(player.inventory, (TileEntityBlockStorageContainer) te);
             }
 
         return null;

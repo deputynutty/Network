@@ -23,6 +23,7 @@ public class BlockMover extends BlockBase {
     private static IIcon[] tops = new IIcon[4];
     private static IIcon[] outher = new IIcon[1];
     private final Random random = new Random();
+
     public BlockMover() {
         super(Material.iron);
     }

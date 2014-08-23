@@ -57,10 +57,9 @@ public class ItemTablet extends IWirelessItem {
         }
     }
 
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (stack.getItemDamage() % states.length == 1) {
-            player.openGui(NetworkCore.instance, GuiHandler.tabletGuiID, world,(int) player.posX, (int) player.posY,(int)  player.posZ);
+            player.openGui(NetworkCore.instance, GuiHandler.tabletGuiID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
             return stack;
         } else {
             return stack;

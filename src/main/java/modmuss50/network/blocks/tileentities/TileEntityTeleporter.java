@@ -1,7 +1,6 @@
 package modmuss50.network.blocks.tileentities;
 
 import modmuss50.network.Fmp.Multipart;
-import modmuss50.network.Fmp.PartWire;
 import modmuss50.network.Fmp.PartWireNFC;
 import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.api.IPeripheral;
@@ -88,13 +87,13 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
             ticktime += 1;
         }
 
-        if(update(this.worldObj, this.xCoord, this.yCoord, this.zCoord) != null){
+        if (update(this.worldObj, this.xCoord, this.yCoord, this.zCoord) != null) {
             System.out.println("not null");
         } else {
             System.out.println("null");
         }
 
-     //   System.out.println(update(this.worldObj, this.xCoord, this.yCoord, this.zCoord));
+        //   System.out.println(update(this.worldObj, this.xCoord, this.yCoord, this.zCoord));
     }
 
     public void updateBlock() {
@@ -372,8 +371,8 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
                                     if (Multipart.hasPartWireNFC(tile)) {
                                         PartWireNFC wire = Multipart.getWireNFC(tile);
                                         for (int i = 0; i < wire.conecatable.size(); i++) {
-                                           Location loc = wire.conecatable.get(i);
-                                                queue.add(new WorldCoordinate(loc.getX(), loc.getY(), loc.getZ()));
+                                            Location loc = wire.conecatable.get(i);
+                                            queue.add(new WorldCoordinate(loc.getX(), loc.getY(), loc.getZ()));
                                         }
                                     }
                                 }
@@ -387,18 +386,18 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
         return null;
     }
 
-    public boolean hascanned(Location loc){
+    public boolean hascanned(Location loc) {
         for (int i = 0; i < scanned.size(); i++) {
-           if(loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()){
-               return true;
-           }
+            if (loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()) {
+                return true;
+            }
         }
         return false;
     }
 
 
     public boolean isCable(TileEntity tile) {
-        if(Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
+        if (Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
             return true;
         return tile instanceof TileEntityTeleporter;
     }

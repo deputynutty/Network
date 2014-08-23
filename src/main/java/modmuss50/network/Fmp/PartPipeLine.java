@@ -34,9 +34,11 @@ public class PartPipeLine extends TMultiPart implements TSlottedPart, JNormalOcc
     public static Cuboid6[] boundingBoxes = new Cuboid6[14];
     public static float center = 0.6F;
     public static float offset = 0.10F;
+
     static {
         refreshBounding();
     }
+
     private static int expandBounds = -1;
     @SideOnly(Side.CLIENT)
     private static RenderPipeLine renderer;

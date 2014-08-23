@@ -32,13 +32,13 @@ public class GuiApp extends GuiScreen {
     @SideOnly(Side.CLIENT)
     public FontRenderer fontRenderer = null;
 
-    public GuiApp(App app, App parentapp){
-           application = app;
-           parent = parentapp;
-            fontRenderer = this.fontRendererObj;
+    public GuiApp(App app, App parentapp) {
+        application = app;
+        parent = parentapp;
+        fontRenderer = this.fontRendererObj;
     }
 
-    public  GuiApp(App app, int type){
+    public GuiApp(App app, int type) {
         application = app;
         parent = null;
         fontRenderer = this.fontRendererObj;
@@ -46,8 +46,8 @@ public class GuiApp extends GuiScreen {
     }
 
     @Override
-    public void drawScreen(int par1, int par2, float par3){
-        if(divicetype == 1){
+    public void drawScreen(int par1, int par2, float par3) {
+        if (divicetype == 1) {
             k = (this.width - 192) / 2 + 7;
             b0 = 2;
 
@@ -56,7 +56,7 @@ public class GuiApp extends GuiScreen {
 
         }
 
-        if(divicetype == 0){
+        if (divicetype == 0) {
             int k = (this.width - 256) / 2;
             int l = (this.height - 256) / 2;
             RenderManager.instance.renderEngine.bindTexture(computerTexture);
@@ -64,8 +64,8 @@ public class GuiApp extends GuiScreen {
         }
 
         fontRenderer = this.fontRendererObj;
-        if(divicetype == 0){
-           b0 = (this.height - 256) / 2;
+        if (divicetype == 0) {
+            b0 = (this.height - 256) / 2;
             k = (this.width - 256) / 2;
         }
         application.drawScreen(par1, par2, par3, this);
@@ -86,8 +86,8 @@ public class GuiApp extends GuiScreen {
 
     @Override
     public void keyTyped(char par1, int par2) {
-        if (par2 == 1){
-            if(divicetype == 0){
+        if (par2 == 1) {
+            if (divicetype == 0) {
                 this.mc.displayGuiScreen(new GuiComputer());
             } else {
                 this.mc.displayGuiScreen(new GuiTablet());
@@ -103,8 +103,7 @@ public class GuiApp extends GuiScreen {
         application.onGuiClosed(this);
     }
 
-    public boolean doesGuiPauseGame()
-    {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 

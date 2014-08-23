@@ -1,6 +1,5 @@
 package modmuss50.network.blocks.tileentities;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.netty.packets.PacketLight;
@@ -62,7 +61,7 @@ public class TileEntityLightPeripheral extends BaseTile implements INetworkCompo
     public void syncWithServer() {
         // checks to see if the tile enity is not no the client then sneds the
         // data to the client when called.
-            NetworkCore.packetPipeline.sendToServer(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
+        NetworkCore.packetPipeline.sendToServer(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
 
         updateBlock();
     }

@@ -14,6 +14,7 @@ public class BlockBcUser extends BlockBase {
     private static IIcon[] tops = new IIcon[1];
     private static IIcon[] bottoms = new IIcon[1];
     private static IIcon[] sides = new IIcon[1];
+
     public BlockBcUser() {
         super(Material.iron);
     }

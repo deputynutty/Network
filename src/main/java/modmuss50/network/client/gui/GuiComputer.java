@@ -27,7 +27,7 @@ public class GuiComputer extends GuiScreen {
     }
 
     @Override
-    public void initGui(){
+    public void initGui() {
         int k = (this.width - 256) / 2;
         int l = (this.height - 256) / 2;
         this.buttonList.clear();
@@ -37,15 +37,14 @@ public class GuiComputer extends GuiScreen {
         super.initGui();
     }
 
-    public boolean doesGuiPauseGame()
-    {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 
 
     public void actionPerformed(GuiButton button) {
         for (int i = 0; i < AppManager.apps.size(); i++) {
-            if(i == button.id){
+            if (i == button.id) {
                 Minecraft.getMinecraft().displayGuiScreen(new GuiApp(AppManager.apps.get(i), 0));
             }
         }

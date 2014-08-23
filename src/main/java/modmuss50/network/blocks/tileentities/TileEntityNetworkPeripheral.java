@@ -7,8 +7,6 @@ import modmuss50.network.items.NetworkItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import sourceteam.mods.lib.Location;
 
 public class TileEntityNetworkPeripheral extends BaseTile {
 

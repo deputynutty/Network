@@ -87,7 +87,7 @@ public class PacketLight extends AbstractPacket {
                 te.red = this.r;
             }
         }
-       NetworkCore.packetPipeline.sendToAll(new PacketLight(posX, posY, posZ,r, g, b));
+        NetworkCore.packetPipeline.sendToAll(new PacketLight(posX, posY, posZ, r, g, b));
     }
 
 }

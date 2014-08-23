@@ -11,7 +11,6 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.client.Render.RenderWire;
 import net.minecraft.client.particle.EffectRenderer;
@@ -37,9 +36,11 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     private static IIcon breakIcon;
     private final boolean[] connectedSideFlags = new boolean[6];
     int ticks;
+
     static {
         refreshBounding();
     }
+
     boolean gotSerpos = false;
     int ServX;
     int ServY;
@@ -53,20 +54,20 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     public static void refreshBounding() {
         float centerFirst = center - offset;
         double w = 0.2D / 2;
-        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w  - 0.5, centerFirst + w);
+        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w - 0.5, centerFirst + w);
 
         int i = 0;
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-                double xMin1 = (dir.offsetX < 0 ? 0.0 : (dir.offsetX == 0 ? centerFirst - w : centerFirst + w));
-                double xMax1 = (dir.offsetX > 0 ? 1.0 : (dir.offsetX == 0 ? centerFirst + w : centerFirst - w));
+            double xMin1 = (dir.offsetX < 0 ? 0.0 : (dir.offsetX == 0 ? centerFirst - w : centerFirst + w));
+            double xMax1 = (dir.offsetX > 0 ? 1.0 : (dir.offsetX == 0 ? centerFirst + w : centerFirst - w));
 
-                double yMin1 = (dir.offsetY < 0 ? 0.0 : (dir.offsetY == 0 ? centerFirst - w : centerFirst + w)) - 0.4;
-                double yMax1 = (dir.offsetY > 0 ? 1.0 : (dir.offsetY == 0 ? centerFirst + w : centerFirst - w)) - 0.5;
+            double yMin1 = (dir.offsetY < 0 ? 0.0 : (dir.offsetY == 0 ? centerFirst - w : centerFirst + w)) - 0.4;
+            double yMax1 = (dir.offsetY > 0 ? 1.0 : (dir.offsetY == 0 ? centerFirst + w : centerFirst - w)) - 0.5;
 
-                double zMin1 = (dir.offsetZ < 0 ? 0.0 : (dir.offsetZ == 0 ? centerFirst - w : centerFirst + w));
-                double zMax1 = (dir.offsetZ > 0 ? 1.0 : (dir.offsetZ == 0 ? centerFirst + w : centerFirst - w));
+            double zMin1 = (dir.offsetZ < 0 ? 0.0 : (dir.offsetZ == 0 ? centerFirst - w : centerFirst + w));
+            double zMax1 = (dir.offsetZ > 0 ? 1.0 : (dir.offsetZ == 0 ? centerFirst + w : centerFirst - w));
 
-                boundingBoxes[i] = new Cuboid6(xMin1, yMin1, zMin1, xMax1, yMax1, zMax1);
+            boundingBoxes[i] = new Cuboid6(xMin1, yMin1, zMin1, xMax1, yMax1, zMax1);
             i++;
         }
     }
@@ -150,9 +151,9 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     @Override
     public boolean occlusionTest(TMultiPart npart) {
-        try{
+        try {
             return NormalOcclusionTest.apply(this, npart);
-        } catch (NullPointerException npe){
+        } catch (NullPointerException npe) {
             return false;
         }
     }
@@ -268,7 +269,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     public boolean canConnectTo(ForgeDirection side) {
         int d = side.ordinal();
-        if(side == ForgeDirection.DOWN || side == ForgeDirection.UP)
+        if (side == ForgeDirection.DOWN || side == ForgeDirection.UP)
             return false;
         return tile().canAddPart(new NormallyOccludedPart(boundingBoxes[d]));
     }

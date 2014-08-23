@@ -47,8 +47,7 @@ public class PacketRemoteGui extends AbstractPacket {
         //irt.onBlockActivated(player.worldObj, x, y, z, player, 0, 0.5F, 0.5F, 0.5F);
 
         System.out.println("The server say hi!");
-    //    player.worldObj.getBlock(x, y, z).onBlockActivated(player.worldObj, x, y, z, player, 1, 0F, 0F, 0F);
-
+        //    player.worldObj.getBlock(x, y, z).onBlockActivated(player.worldObj, x, y, z, player, 1, 0F, 0F, 0F);
 
 
 //        TileEntityInfusionFurnace tileentityfurnace = (TileEntityInfusionFurnace) player.worldObj.getTileEntity(x, y, z);

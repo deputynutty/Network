@@ -45,7 +45,7 @@ public class BlockComputer extends BlockBase {
     @Override
     public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
 
-        par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.computerGuiID, par1World,(int) x, (int) y,(int)  z);
+        par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.computerGuiID, par1World, (int) x, (int) y, (int) z);
         return true;
     }
 

@@ -26,6 +26,7 @@ public class BlockPowerSink extends BlockBase {
     private IIcon side;
     @SideOnly(Side.CLIENT)
     private IIcon other;
+
     public BlockPowerSink() {
         super(Material.anvil);
     }
