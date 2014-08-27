@@ -52,7 +52,7 @@ dependencies {
 	grabDep('fmp', 'http://files.minecraftforge.net/maven/codechicken/ForgeMultipart/1.7.10-1.1.0.297/ForgeMultipart-1.7.10-1.1.0.297-dev.jar')
 	grabDep('ccc', 'http://chickenbones.net/maven/codechicken/CodeChickenCore/1.7.10-1.0.2.9/CodeChickenCore-1.7.10-1.0.2.9-dev.jar')
 	grabDep('nei', 'http://chickenbones.net/maven/codechicken/NotEnoughItems/1.7.10-1.0.2.15/NotEnoughItems-1.7.10-1.0.2.15-dev.jar')
-	grabDep('mmc', 'http://www.tattyseal.com:8080/job/ModmussCore/lastSuccessfulBuild/artifact/build/libs/ModmussCore-dev-0.0.112.jar')
+	grabDep('mmc', 'http://tattyseal.com:8080/job/SourceCore/2/artifact/build/libs/SourceCore-dev-0.0.2.jar')
 	println("  Adding dependencies!")
     compile files("dep/ccl.jar", "dep/fmp.jar", "dep/nei.jar", "dep/ccc.jar", "dep/mmc.jar")
 	println("  Finished adding dependencies!")
