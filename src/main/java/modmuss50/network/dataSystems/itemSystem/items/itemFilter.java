@@ -1,6 +1,6 @@
 package modmuss50.network.dataSystems.itemSystem.items;
 
-import sourceteam.mods.lib.api.IupgradeItem;
+import modmuss50.mods.lib.api.IupgradeItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

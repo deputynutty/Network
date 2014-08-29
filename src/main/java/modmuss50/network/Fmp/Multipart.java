@@ -9,7 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import sourceteam.mods.lib.Location;
+import modmuss50.mods.lib.Location;
 
 import java.util.List;
 

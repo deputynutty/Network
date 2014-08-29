@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import sourceteam.mods.lib.api.IinvUpgrade;
+import modmuss50.mods.lib.api.IinvUpgrade;
 
 import java.util.*;
 

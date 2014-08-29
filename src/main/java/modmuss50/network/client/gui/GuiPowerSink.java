@@ -7,7 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import sourceteam.mods.lib.client.GuiRenderHelper;
+import modmuss50.mods.lib.client.GuiRenderHelper;
 
 public class GuiPowerSink extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");

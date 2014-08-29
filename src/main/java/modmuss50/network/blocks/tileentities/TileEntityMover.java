@@ -16,7 +16,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import sourceteam.mods.lib.Location;
+import modmuss50.mods.lib.Location;
 
 import java.util.ArrayList;
 

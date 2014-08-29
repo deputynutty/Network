@@ -28,9 +28,9 @@ import modmuss50.network.netty.PacketPipeline;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import sourceteam.mods.core.client.BaseModGui;
-import sourceteam.mods.core.mod.ModRegistry;
-import sourceteam.mods.lib.mod.ISourceMod;
+import modmuss50.mods.core.client.BaseModGui;
+import modmuss50.mods.core.mod.ModRegistry;
+import modmuss50.mods.lib.mod.ISourceMod;
 
 import java.util.logging.Logger;
 

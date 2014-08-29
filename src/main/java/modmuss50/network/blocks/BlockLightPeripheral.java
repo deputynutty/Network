@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import sourceteam.mods.core.client.ClientInit;
-import sourceteam.mods.lib.api.ColoredNetworkBlock;
+import modmuss50.mods.core.client.ClientInit;
+import modmuss50.mods.lib.api.ColoredNetworkBlock;
 
 import java.awt.*;
 

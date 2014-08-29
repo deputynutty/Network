@@ -23,8 +23,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
-import sourceteam.mods.lib.Functions;
-import sourceteam.mods.lib.Location;
+import modmuss50.mods.lib.Functions;
+import modmuss50.mods.lib.Location;
 
 import java.util.*;
 

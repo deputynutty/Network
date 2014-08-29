@@ -14,7 +14,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import sourceteam.mods.lib.BlockHelper;
+import modmuss50.mods.lib.BlockHelper;
 
 import java.util.ArrayList;
 import java.util.List;

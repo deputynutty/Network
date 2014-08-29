@@ -1,6 +1,6 @@
 package modmuss50.network.dataSystems.itemSystem.containers.slot;
 
-import sourceteam.mods.lib.api.IupgradeItem;
+import modmuss50.mods.lib.api.IupgradeItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
