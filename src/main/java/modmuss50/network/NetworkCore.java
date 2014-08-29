@@ -34,7 +34,7 @@ import modmuss50.mods.lib.mod.ISourceMod;
 
 import java.util.logging.Logger;
 
-@Mod(modid = "network", name = "Network", version = "0.01", dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
+@Mod(modid = "network", name = "Network", version = "0.01", dependencies = "required-after:modmusscore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
 public class NetworkCore implements ISourceMod {
 
     public static final PacketPipeline packetPipeline = new PacketPipeline();
