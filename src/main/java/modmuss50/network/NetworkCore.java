@@ -74,7 +74,6 @@ public class NetworkCore implements ISourceMod {
         MinecraftForge.EVENT_BUS.register(new DropItemEvent());
 
         ItemSystem.preInit(event);
-
     }
 
     @EventHandler
