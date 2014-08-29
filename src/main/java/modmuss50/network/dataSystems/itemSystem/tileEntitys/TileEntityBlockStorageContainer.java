@@ -14,16 +14,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
+import sourceteam.mods.lib.api.IinvUpgrade;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Mark on 11/08/2014.
  */
-public class TileEntityBlockStorageContainer extends BaseTile implements IDataPer, IInventory {
+public class TileEntityBlockStorageContainer extends BaseTile implements IDataPer, IInventory, IinvUpgrade {
     private int ticksSinceSync = -1;
     private int numUsingPlayers;
     public ItemStack[] chestContents;
@@ -328,5 +326,14 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
 
     public void removeAdornments() {
 
+    }
+
+    @Override
+    public ArrayList<Integer> upgradeSlots() {
+        ArrayList<Integer> slots = new ArrayList<Integer>();
+        for (int i = 200; i < 207; i++) {
+            slots.add(i);
+        }
+        return slots;
     }
 }

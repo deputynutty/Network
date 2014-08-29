@@ -1,7 +1,6 @@
 package modmuss50.network.dataSystems.itemSystem.containers.slot;
 
-import modmuss50.network.dataSystems.itemSystem.api.IupgradeItem;
-import net.minecraft.client.renderer.texture.Stitcher;
+import sourceteam.mods.lib.api.IupgradeItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
