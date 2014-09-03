@@ -1,4 +1,4 @@
-package sourceteam.network.Fmp;
+package sourceteam.network.multiparts;
 
 import codechicken.lib.vec.BlockCoord;
 import codechicken.multipart.MultiPartRegistry;
@@ -16,31 +16,28 @@ import java.util.List;
 public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegistry.IPartConverter {
 
     public static final String codename = "tile.network.cable";
-    public static final String Pipecodename = "tile.network.pipeLine";
     public static final String wireName = "tile.network.wire";
     public static final String wireNfcName = "tile.network.wireNFC";
     public static ItemPartCable cablepartitem;
-    public static ItemPipeLine itemPipeLine;
     public static ItemPartWire itemPartWire;
     public static ItemPartWireNFC itemPartWireNFC;
 
     public static void init() {
 
         MultiPartRegistry.registerParts(new Multipart(), new String[]{codename});
-        MultiPartRegistry.registerParts(new Multipart(), new String[]{Pipecodename});
         MultiPartRegistry.registerParts(new Multipart(), new String[]{wireName});
         MultiPartRegistry.registerParts(new Multipart(), new String[]{wireNfcName});
 
         cablepartitem = new ItemPartCable();
-        itemPipeLine = new ItemPipeLine();
         itemPartWire = new ItemPartWire();
         itemPartWireNFC = new ItemPartWireNFC();
 
-        GameRegistry.registerItem(itemPipeLine, Pipecodename);
         GameRegistry.registerItem(cablepartitem, codename);
         GameRegistry.registerItem(itemPartWire, wireName);
         GameRegistry.registerItem(itemPartWireNFC, wireNfcName);
     }
+
+    //TODO make this cleaner might move into the part class so this is messy
 
     public static TileMultipart getMultipartTile(IBlockAccess access, Location pos) {
         TileEntity te = access.getTileEntity(pos.getX(), pos.getY(), pos.getZ());
@@ -81,65 +78,21 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
         return null;
     }
 
-    public static boolean hasPartPipe(TileMultipart mp) {
-        boolean ret = false;
-        List<TMultiPart> t = mp.jPartList();
-        for (TMultiPart p : t) {
-            if (ret == false) {
-                if (p instanceof PartPipeLine) {
-                    ret = true;
-                }
-            }
-        }
-        return ret;
-    }
 
-    public static boolean hasPartPipe(TileEntity mp) {
-        if (mp instanceof TileMultipart) {
-            TileMultipart Tmp = (TileMultipart) mp;
-            boolean ret = false;
-            List<TMultiPart> t = Tmp.jPartList();
+    public static PartCable getCable(TileEntity tile) {
+        boolean ret = false;
+        if(tile instanceof TileMultipart){
+            TileMultipart mp = (TileMultipart) tile;
+            List<TMultiPart> t =  mp.jPartList();
             for (TMultiPart p : t) {
                 if (ret == false) {
-                    if (p instanceof PartPipeLine) {
-                        ret = true;
+                    if (p instanceof PartCable) {
+                        return (PartCable) p;
                     }
                 }
             }
-            return ret;
         }
 
-        return false;
-
-    }
-
-    public static PartPipeLine getPipe(TileMultipart mp) {
-        boolean ret = false;
-        List<TMultiPart> t = mp.jPartList();
-        for (TMultiPart p : t) {
-            if (ret == false) {
-                if (p instanceof PartPipeLine) {
-                    return (PartPipeLine) p;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static PartPipeLine getPipe(TileEntity mp) {
-        if (mp instanceof TileMultipart) {
-            TileMultipart Tmp = (TileMultipart) mp;
-            boolean ret = false;
-            List<TMultiPart> t = Tmp.jPartList();
-            for (TMultiPart p : t) {
-                if (ret == false) {
-                    if (p instanceof PartPipeLine) {
-                        return (PartPipeLine) p;
-                    }
-                }
-            }
-            return null;
-        }
         return null;
     }
 
@@ -272,8 +225,6 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
     public TMultiPart createPart(String id, boolean client) {
         if (id.equals(codename)) {
             return new PartCable();
-        } else if (id.equals(Pipecodename)) {
-            return new PartPipeLine();
         } else if (id.equals(wireName)) {
             return new PartWire();
         } else if (id.equals(wireNfcName)) {
@@ -281,6 +232,17 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
         }
         System.out.println("There was an error!");
         return null;
+    }
+
+
+    public int getColour(TileEntity tile){
+        if(Multipart.hasPartWire(tile)){
+            return Multipart.getwire((TileMultipart) tile).colour;
+        }
+        if(Multipart.hasPartWireNFC(tile)){
+            return Multipart.getWireNFC((TileMultipart) tile).colour;
+        }
+        return 999;
     }
 
     @Override

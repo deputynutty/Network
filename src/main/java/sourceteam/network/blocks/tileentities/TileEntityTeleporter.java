@@ -1,7 +1,7 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.Fmp.Multipart;
-import sourceteam.network.Fmp.PartWireNFC;
+import sourceteam.network.multiparts.Multipart;
+import sourceteam.network.multiparts.PartWireNFC;
 import sourceteam.network.api.INetworkComponent;
 import sourceteam.network.api.IPeripheral;
 import sourceteam.network.blocks.NetworkBlocks;

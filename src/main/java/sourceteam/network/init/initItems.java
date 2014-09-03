@@ -1,7 +1,7 @@
 package sourceteam.network.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import sourceteam.network.Fmp.Multipart;
+import sourceteam.network.multiparts.Multipart;
 import sourceteam.network.NetworkCore;
 import sourceteam.network.api.InfusionFurnaceRecipes;
 import sourceteam.network.blocks.NetworkBlocks;
@@ -46,7 +46,6 @@ public class initItems {
     public static void Recipes() {
         GameRegistry.addShapelessRecipe(ItemPart.getItemstack("HardenedIron", 9), Blocks.piston, Blocks.iron_block, Blocks.piston, Items.redstone);
         GameRegistry.addSmelting(ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("ReinforcedIron"), 0F);
-
         GameRegistry.addShapelessRecipe(ItemPart.getItemstack("HardenedIronPlate", 1), ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("HardenedIron"), ItemPart.getItemstack("HardenedIron"));
         GameRegistry.addShapelessRecipe(ItemPart.getItemstack("ReinforcedIronPlate", 1), ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("ReinforcedIron"), ItemPart.getItemstack("ReinforcedIron"));
 
@@ -59,7 +58,6 @@ public class initItems {
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedTank"), ItemPart.getItemstack("InfusedTank"));
 
         GameRegistry.addRecipe(new ItemStack(Multipart.cablepartitem, 16), "ddd", "rrr", "ddd", 'r', ItemPart.getItemstack("FiberCable"), 'd', ItemPart.getItemstack("ReinforcedIron"));
-        GameRegistry.addRecipe(new ItemStack(Multipart.itemPipeLine, 8), "ddd", "ggg", "ddd", 'g', Blocks.glass, 'd', ItemPart.getItemstack("ReinforcedIron"));
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.powerSink, 1), "pbp", "pcp", "ppp", 'p', ItemPart.getItemstack("HardenedIronPlate"), 'b', Blocks.iron_bars, 'c', NetworkBlocks.computer);
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.computer, 1), "pbp", "pcp", "ppp", 'p', ItemPart.getItemstack("HardenedIronPlate"), 'b', Blocks.redstone_block, 'c', Blocks.hopper);
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.FluidGen, 1), "pbp", "ptp", "ppp", 'p', ItemPart.getItemstack("HardenedIronPlate"), 'b', Items.bucket, 't', ItemPart.getItemstack("BasicTank"));

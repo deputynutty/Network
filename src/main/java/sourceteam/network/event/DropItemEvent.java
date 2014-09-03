@@ -11,6 +11,7 @@ public class DropItemEvent {
     public void onItemTossed(ItemTossEvent e) {
         ItemStack item = e.entityItem.getEntityItem();
         if (item.getItem() == NetworkItems.tablet && item.getItemDamage() != 2) {
+            //This breaks the tablet when dropped
             e.entityItem.getEntityItem().setItemDamage(2);
         }
     }

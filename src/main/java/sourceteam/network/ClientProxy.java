@@ -17,7 +17,9 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void initRenderers() {
+        //load some of the renders
         RenderingRegistry.registerEntityRenderingHandler(ServerCart.class, new RenderCustomCart());
+
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidGen.class, new RenderFluidGen());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RenderMonitor());
@@ -26,6 +28,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new MobHealthBars());
 
 
+        //TODO this need to be client only
         //Here because im lazy
         API.registerRecipeHandler(new InfusionNei());
     }

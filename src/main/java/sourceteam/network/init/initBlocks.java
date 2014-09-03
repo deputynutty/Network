@@ -8,6 +8,7 @@ import sourceteam.network.blocks.tileentities.*;
 
 public class initBlocks {
 
+    //The prefix this is to stop cross mod conflict
     public static String prefix = "sourceteam.network.";
 
     public static void loadBlocks() {

@@ -27,7 +27,7 @@ public class RenderWireNFC extends TileEntitySpecialRenderer {
 
     }
 
-    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides) {
+    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides, int colour) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef((float) x, (float) y, (float) z);
@@ -39,6 +39,7 @@ public class RenderWireNFC extends TileEntitySpecialRenderer {
             }
         }
 
+        //chnage the colour of the texture will do when i have photoshop
 
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/NFCWire.png"));
 

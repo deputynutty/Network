@@ -1,4 +1,4 @@
-package sourceteam.network.Fmp;
+package sourceteam.network.multiparts;
 
 import codechicken.lib.vec.BlockCoord;
 import codechicken.lib.vec.Vector3;
@@ -13,22 +13,18 @@ import net.minecraft.world.World;
 /**
  * Created by Mark on 05/08/2014.
  */
-public class ItemPartWireNFC extends JItemMultiPart {
+public class ItemPartWire extends JItemMultiPart {
 
-
-    public ItemPartWireNFC() {
+    public ItemPartWire() {
         super();
         setCreativeTab(NetworkCore.Network);
-        setUnlocalizedName("Network.parts.wireNFC");
-        setTextureName("network:wirenfc");
+        setUnlocalizedName("Network.parts.wire");
+        setTextureName("network:wire");
     }
 
     @Override
     public TMultiPart newPart(ItemStack itemStack, EntityPlayer player, World world, BlockCoord blockCoord, int i, Vector3 vector3) {
-        PartWireNFC w = (PartWireNFC) MultiPartRegistry.createPart(Multipart.wireNfcName, false);
-        if (w != null) {
-            w.onPlaced();
-        }
+        PartWire w = (PartWire) MultiPartRegistry.createPart(Multipart.wireName, false);
         return w;
     }
 }

@@ -1,8 +1,9 @@
 package sourceteam.network.dataSystems.itemSystem.containers.slot;
 
-import sourceteam.mods.lib.api.IupgradeItem;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemAppleGold;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -16,6 +17,6 @@ public class SlotUpgrade extends Slot {
     @Override
         public boolean isItemValid(ItemStack itemStack)
         {
-                return itemStack.getItem() instanceof IupgradeItem;
+                return itemStack.getItem() instanceof ItemAppleGold;
         }
 }

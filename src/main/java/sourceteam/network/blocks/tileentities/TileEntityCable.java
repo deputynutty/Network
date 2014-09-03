@@ -1,7 +1,7 @@
 package sourceteam.network.blocks.tileentities;
 
 import cpw.mods.fml.common.Loader;
-import sourceteam.network.Fmp.PartCable;
+import sourceteam.network.multiparts.PartCable;
 import sourceteam.network.api.INetworkComponent;
 import sourceteam.network.blocks.NetworkBlocks;
 import sourceteam.network.blocks.WorldCoordinate;

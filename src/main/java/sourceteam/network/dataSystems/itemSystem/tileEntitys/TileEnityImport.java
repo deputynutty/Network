@@ -2,8 +2,8 @@ package sourceteam.network.dataSystems.itemSystem.tileEntitys;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import sourceteam.network.Fmp.Multipart;
-import sourceteam.network.Fmp.PartWireNFC;
+import sourceteam.network.multiparts.Multipart;
+import sourceteam.network.multiparts.PartWireNFC;
 import sourceteam.network.api.data.IDataPer;
 import sourceteam.network.blocks.WorldCoordinate;
 import sourceteam.network.blocks.tileentities.BaseTile;
@@ -17,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.invUtil;
+import sourceteam.network.dataSystems.itemSystem.blocks.BlockStorageChest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -216,12 +217,12 @@ public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
                                 if (element.getDepth() < cableMaxLenghth) {
                                     Block block = worldObj.getBlock(target.getX(), target.getY(), target.getZ());
                                     TileEntity tile = worldObj.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                    int meta = worldObj.getBlockMetadata(target.getX(), target.getY(), target.getZ());
-                                    if (block == ItemSystem.storageChest) {
+                                    if (block instanceof BlockStorageChest) {
                                         TileEntity tileEntity = worldObj.getTileEntity(target.getX(), target.getY(), target.getZ());
                                         if (tileEntity != null && tileEntity instanceof TileEntityBlockStorageContainer) {
                                             TileEntityBlockStorageContainer chest = (TileEntityBlockStorageContainer) tileEntity;
                                             int ammout = invUtil.addToInventory(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
+                                            System.out.println(ammout);
                                             if(ammout != 0){
                                                 if (FMLCommonHandler.instance().getSide() == Side.CLIENT){
                                                     NetworkParticleHelper.runWifiFX(this.worldObj, this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, chest.xCoord + 0.5, chest.yCoord + 0.3, chest.zCoord + 0.5 , 1F, 1F, 1F, 30);

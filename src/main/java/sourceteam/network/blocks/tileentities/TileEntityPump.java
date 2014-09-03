@@ -1,7 +1,7 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.Fmp.Multipart;
-import sourceteam.network.Fmp.PartPipeLine;
+import sourceteam.network.multiparts.Multipart;
+import sourceteam.network.multiparts.PartPipeLine;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+//This is the nei recipe handler for the infusion furncace
 public class InfusionNei extends TemplateRecipeHandler {
     public class SmeltingPair extends CachedRecipe {
         public SmeltingPair(ItemStack ingred, ItemStack result) {

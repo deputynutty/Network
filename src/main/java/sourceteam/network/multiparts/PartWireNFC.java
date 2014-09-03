@@ -1,4 +1,4 @@
-package sourceteam.network.Fmp;
+package sourceteam.network.multiparts;
 
 
 import codechicken.lib.data.MCDataInput;
@@ -9,10 +9,13 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Vector3;
 import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.item.ItemDye;
 import sourceteam.network.api.data.IDataPer;
-import sourceteam.network.client.Render.RenderWire;
+import sourceteam.network.client.Render.RenderWireNFC;
+import sourceteam.network.client.particles.NetworkParticleHelper;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,39 +25,39 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
+import sourceteam.mods.lib.Location;
 
 import java.util.*;
 
-public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusion, ISidedHollowConnect {
+public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOcclusion, ISidedHollowConnect {
     public static Cuboid6[] boundingBoxes = new Cuboid6[14];
     public static float center = 0.6F;
     public static float offset = 0.10F;
     private static int expandBounds = -1;
     @SideOnly(Side.CLIENT)
-    private static RenderWire renderer;
+    private static RenderWireNFC renderer;
     @SideOnly(Side.CLIENT)
     private static IIcon breakIcon;
     private final boolean[] connectedSideFlags = new boolean[6];
-    int ticks;
+    public int colour = 9; //Defaults to pink might change this
 
     static {
         refreshBounding();
     }
 
-    boolean gotSerpos = false;
-    int ServX;
-    int ServY;
-    int ServZ;
     private Map<ForgeDirection, TileEntity> connectedSides;
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
 
+    public ArrayList<Location> conecatable = new ArrayList<Location>();
+    private int ticks;
+
 
     public static void refreshBounding() {
         float centerFirst = center - offset;
         double w = 0.2D / 2;
-        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w - 0.5, centerFirst + w);
+        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w - 0.3, centerFirst + w);
 
         int i = 0;
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
@@ -74,7 +77,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     @Override
     public String getType() {
-        return Multipart.wireName;
+        return Multipart.wireNfcName;
     }
 
     @Override
@@ -82,16 +85,20 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
         super.load(tagCompound);
         connectedSides = new HashMap<ForgeDirection, TileEntity>();
         readConnectedSidesFromNBT(tagCompound);
+
+        colour = tagCompound.getInteger("colour");
     }
 
     @Override
     public void save(NBTTagCompound tagCompound) {
         super.save(tagCompound);
         writeConnectedSidesToNBT(tagCompound);
+        tagCompound.setInteger("colour", colour);
     }
 
     @Override
     public void writeDesc(MCDataOutput packet) {
+        packet.writeInt(colour);
         NBTTagCompound mainCompound = new NBTTagCompound();
         NBTTagCompound handlerCompound = new NBTTagCompound();
         if (connectedSidesHaveChanged && world() != null && !world().isRemote) {
@@ -127,6 +134,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     @Override
     public void readDesc(MCDataInput packet) {
+        colour = packet.readInt();
         NBTTagCompound mainCompound = packet.readNBTTagCompound();
         NBTTagCompound handlerCompound = mainCompound.getCompoundTag("handler");
         if (mainCompound.getBoolean("connectedSidesHaveChanged")) {
@@ -185,9 +193,9 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     public void renderDynamic(Vector3 pos, float frame, int pass) {
         if (pass == 0) {
             if (renderer == null) {
-                renderer = new RenderWire();
+                renderer = new RenderWireNFC();
             }
-            renderer.doRender(pos.x, pos.y, pos.z, connectedSides);
+            renderer.doRender(pos.x, pos.y, pos.z, connectedSides, colour);
         }
     }
 
@@ -196,7 +204,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
         if (entity instanceof TileMultipart) {
             List<TMultiPart> t = ((TileMultipart) entity).jPartList();
 
-            if (Multipart.hasPartWire((TileMultipart) entity) || Multipart.hasPartWireNFC((TileMultipart) entity)) {
+            if (Multipart.hasPartWireNFC((TileMultipart) entity) || Multipart.hasPartWire((TileMultipart) entity)) {
                 if (!((TileMultipart) entity).canAddPart(new NormallyOccludedPart(boundingBoxes[opposite])))
                     return false;
             }
@@ -210,19 +218,13 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
             for (TMultiPart p : t) {
                 if (p instanceof PartWire && caller.equals(this)) {
+                    if(((PartWire) p).colour == this.colour)
                     ((PartWire) p).checkConnectedSides(this);
                 }
 
                 if (p instanceof PartWire) {
+                    if(((PartWire) p).colour == this.colour)
                     return ((PartWire) p).canConnectTo(dir.getOpposite());
-                }
-
-                if (p instanceof PartWireNFC && caller.equals(this)) {
-                    ((PartWireNFC) p).checkConnectedSides(this);
-                }
-
-                if (p instanceof PartWireNFC) {
-                    return ((PartWireNFC) p).canConnectTo(dir.getOpposite());
                 }
             }
 
@@ -280,7 +282,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
     }
 
     public ItemStack getItem() {
-        return new ItemStack(Multipart.itemPartWire, 1);
+        return new ItemStack(Multipart.itemPartWireNFC, 1);
     }
 
     @Override
@@ -327,6 +329,37 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
                 connectedSidesHaveChanged = true;
             }
         }
+
+
+        if (ticks == 0) {
+            conecatable.clear();
+            int radius = 4;
+            for (int x = -radius; x < radius; x++) {
+                for (int y = -radius; y < radius; y++) {
+                    for (int z = -radius; z < radius; z++) {
+                        if (Multipart.hasPartWireNFC(world().getTileEntity(this.x() + x, this.y() + y, this.z() + z)) && Multipart.getWireNFC(world().getTileEntity(this.x() + x, this.y() + y, this.z() + z)).colour == this.colour) {
+                            conecatable.add(new Location(this.x() + x, this.y() + y, this.z() + z));
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < conecatable.size(); i++) {
+            if (conecatable.get(i) != null && Multipart.hasPartWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())) == true && Multipart.getWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())).colour == this.colour) {
+                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                        NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, conecatable.get(i).getX() + 0.5, conecatable.get(i).getY() + 0.3, conecatable.get(i).getZ() + 0.5, 1F, 1F, 1F, 10);
+            } else {
+                conecatable.remove(i);
+            }
+        }
+
+        if (ticks != 20) {
+            ticks += 1;
+        } else {
+            ticks = 0;
+        }
+
     }
 
     public Map<ForgeDirection, TileEntity> getConnectedSides() {
@@ -379,4 +412,20 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
         return 6;
     }
 
+
+    public void onPlaced() {
+
+    }
+
+
+    @Override
+    public boolean activate(EntityPlayer player, MovingObjectPosition hit, ItemStack item) {
+        if(item != null && item.getItem() instanceof ItemDye){
+            colour = item.getItemDamage();
+            System.out.println("Set Colour to: " + item.getDisplayName());
+        } else {
+            System.out.println("Colour =" + colour);
+        }
+        return super.activate(player, hit, item);
+    }
 }

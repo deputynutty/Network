@@ -1,4 +1,4 @@
-package sourceteam.network.Fmp;
+package sourceteam.network.multiparts;
 
 import codechicken.lib.data.MCDataInput;
 import codechicken.lib.data.MCDataOutput;
@@ -10,6 +10,7 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import sourceteam.mods.lib.Location;
 import sourceteam.network.api.INetworkComponent;
 import sourceteam.network.blocks.NetworkBlocks;
 import sourceteam.network.blocks.WorldCoordinate;
@@ -39,7 +40,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
     private static RenderCable renderer;
     @SideOnly(Side.CLIENT)
     private static IIcon breakIcon;
-    private final boolean[] connectedSideFlags = new boolean[6];
+    public final boolean[] connectedSideFlags = new boolean[6];
     int ticks;
 
     static {
@@ -50,7 +51,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
     int ServX;
     int ServY;
     int ServZ;
-    private Map<ForgeDirection, TileEntity> connectedSides;
+    public Map<ForgeDirection, TileEntity> connectedSides;
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
@@ -209,7 +210,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
         }
     }
 
-    private boolean shouldConnectTo(TileEntity entity, ForgeDirection dir, Object caller) {
+    public boolean shouldConnectTo(TileEntity entity, ForgeDirection dir, Object caller) {
         int opposite = Functions.getIntDirFromDirection(dir.getOpposite());
         if (entity instanceof TileMultipart) {
             List<TMultiPart> t = ((TileMultipart) entity).jPartList();
@@ -255,6 +256,20 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
         } else {
             return false;
         }
+    }
+
+    public static boolean isConnectedTo(WorldCoordinate start, World world) {
+        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+            PartCable cable = (Multipart.getCable(world.getTileEntity(start.getX(), start.getY(), start.getZ())));
+            if(cable != null){
+                for (int i = 0; i <cable.connectedSides.size() ; i++) {
+                    if(cable.connectedSides.containsKey(cable)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public void checkConnectedSides() {
@@ -415,7 +430,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
                             if (!visited.contains(target)) {
                                 visited.add(target);
-                                if (element.getDepth() < cableMaxLenghth) {
+                                if (element.getDepth() < cableMaxLenghth && PartCable.isConnectedTo(target, this.world())) {
                                     Block block = world.getBlock(target.getX(), target.getY(), target.getZ());
                                     TileEntity tile = world.getTileEntity(target.getX(), target.getY(), target.getZ());
                                     int meta = world.getBlockMetadata(target.getX(), target.getY(), target.getZ());

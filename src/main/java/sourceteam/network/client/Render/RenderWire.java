@@ -27,7 +27,7 @@ public class RenderWire extends TileEntitySpecialRenderer {
 
     }
 
-    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides) {
+    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides, int colour) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef((float) x, (float) y, (float) z);
@@ -39,6 +39,7 @@ public class RenderWire extends TileEntitySpecialRenderer {
             }
         }
 
+        //TODO colour
 
         Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/NFCWire.png"));
 
