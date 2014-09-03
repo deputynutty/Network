@@ -22,6 +22,12 @@ minecraft {
     version = "1.7.10-10.13.0.1182"
 }
 
+task deleteOldArtifacts(type: Delete) {
+    delete 'build/libs'
+}
+
+classes.dependsOn deleteOldArtifacts
+
 group = 'sourceteam.network'
 archivesBaseName = "network"
 
