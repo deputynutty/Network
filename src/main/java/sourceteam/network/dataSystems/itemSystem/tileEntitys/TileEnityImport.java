@@ -2,6 +2,7 @@ package sourceteam.network.dataSystems.itemSystem.tileEntitys;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import sourceteam.network.blocks.NetworkBlocks;
 import sourceteam.network.multiparts.Multipart;
 import sourceteam.network.multiparts.PartWireNFC;
 import sourceteam.network.api.data.IDataPer;
@@ -28,7 +29,7 @@ import java.util.Queue;
  * Created by Mark on 11/08/2014.
  */
 
-public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
+public class TileEnityImport extends BaseTile implements IInventory {
 
     private ItemStack[] Contents = new ItemStack[1];
 
@@ -127,16 +128,14 @@ public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
     }
 
     @Override
-    public void updateEntity() {
+    public void updateEntity(){
         super.updateEntity();
-        if (getStackInSlot(0) != null) {
+        if(getStackInSlot(0) != null){
             TileEntityBlockStorageContainer chest = getChest(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-            if (chest != null) {
-                //int amount = invUtil.addToInventory(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
-                int amount = addItemsIntoChest(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
-                if (amount != 0){
+            if(chest != null){
+                int amount = invUtil.addToInventory(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
+                if(amount != 0)
                     this.decrStackSize(0, amount);
-                }
             }
         }
     }
@@ -194,66 +193,9 @@ public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
         return null;
     }
 
-    public int addItemsIntoChest(World world, int xs, int ys, int zs, ItemStack stack) {
-        scanned.clear();
-
-        List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
-        int cableMaxLenghth = 128;
-        Queue<WorldCoordinate> queue = new PriorityQueue<WorldCoordinate>();
-        WorldCoordinate start = new WorldCoordinate(xs, ys, zs, 0);
-        queue.add(start);
-        visited.add(start);
-
-        while (!queue.isEmpty()) {
-            WorldCoordinate element = queue.poll();
-
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
-                        if (Math.abs(x) + Math.abs(y) + Math.abs(z) == 1) {
-                            WorldCoordinate target = new WorldCoordinate(element.getX() + x, element.getY() + y, element.getZ() + z, element.getDepth() + 1);
-                            if (!visited.contains(target)) {
-                                visited.add(target);
-                                if (element.getDepth() < cableMaxLenghth) {
-                                    Block block = worldObj.getBlock(target.getX(), target.getY(), target.getZ());
-                                    TileEntity tile = worldObj.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                    if (block instanceof BlockStorageChest) {
-                                        TileEntity tileEntity = worldObj.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                        if (tileEntity != null && tileEntity instanceof TileEntityBlockStorageContainer) {
-                                            TileEntityBlockStorageContainer chest = (TileEntityBlockStorageContainer) tileEntity;
-                                            int ammout = invUtil.addToInventory(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
-                                            System.out.println(ammout);
-                                            if(ammout != 0){
-                                                if (FMLCommonHandler.instance().getSide() == Side.CLIENT){
-                                                    NetworkParticleHelper.runWifiFX(this.worldObj, this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, chest.xCoord + 0.5, chest.yCoord + 0.3, chest.zCoord + 0.5 , 1F, 1F, 1F, 30);
-                                                }
-                                                return ammout;
-                                            }
-                                        }
-                                    } else if (isCable(tile) && target.getDepth() < cableMaxLenghth) {
-                                        queue.add(target);
-                                    }
-                                    if (Multipart.hasPartWireNFC(tile)) {
-                                        PartWireNFC wire = Multipart.getWireNFC(tile);
-                                        for (int i = 0; i < wire.conecatable.size(); i++) {
-                                            Location loc = wire.conecatable.get(i);
-                                            queue.add(new WorldCoordinate(loc.getX(), loc.getY(), loc.getZ()));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-        return 0;
-    }
-
-    public boolean hascanned(Location loc) {
+    public boolean hascanned(Location loc){
         for (int i = 0; i < scanned.size(); i++) {
-            if (loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()) {
+            if(loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()){
                 return true;
             }
         }
@@ -262,7 +204,7 @@ public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
 
 
     public boolean isCable(TileEntity tile) {
-        if (Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
+        if(Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
             return true;
         return tile instanceof TileEntityBlockStorageContainer;
     }
