@@ -5,10 +5,10 @@ import codechicken.lib.vec.Vector3;
 import codechicken.multipart.JItemMultiPart;
 import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.TMultiPart;
-import sourceteam.network.NetworkCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import sourceteam.network.NetworkCore;
 
 /**
  * Created by Mark on 05/08/2014.

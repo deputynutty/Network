@@ -4,6 +4,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import sourceteam.network.NetworkCore;
 import sourceteam.network.dataSystems.itemSystem.blocks.BlockImport;
 import sourceteam.network.dataSystems.itemSystem.blocks.BlockStorageChest;
@@ -12,8 +14,6 @@ import sourceteam.network.dataSystems.itemSystem.tileEntitys.TileEnityImport;
 import sourceteam.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
 import sourceteam.network.init.initBlocks;
 import sourceteam.network.init.initItems;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 /**
  * Created by Mark on 11/08/2014.

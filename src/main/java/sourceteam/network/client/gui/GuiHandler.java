@@ -1,14 +1,14 @@
 package sourceteam.network.client.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import sourceteam.network.blocks.Containers.*;
 import sourceteam.network.blocks.tileentities.*;
 import sourceteam.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import sourceteam.network.dataSystems.itemSystem.gui.GuiStorageChest;
 import sourceteam.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler {
 

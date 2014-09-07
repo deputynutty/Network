@@ -2,8 +2,6 @@ package sourceteam.network.blocks.tileentities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.network.api.IRemoteTile;
-import sourceteam.network.client.gui.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,6 +12,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
+import sourceteam.network.api.IRemoteTile;
+import sourceteam.network.client.gui.GuiHandler;
 
 public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implements IInventory, IRemoteTile {
     public ItemStack[] items;

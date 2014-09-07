@@ -5,11 +5,11 @@ import codechicken.lib.vec.Vector3;
 import codechicken.multipart.JItemMultiPart;
 import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.TMultiPart;
-import sourceteam.network.NetworkCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import sourceteam.network.NetworkCore;
 
 public class ItemPartCable extends JItemMultiPart {
     public ItemPartCable() {

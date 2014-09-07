@@ -1,7 +1,5 @@
 package sourceteam.network.blocks;
 
-import sourceteam.network.NetworkCore;
-import sourceteam.network.blocks.tileentities.TileEntityMonitor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +11,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.blocks.tileentities.TileEntityMonitor;
 
 import java.util.List;
 

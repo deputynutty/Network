@@ -1,10 +1,5 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.NetworkCore;
-import sourceteam.network.blocks.Containers.ContainerPowerUserBase;
-import sourceteam.network.blocks.tileentities.TileEntityRemoteUser;
-import sourceteam.network.client.gui.componets.GuiButtonItem;
-import sourceteam.network.netty.packets.PacketRemoteGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,6 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sourceteam.mods.lib.client.GuiRenderHelper;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.blocks.Containers.ContainerPowerUserBase;
+import sourceteam.network.blocks.tileentities.TileEntityRemoteUser;
+import sourceteam.network.client.gui.componets.GuiButtonItem;
+import sourceteam.network.netty.packets.PacketRemoteGui;
 
 public class GuiRemoteUser extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");

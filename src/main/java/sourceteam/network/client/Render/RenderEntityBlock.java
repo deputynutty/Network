@@ -1,6 +1,5 @@
 package sourceteam.network.client.Render;
 
-import sourceteam.network.blocks.EntityBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -13,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import sourceteam.network.blocks.EntityBlock;
 
 import java.util.Arrays;
 

@@ -1,9 +1,5 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.api.IPowedTileEntity;
-import sourceteam.network.api.IRemoteTile;
-import sourceteam.network.client.gui.GuiHandler;
-import sourceteam.network.netty.ChannelHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,6 +10,10 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import sourceteam.network.api.IPowedTileEntity;
+import sourceteam.network.api.IRemoteTile;
+import sourceteam.network.client.gui.GuiHandler;
+import sourceteam.network.netty.ChannelHandler;
 
 public class TileEntityFluidGen extends IPowedTileEntity implements IFluidHandler, IInventory, IRemoteTile {
 

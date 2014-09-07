@@ -11,11 +11,9 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.ItemDye;
-import sourceteam.network.api.data.IDataPer;
-import sourceteam.network.client.Render.RenderWire;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +21,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
+import sourceteam.network.api.data.IDataPer;
+import sourceteam.network.client.Render.RenderWire;
 
 import java.util.*;
 
@@ -215,23 +215,23 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
             for (TMultiPart p : t) {
                 if (p instanceof PartWire && caller.equals(this)) {
-                    if(((PartWire) p).colour == this.colour)
-                    ((PartWire) p).checkConnectedSides(this);
+                    if (((PartWire) p).colour == this.colour)
+                        ((PartWire) p).checkConnectedSides(this);
                 }
 
                 if (p instanceof PartWire) {
-                    if(((PartWire) p).colour == this.colour)
-                    return ((PartWire) p).canConnectTo(dir.getOpposite());
+                    if (((PartWire) p).colour == this.colour)
+                        return ((PartWire) p).canConnectTo(dir.getOpposite());
                 }
 
                 if (p instanceof PartWireNFC && caller.equals(this)) {
-                    if(((PartWireNFC) p).colour == this.colour)
-                    ((PartWireNFC) p).checkConnectedSides(this);
+                    if (((PartWireNFC) p).colour == this.colour)
+                        ((PartWireNFC) p).checkConnectedSides(this);
                 }
 
                 if (p instanceof PartWireNFC) {
-                    if(((PartWireNFC) p).colour == this.colour)
-                    return ((PartWireNFC) p).canConnectTo(dir.getOpposite());
+                    if (((PartWireNFC) p).colour == this.colour)
+                        return ((PartWireNFC) p).canConnectTo(dir.getOpposite());
                 }
             }
 
@@ -390,7 +390,7 @@ public class PartWire extends TMultiPart implements TSlottedPart, JNormalOcclusi
 
     @Override
     public boolean activate(EntityPlayer player, MovingObjectPosition hit, ItemStack item) {
-        if(item != null && item.getItem() instanceof ItemDye){
+        if (item != null && item.getItem() instanceof ItemDye) {
             colour = item.getItemDamage();
             System.out.println("Set Colour to: " + item.getDisplayName());
         } else {

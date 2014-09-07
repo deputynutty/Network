@@ -12,12 +12,9 @@ import codechicken.multipart.*;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.ItemDye;
-import sourceteam.network.api.data.IDataPer;
-import sourceteam.network.client.Render.RenderWireNFC;
-import sourceteam.network.client.particles.NetworkParticleHelper;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -26,6 +23,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
 import sourceteam.mods.lib.Location;
+import sourceteam.network.api.data.IDataPer;
+import sourceteam.network.client.Render.RenderWireNFC;
+import sourceteam.network.client.particles.NetworkParticleHelper;
 
 import java.util.*;
 
@@ -44,13 +44,11 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     static {
         refreshBounding();
     }
-
+    public ArrayList<Location> conecatable = new ArrayList<Location>();
     private Map<ForgeDirection, TileEntity> connectedSides;
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
-
-    public ArrayList<Location> conecatable = new ArrayList<Location>();
     private int ticks;
 
 
@@ -218,13 +216,13 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
             for (TMultiPart p : t) {
                 if (p instanceof PartWire && caller.equals(this)) {
-                    if(((PartWire) p).colour == this.colour)
-                    ((PartWire) p).checkConnectedSides(this);
+                    if (((PartWire) p).colour == this.colour)
+                        ((PartWire) p).checkConnectedSides(this);
                 }
 
                 if (p instanceof PartWire) {
-                    if(((PartWire) p).colour == this.colour)
-                    return ((PartWire) p).canConnectTo(dir.getOpposite());
+                    if (((PartWire) p).colour == this.colour)
+                        return ((PartWire) p).canConnectTo(dir.getOpposite());
                 }
             }
 
@@ -347,8 +345,8 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
         for (int i = 0; i < conecatable.size(); i++) {
             if (conecatable.get(i) != null && Multipart.hasPartWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())) == true && Multipart.getWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())).colour == this.colour) {
-                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-                        NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, conecatable.get(i).getX() + 0.5, conecatable.get(i).getY() + 0.3, conecatable.get(i).getZ() + 0.5, 1F, 1F, 1F, 10);
+                if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                    NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, conecatable.get(i).getX() + 0.5, conecatable.get(i).getY() + 0.3, conecatable.get(i).getZ() + 0.5, 1F, 1F, 1F, 10);
             } else {
                 conecatable.remove(i);
             }
@@ -420,7 +418,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
     @Override
     public boolean activate(EntityPlayer player, MovingObjectPosition hit, ItemStack item) {
-        if(item != null && item.getItem() instanceof ItemDye){
+        if (item != null && item.getItem() instanceof ItemDye) {
             colour = item.getItemDamage();
             System.out.println("Set Colour to: " + item.getDisplayName());
         } else {

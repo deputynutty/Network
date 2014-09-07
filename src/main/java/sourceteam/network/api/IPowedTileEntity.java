@@ -1,8 +1,8 @@
 package sourceteam.network.api;
 
+import net.minecraft.world.World;
 import sourceteam.network.blocks.tileentities.TileEntityCable;
 import sourceteam.network.blocks.tileentities.TileEntityPowerSink;
-import net.minecraft.world.World;
 
 public class IPowedTileEntity extends TileEntityCable {
 

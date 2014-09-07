@@ -1,12 +1,12 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.blocks.Containers.ContinerBlockMover;
-import sourceteam.network.blocks.tileentities.TileEntityMover;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sourceteam.mods.lib.client.GuiRenderHelper;
+import sourceteam.network.blocks.Containers.ContinerBlockMover;
+import sourceteam.network.blocks.tileentities.TileEntityMover;
 
 public class GuiBlockMover extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");

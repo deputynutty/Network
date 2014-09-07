@@ -1,7 +1,7 @@
 package sourceteam.network.items;
 
-import sourceteam.network.api.Item.IPowerSinkUpgrade;
 import net.minecraft.item.Item;
+import sourceteam.network.api.Item.IPowerSinkUpgrade;
 
 public class ItemBattery extends Item implements IPowerSinkUpgrade {
 

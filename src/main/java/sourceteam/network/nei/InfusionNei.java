@@ -3,13 +3,13 @@ package sourceteam.network.nei;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.ItemStack;
 import sourceteam.network.api.InfusionFurnaceRecipes;
 import sourceteam.network.api.InfusionRecipe;
 import sourceteam.network.blocks.tileentities.TileEntityInfusionFurnace;
 import sourceteam.network.client.gui.GuiInfusionFurnace;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,36 +18,6 @@ import java.util.List;
 
 //This is the nei recipe handler for the infusion furncace
 public class InfusionNei extends TemplateRecipeHandler {
-    public class SmeltingPair extends CachedRecipe {
-        public SmeltingPair(ItemStack ingred, ItemStack result) {
-            ingred.stackSize = 1;
-            this.ingred = new PositionedStack(ingred, 51, 24);
-            this.result = new PositionedStack(result, 111, 24);
-        }
-
-        public List<PositionedStack> getIngredients() {
-            return getCycledIngredients(cycleticks / 48, Arrays.asList(ingred));
-        }
-
-        public PositionedStack getResult() {
-            return result;
-        }
-
-        PositionedStack ingred;
-        PositionedStack result;
-    }
-
-    public static class FuelPair {
-        public FuelPair(ItemStack ingred, int burnTime) {
-            this.stack = new PositionedStack(ingred, 51, 42, false);
-            this.burnTime = burnTime;
-        }
-
-        public PositionedStack stack;
-        public int burnTime;
-    }
-
-
     @Override
     public void loadTransferRects() {
     }
@@ -122,5 +92,33 @@ public class InfusionNei extends TemplateRecipeHandler {
     @Override
     public String getOverlayIdentifier() {
         return "Infusion Furnace";
+    }
+
+    public static class FuelPair {
+        public PositionedStack stack;
+        public int burnTime;
+        public FuelPair(ItemStack ingred, int burnTime) {
+            this.stack = new PositionedStack(ingred, 51, 42, false);
+            this.burnTime = burnTime;
+        }
+    }
+
+    public class SmeltingPair extends CachedRecipe {
+        PositionedStack ingred;
+        PositionedStack result;
+
+        public SmeltingPair(ItemStack ingred, ItemStack result) {
+            ingred.stackSize = 1;
+            this.ingred = new PositionedStack(ingred, 51, 24);
+            this.result = new PositionedStack(result, 111, 24);
+        }
+
+        public List<PositionedStack> getIngredients() {
+            return getCycledIngredients(cycleticks / 48, Arrays.asList(ingred));
+        }
+
+        public PositionedStack getResult() {
+            return result;
+        }
     }
 }

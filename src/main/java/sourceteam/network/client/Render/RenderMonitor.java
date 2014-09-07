@@ -1,11 +1,11 @@
 package sourceteam.network.client.Render;
 
-import sourceteam.network.blocks.tileentities.TileEntityMonitor;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
+import sourceteam.network.blocks.tileentities.TileEntityMonitor;
 
 import java.util.List;
 

@@ -1,8 +1,5 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.api.IRemoteTile;
-import sourceteam.network.blocks.WorldCoordinate;
-import sourceteam.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,6 +9,9 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import sourceteam.network.api.IRemoteTile;
+import sourceteam.network.blocks.WorldCoordinate;
+import sourceteam.network.netty.ChannelHandler;
 
 import java.util.ArrayList;
 import java.util.List;

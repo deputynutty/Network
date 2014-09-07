@@ -1,11 +1,11 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.api.INetworkComponent;
-import sourceteam.network.api.IPowedTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import sourceteam.network.api.INetworkComponent;
+import sourceteam.network.api.IPowedTileEntity;
 
 public class TileEntityComputer extends IPowedTileEntity implements IInventory, INetworkComponent {
 

@@ -3,11 +3,11 @@ package sourceteam.network.blocks;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.network.api.INetworkComponent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.IBlockAccess;
+import sourceteam.network.api.INetworkComponent;
 
 import java.awt.*;
 import java.util.Random;

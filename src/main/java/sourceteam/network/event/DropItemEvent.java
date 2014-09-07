@@ -1,9 +1,9 @@
 package sourceteam.network.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import sourceteam.network.items.NetworkItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
+import sourceteam.network.items.NetworkItems;
 
 public class DropItemEvent {
 

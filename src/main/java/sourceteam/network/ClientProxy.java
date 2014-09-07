@@ -3,6 +3,8 @@ package sourceteam.network;
 import codechicken.nei.api.API;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.common.MinecraftForge;
+import sourceteam.mods.lib.client.AnimatedBlock.RenderAnimatedTile;
 import sourceteam.network.blocks.tileentities.TileEntityCable;
 import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
 import sourceteam.network.blocks.tileentities.TileEntityMonitor;
@@ -10,8 +12,6 @@ import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
 import sourceteam.network.client.Render.*;
 import sourceteam.network.entity.minecart.ServerCart;
 import sourceteam.network.nei.InfusionNei;
-import net.minecraftforge.common.MinecraftForge;
-import sourceteam.mods.lib.client.AnimatedBlock.RenderAnimatedTile;
 
 public class ClientProxy extends CommonProxy {
 

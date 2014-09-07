@@ -1,8 +1,5 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.api.IRemoteTile;
-import sourceteam.network.items.ItemPart;
-import sourceteam.network.items.NetworkItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -17,6 +14,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Location;
+import sourceteam.network.api.IRemoteTile;
+import sourceteam.network.items.ItemPart;
+import sourceteam.network.items.NetworkItems;
 
 import java.util.ArrayList;
 

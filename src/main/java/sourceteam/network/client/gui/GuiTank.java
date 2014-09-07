@@ -1,14 +1,14 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.blocks.Containers.ContainerFluidGen;
-import sourceteam.network.blocks.tileentities.BaseTile;
-import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sourceteam.mods.lib.client.GuiRenderHelper;
+import sourceteam.network.blocks.Containers.ContainerFluidGen;
+import sourceteam.network.blocks.tileentities.BaseTile;
+import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
 
 public class GuiTank extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");

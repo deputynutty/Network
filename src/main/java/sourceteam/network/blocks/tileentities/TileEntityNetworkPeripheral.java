@@ -1,12 +1,12 @@
 package sourceteam.network.blocks.tileentities;
 
 
-import sourceteam.network.blocks.NetworkBlocks;
-import sourceteam.network.client.particles.NetworkParticleHelper;
-import sourceteam.network.items.NetworkItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import sourceteam.network.blocks.NetworkBlocks;
+import sourceteam.network.client.particles.NetworkParticleHelper;
+import sourceteam.network.items.NetworkItems;
 
 public class TileEntityNetworkPeripheral extends BaseTile {
 

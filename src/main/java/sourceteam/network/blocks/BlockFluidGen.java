@@ -1,8 +1,5 @@
 package sourceteam.network.blocks;
 
-import sourceteam.network.NetworkCore;
-import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
-import sourceteam.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,6 +14,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
+import sourceteam.network.netty.ChannelHandler;
 
 public class BlockFluidGen extends BlockBase {
     IIcon breakIcon;

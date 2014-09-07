@@ -15,8 +15,7 @@ public class SlotUpgrade extends Slot {
     }
 
     @Override
-        public boolean isItemValid(ItemStack itemStack)
-        {
-                return itemStack.getItem() instanceof ItemAppleGold;
-        }
+    public boolean isItemValid(ItemStack itemStack) {
+        return itemStack.getItem() instanceof ItemAppleGold;
+    }
 }

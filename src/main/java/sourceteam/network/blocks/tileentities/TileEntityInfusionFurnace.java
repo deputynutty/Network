@@ -2,9 +2,6 @@ package sourceteam.network.blocks.tileentities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.network.api.IRemoteTile;
-import sourceteam.network.api.InfusionFurnaceRecipes;
-import sourceteam.network.client.gui.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,15 +11,18 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
+import sourceteam.network.api.IRemoteTile;
+import sourceteam.network.api.InfusionFurnaceRecipes;
+import sourceteam.network.client.gui.GuiHandler;
 
 /**
  * Created by Mark on 28/07/2014.
  */
 public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implements IInventory, IRemoteTile {
+    public static int maxSmeltTime = 140;
     public ItemStack[] items;
     public boolean isSmelting = false;
     public int timeSmelted = 0;
-    public static int maxSmeltTime = 140;
 
     public TileEntityInfusionFurnace() {
         super();
@@ -31,11 +31,14 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         powerimputspeed = 50;
     }
 
+    public static int getNeededPower() {
+        return 12;
+    }
+
     @Override
     public int getSizeInventory() {
         return 3;
     }
-
 
     @Override
     public ItemStack getStackInSlot(int var1) {
@@ -97,10 +100,6 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         } else {
             isSmelting = false;
         }
-    }
-
-    public static int getNeededPower() {
-        return 12;
     }
 
     public void smelt() {

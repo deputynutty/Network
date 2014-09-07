@@ -1,13 +1,13 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.app.AppManager;
-import sourceteam.network.app.appUtil.GuiApp;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import sourceteam.mods.lib.api.Colors;
+import sourceteam.network.app.AppManager;
+import sourceteam.network.app.appUtil.GuiApp;
 
 /**
  * Created by Mark on 03/08/2014.

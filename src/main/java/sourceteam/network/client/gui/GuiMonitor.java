@@ -1,11 +1,11 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.blocks.tileentities.TileEntityMonitor;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import sourceteam.network.blocks.tileentities.TileEntityMonitor;
 
 /**
  * Created with IntelliJ IDEA. User: Mark Date: 02/03/14 Time: 19:27

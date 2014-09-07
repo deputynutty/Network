@@ -1,10 +1,10 @@
 package sourceteam.network.client.Render;
 
-import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
+import sourceteam.network.blocks.tileentities.TileEntityFluidGen;
 
 public class RenderFluidGen extends TileEntitySpecialRenderer {
 

@@ -81,9 +81,9 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
 
     public static PartCable getCable(TileEntity tile) {
         boolean ret = false;
-        if(tile instanceof TileMultipart){
+        if (tile instanceof TileMultipart) {
             TileMultipart mp = (TileMultipart) tile;
-            List<TMultiPart> t =  mp.jPartList();
+            List<TMultiPart> t = mp.jPartList();
             for (TMultiPart p : t) {
                 if (ret == false) {
                     if (p instanceof PartCable) {
@@ -235,11 +235,11 @@ public class Multipart implements MultiPartRegistry.IPartFactory, MultiPartRegis
     }
 
 
-    public int getColour(TileEntity tile){
-        if(Multipart.hasPartWire(tile)){
+    public int getColour(TileEntity tile) {
+        if (Multipart.hasPartWire(tile)) {
             return Multipart.getwire((TileMultipart) tile).colour;
         }
-        if(Multipart.hasPartWireNFC(tile)){
+        if (Multipart.hasPartWireNFC(tile)) {
             return Multipart.getWireNFC((TileMultipart) tile).colour;
         }
         return 999;

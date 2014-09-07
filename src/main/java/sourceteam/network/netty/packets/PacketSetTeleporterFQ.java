@@ -2,10 +2,10 @@ package sourceteam.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
-import sourceteam.network.netty.AbstractPacket;
 import net.minecraft.entity.player.EntityPlayer;
 import sourceteam.mods.lib.Location;
+import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
+import sourceteam.network.netty.AbstractPacket;
 
 public class PacketSetTeleporterFQ extends AbstractPacket {
 

@@ -1,13 +1,13 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.NetworkCore;
-import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
-import sourceteam.network.netty.packets.PacketSetTeleporterFQ;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import sourceteam.mods.lib.Location;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
+import sourceteam.network.netty.packets.PacketSetTeleporterFQ;
 
 public class GuiTeleporter extends GuiScreen {
 

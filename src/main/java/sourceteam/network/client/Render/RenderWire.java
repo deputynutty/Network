@@ -1,12 +1,12 @@
 package sourceteam.network.client.Render;
 
-import sourceteam.network.client.models.WireModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
+import sourceteam.network.client.models.WireModel;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,9 +1,9 @@
 package sourceteam.network.blocks;
 
-import sourceteam.network.api.INetworkComponent;
-import sourceteam.network.api.IPeripheral;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import sourceteam.network.api.INetworkComponent;
+import sourceteam.network.api.IPeripheral;
 
 public class BlockRadioPeripheral extends Block implements IPeripheral, INetworkComponent {
 

@@ -2,9 +2,9 @@ package sourceteam.network.app.apps;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import sourceteam.mods.lib.api.Colors;
 import sourceteam.network.app.App;
 import sourceteam.network.app.appUtil.GuiApp;
-import sourceteam.mods.lib.api.Colors;
 
 public class AppBrowser implements App {
 

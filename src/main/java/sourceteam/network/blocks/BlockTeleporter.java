@@ -1,14 +1,14 @@
 package sourceteam.network.blocks;
 
-import sourceteam.network.NetworkCore;
-import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
-import sourceteam.network.netty.packets.PacketSetTeleporterFQ;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import sourceteam.mods.lib.Location;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.blocks.tileentities.TileEntityTeleporter;
+import sourceteam.network.netty.packets.PacketSetTeleporterFQ;
 
 /**
  * Created by Mark on 19/04/14.

@@ -1,8 +1,5 @@
 package sourceteam.network.blocks;
 
-import sourceteam.network.api.INetworkComponent;
-import sourceteam.network.blocks.tileentities.TileEntityCable;
-import sourceteam.network.blocks.tileentities.TileEntityPowerImputCable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -12,6 +9,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import sourceteam.network.api.INetworkComponent;
+import sourceteam.network.blocks.tileentities.TileEntityCable;
+import sourceteam.network.blocks.tileentities.TileEntityPowerImputCable;
 
 import java.util.List;
 

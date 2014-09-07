@@ -24,7 +24,7 @@ public class IWirelessItem extends Item {
 	 */
 
 	/*
-	 * @Override public ItemStack onItemRightClick(ItemStack par1ItemStack,
+     * @Override public ItemStack onItemRightClick(ItemStack par1ItemStack,
 	 * World par2World,EntityPlayer par3EntityPlayer) {
 	 * 
 	 * 

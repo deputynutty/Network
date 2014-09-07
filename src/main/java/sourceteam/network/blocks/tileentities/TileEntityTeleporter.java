@@ -1,12 +1,5 @@
 package sourceteam.network.blocks.tileentities;
 
-import sourceteam.network.multiparts.Multipart;
-import sourceteam.network.multiparts.PartWireNFC;
-import sourceteam.network.api.INetworkComponent;
-import sourceteam.network.api.IPeripheral;
-import sourceteam.network.blocks.NetworkBlocks;
-import sourceteam.network.blocks.WorldCoordinate;
-import sourceteam.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -19,6 +12,13 @@ import net.minecraftforge.fluids.*;
 import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.client.IColour;
 import sourceteam.mods.lib.client.IRGBColour;
+import sourceteam.network.api.INetworkComponent;
+import sourceteam.network.api.IPeripheral;
+import sourceteam.network.blocks.NetworkBlocks;
+import sourceteam.network.blocks.WorldCoordinate;
+import sourceteam.network.multiparts.Multipart;
+import sourceteam.network.multiparts.PartWireNFC;
+import sourceteam.network.netty.ChannelHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +41,7 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
             return this;
         }
     };
+    public ArrayList<Location> scanned = new ArrayList<Location>();
     int ticktime = 0;
     boolean goingdown = false;
     int colour = 0;
@@ -50,11 +51,6 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
 
     }
 
-    @Override
-    public boolean canConnectViaWireless() {
-        return false;
-    }
-
     //red = 0
     //red + green = 1
     //green = 2
@@ -62,6 +58,10 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
     //blue = 4
     //blue + red = 5
 
+    @Override
+    public boolean canConnectViaWireless() {
+        return false;
+    }
 
     @Override
     public void updateEntity() {
@@ -100,7 +100,6 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
 
     }
 
-
     @Override
     public int colour() {
         return 0;
@@ -135,7 +134,6 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
         return 0;
     }
 
-
     public Packet getDescriptionPacket() {
         NBTTagCompound nbtTag = new NBTTagCompound();
         writeToNBT(nbtTag);
@@ -161,16 +159,15 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
         // syncTile();
     }
 
+
+    //FLUID STUFSS
+
     @Override
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
         tag.setInteger("fq", fq);
         System.out.println("TEP " + fq);
     }
-
-
-    //FLUID STUFSS
-
 
     /* IFluidHandler */
     @Override
@@ -330,10 +327,6 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
     public float getRenderScale() {
         return (float) tank.getFluidAmount() / tank.getCapacity();
     }
-
-
-    public ArrayList<Location> scanned = new ArrayList<Location>();
-
 
     public TileEntityTeleporter update(World world, int xs, int ys, int zs) {
         scanned.clear();

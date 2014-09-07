@@ -2,9 +2,6 @@ package sourceteam.network.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.network.NetworkCore;
-import sourceteam.network.api.IPeripheral;
-import sourceteam.network.blocks.tileentities.TileEntityLightPeripheral;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +13,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import sourceteam.mods.core.client.ClientInit;
 import sourceteam.mods.lib.api.ColoredNetworkBlock;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.api.IPeripheral;
+import sourceteam.network.blocks.tileentities.TileEntityLightPeripheral;
 
 import java.awt.*;
 

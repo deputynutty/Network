@@ -2,12 +2,12 @@ package sourceteam.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import sourceteam.network.NetworkCore;
 import sourceteam.network.blocks.NetworkBlocks;
 import sourceteam.network.blocks.tileentities.TileEntityLightPeripheral;
 import sourceteam.network.netty.AbstractPacket;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public class PacketLight extends AbstractPacket {
     int posX, posY, posZ;

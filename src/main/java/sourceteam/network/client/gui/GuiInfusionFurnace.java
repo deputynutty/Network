@@ -1,13 +1,13 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.blocks.Containers.ContainerInfusionFurnace;
-import sourceteam.network.blocks.tileentities.TileEntityInfusionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sourceteam.mods.lib.client.GuiRenderHelper;
+import sourceteam.network.blocks.Containers.ContainerInfusionFurnace;
+import sourceteam.network.blocks.tileentities.TileEntityInfusionFurnace;
 
 /**
  * Created by Mark on 28/07/2014.

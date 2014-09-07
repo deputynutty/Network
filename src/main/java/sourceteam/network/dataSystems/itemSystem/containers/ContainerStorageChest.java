@@ -1,22 +1,21 @@
 package sourceteam.network.dataSystems.itemSystem.containers;
 
-import sourceteam.network.dataSystems.itemSystem.containers.slot.SlotUpgrade;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import sourceteam.network.dataSystems.itemSystem.containers.slot.SlotUpgrade;
 
 
 /**
  * Created by Mark on 11/08/2014.
  */
 public class ContainerStorageChest extends Container {
+    public int size = 108;
     private EntityPlayer player;
     private IInventory chest;
-
-    public int size = 108;
 
     public ContainerStorageChest(IInventory playerInventory, IInventory chestInventory, int xSize, int ySize) {
         chest = chestInventory;

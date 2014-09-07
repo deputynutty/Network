@@ -2,26 +2,23 @@ package sourceteam.network.app.appUtil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.network.app.App;
-import sourceteam.network.client.gui.GuiComputer;
-import sourceteam.network.client.gui.GuiTablet;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import sourceteam.network.app.App;
+import sourceteam.network.client.gui.GuiComputer;
+import sourceteam.network.client.gui.GuiTablet;
 
 /**
  * Created by Mark on 02/08/2014.
  */
 public class GuiApp extends GuiScreen {
 
+    private static final ResourceLocation tabletTexture = new ResourceLocation("network:textures/gui/tablet.png");
+    private static final ResourceLocation computerTexture = new ResourceLocation("network:textures/gui/computer.png");
     public App application;
     public App parent;
-
-    private static final ResourceLocation tabletTexture = new ResourceLocation("network:textures/gui/tablet.png");
-
-    private static final ResourceLocation computerTexture = new ResourceLocation("network:textures/gui/computer.png");
-
     public int k = (this.width - 192) / 2 + 7;
     public int b0 = 2;
 

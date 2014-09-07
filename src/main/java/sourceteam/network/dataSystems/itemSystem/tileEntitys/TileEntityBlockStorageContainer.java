@@ -1,9 +1,5 @@
 package sourceteam.network.dataSystems.itemSystem.tileEntitys;
 
-import sourceteam.network.api.data.IDataPer;
-import sourceteam.network.blocks.tileentities.BaseTile;
-import sourceteam.network.dataSystems.itemSystem.ItemSystem;
-import sourceteam.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -14,16 +10,23 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
+import sourceteam.network.api.data.IDataPer;
+import sourceteam.network.blocks.tileentities.BaseTile;
+import sourceteam.network.dataSystems.itemSystem.ItemSystem;
+import sourceteam.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Mark on 11/08/2014.
  */
 public class TileEntityBlockStorageContainer extends BaseTile implements IDataPer, IInventory {
+    public ItemStack[] chestContents;
     private int ticksSinceSync = -1;
     private int numUsingPlayers;
-    public ItemStack[] chestContents;
     private ItemStack[] topStacks;
     private int facing;
     private boolean inventoryTouched;
@@ -49,11 +52,14 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
         return this.facing;
     }
 
+    public void setFacing(int facing2) {
+        this.facing = facing2;
+    }
+
     @Override
     public String getInventoryName() {
         return "network.StorageConatainer";
     }
-
 
     @Override
     public ItemStack getStackInSlot(int i) {
@@ -262,11 +268,6 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
         numUsingPlayers--;
         worldObj.addBlockEvent(xCoord, yCoord, zCoord, ItemSystem.storageChest, 1, numUsingPlayers);
     }
-
-    public void setFacing(int facing2) {
-        this.facing = facing2;
-    }
-
 
     public ItemStack[] getTopItemStacks() {
         return topStacks;

@@ -2,9 +2,6 @@ package sourceteam.network.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.network.NetworkCore;
-import sourceteam.network.api.IWirelessItem;
-import sourceteam.network.client.gui.GuiHandler;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +9,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.api.IWirelessItem;
+import sourceteam.network.client.gui.GuiHandler;
 
 import java.util.List;
 

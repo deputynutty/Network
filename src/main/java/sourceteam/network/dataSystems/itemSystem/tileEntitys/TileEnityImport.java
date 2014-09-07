@@ -1,15 +1,5 @@
 package sourceteam.network.dataSystems.itemSystem.tileEntitys;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import sourceteam.network.blocks.NetworkBlocks;
-import sourceteam.network.multiparts.Multipart;
-import sourceteam.network.multiparts.PartWireNFC;
-import sourceteam.network.api.data.IDataPer;
-import sourceteam.network.blocks.WorldCoordinate;
-import sourceteam.network.blocks.tileentities.BaseTile;
-import sourceteam.network.client.particles.NetworkParticleHelper;
-import sourceteam.network.dataSystems.itemSystem.ItemSystem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -18,7 +8,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.invUtil;
-import sourceteam.network.dataSystems.itemSystem.blocks.BlockStorageChest;
+import sourceteam.network.blocks.WorldCoordinate;
+import sourceteam.network.blocks.tileentities.BaseTile;
+import sourceteam.network.dataSystems.itemSystem.ItemSystem;
+import sourceteam.network.multiparts.Multipart;
+import sourceteam.network.multiparts.PartWireNFC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +25,7 @@ import java.util.Queue;
 
 public class TileEnityImport extends BaseTile implements IInventory {
 
+    public ArrayList<Location> scanned = new ArrayList<Location>();
     private ItemStack[] Contents = new ItemStack[1];
 
     @Override
@@ -128,19 +123,17 @@ public class TileEnityImport extends BaseTile implements IInventory {
     }
 
     @Override
-    public void updateEntity(){
+    public void updateEntity() {
         super.updateEntity();
-        if(getStackInSlot(0) != null){
+        if (getStackInSlot(0) != null) {
             TileEntityBlockStorageContainer chest = getChest(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-            if(chest != null){
+            if (chest != null) {
                 int amount = invUtil.addToInventory(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, this.getStackInSlot(0));
-                if(amount != 0)
+                if (amount != 0)
                     this.decrStackSize(0, amount);
             }
         }
     }
-
-    public ArrayList<Location> scanned = new ArrayList<Location>();
 
     public TileEntityBlockStorageContainer getChest(World world, int xs, int ys, int zs) {
         scanned.clear();
@@ -193,9 +186,9 @@ public class TileEnityImport extends BaseTile implements IInventory {
         return null;
     }
 
-    public boolean hascanned(Location loc){
+    public boolean hascanned(Location loc) {
         for (int i = 0; i < scanned.size(); i++) {
-            if(loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()){
+            if (loc.getX() == scanned.get(i).getX() && loc.getY() == scanned.get(i).getY() && loc.getZ() == scanned.get(i).getZ()) {
                 return true;
             }
         }
@@ -204,7 +197,7 @@ public class TileEnityImport extends BaseTile implements IInventory {
 
 
     public boolean isCable(TileEntity tile) {
-        if(Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
+        if (Multipart.hasPartWireNFC(tile) || Multipart.hasPartWire(tile))
             return true;
         return tile instanceof TileEntityBlockStorageContainer;
     }

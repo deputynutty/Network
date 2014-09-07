@@ -10,13 +10,6 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import sourceteam.mods.lib.Location;
-import sourceteam.network.api.INetworkComponent;
-import sourceteam.network.blocks.NetworkBlocks;
-import sourceteam.network.blocks.WorldCoordinate;
-import sourceteam.network.blocks.tileentities.TileEntityCable;
-import sourceteam.network.blocks.tileentities.TileEntityPowerSink;
-import sourceteam.network.client.Render.RenderCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +21,12 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
+import sourceteam.network.api.INetworkComponent;
+import sourceteam.network.blocks.NetworkBlocks;
+import sourceteam.network.blocks.WorldCoordinate;
+import sourceteam.network.blocks.tileentities.TileEntityCable;
+import sourceteam.network.blocks.tileentities.TileEntityPowerSink;
+import sourceteam.network.client.Render.RenderCable;
 
 import java.util.*;
 
@@ -41,31 +40,24 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
     @SideOnly(Side.CLIENT)
     private static IIcon breakIcon;
     public final boolean[] connectedSideFlags = new boolean[6];
+    public Map<ForgeDirection, TileEntity> connectedSides;
     int ticks;
-
     static {
         refreshBounding();
     }
-
     boolean gotSerpos = false;
     int ServX;
     int ServY;
     int ServZ;
-    public Map<ForgeDirection, TileEntity> connectedSides;
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
 
     public static boolean isCable(TileEntity tile) {
 
-        if (tile instanceof TileEntityCable || tile instanceof INetworkComponent) {
-            return true;
-        }
+        if (tile instanceof TileEntityCable || tile instanceof INetworkComponent) return true;
 
-        if (tile instanceof TileMultipart) {
-            return Multipart.hasPartCable((TileMultipart) tile);
-        }
-        return false;
+        return tile instanceof TileMultipart && Multipart.hasPartCable((TileMultipart) tile);
     }
 
     public static void refreshBounding() {
@@ -89,6 +81,20 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
             boundingBoxes[i] = new Cuboid6(xMin1, yMin1, zMin1, xMax1, yMax1, zMax1);
             i++;
         }
+    }
+
+    public static boolean isConnectedTo(WorldCoordinate start, World world) {
+        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+            PartCable cable = (Multipart.getCable(world.getTileEntity(start.getX(), start.getY(), start.getZ())));
+            if (cable != null) {
+                for (int i = 0; i < cable.connectedSides.size(); i++) {
+                    if (cable.connectedSides.containsKey(cable)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -239,11 +245,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
             return false;
         } else {
-            if (entity instanceof INetworkComponent) {
-                return true;
-            } else {
-                return false;
-            }
+            return entity instanceof INetworkComponent;
         }
     }
 
@@ -256,20 +258,6 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
         } else {
             return false;
         }
-    }
-
-    public static boolean isConnectedTo(WorldCoordinate start, World world) {
-        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-            PartCable cable = (Multipart.getCable(world.getTileEntity(start.getX(), start.getY(), start.getZ())));
-            if(cable != null){
-                for (int i = 0; i <cable.connectedSides.size() ; i++) {
-                    if(cable.connectedSides.containsKey(cable)){
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 
     public void checkConnectedSides() {
@@ -329,7 +317,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
     public void update() {
 
         if (world() != null) {
-            if (world().getTotalWorldTime() % 10 == 0 && hasCheckedSinceStartup == false) {
+            if (world().getTotalWorldTime() % 10 == 0 && !hasCheckedSinceStartup) {
                 checkConnectedSides();
                 hasCheckedSinceStartup = true;
             }
@@ -430,7 +418,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
                             if (!visited.contains(target)) {
                                 visited.add(target);
-                                if (element.getDepth() < cableMaxLenghth && PartCable.isConnectedTo(target, this.world())) {
+                                if (element.getDepth() < cableMaxLenghth) {// && PartCable.isConnectedTo(target, this.world())) {
                                     Block block = world.getBlock(target.getX(), target.getY(), target.getZ());
                                     TileEntity tile = world.getTileEntity(target.getX(), target.getY(), target.getZ());
                                     int meta = world.getBlockMetadata(target.getX(), target.getY(), target.getZ());

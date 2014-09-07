@@ -1,9 +1,9 @@
 package sourceteam.network.blocks;
 
-import sourceteam.network.blocks.tileentities.TileEntityMovingBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import sourceteam.network.blocks.tileentities.TileEntityMovingBlock;
 
 public class BlockMovingBlock extends BlockBase {
 

@@ -1,10 +1,6 @@
 package sourceteam.network.blocks.tileentities;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import sourceteam.network.NetworkCore;
-import sourceteam.network.api.INetworkComponent;
-import sourceteam.network.api.Item.IPowerSinkUpgrade;
-import sourceteam.network.netty.packets.PacketServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -17,6 +13,10 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.api.INetworkComponent;
+import sourceteam.network.api.Item.IPowerSinkUpgrade;
+import sourceteam.network.netty.packets.PacketServer;
 
 import java.util.Set;
 

@@ -1,14 +1,14 @@
 package sourceteam.network.client.gui;
 
-import sourceteam.network.NetworkCore;
-import sourceteam.network.blocks.tileentities.TileEntityLightPeripheral;
-import sourceteam.network.netty.packets.PacketLight;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import sourceteam.network.NetworkCore;
+import sourceteam.network.blocks.tileentities.TileEntityLightPeripheral;
+import sourceteam.network.netty.packets.PacketLight;
 
 import java.awt.*;
 

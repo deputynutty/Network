@@ -1,7 +1,12 @@
 package sourceteam.network.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import sourceteam.network.multiparts.Multipart;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
 import sourceteam.network.NetworkCore;
 import sourceteam.network.api.InfusionFurnaceRecipes;
 import sourceteam.network.blocks.NetworkBlocks;
@@ -9,12 +14,7 @@ import sourceteam.network.items.ItemBattery;
 import sourceteam.network.items.ItemPart;
 import sourceteam.network.items.ItemTablet;
 import sourceteam.network.items.NetworkItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
+import sourceteam.network.multiparts.Multipart;
 
 public class initItems {
 
