@@ -20,6 +20,8 @@ apply plugin: 'forge'
 
 minecraft {
     version = "1.7.10-10.13.0.1208"
+    replace "@MODVERSION@", project.version
+    replaceIn "NetworkCore.java"
 }
 
 task deleteOldArtifacts(type: Delete) {
@@ -33,9 +35,9 @@ archivesBaseName = "network"
 
 def ENV = System.getenv()
 if (ENV.BUILD_NUMBER) {
-    version = "0.0." + "${System.getenv().BUILD_NUMBER}"
+    version = "0.1." + "${System.getenv().BUILD_NUMBER}"
 } else {
-    version = "0.0.BUILD"
+    version = "0.1.BUILD"
 }
 
 
@@ -43,6 +45,27 @@ def grabDep(name, url){
 	ant.get(src: url, dest: 'dep')
 	file("dep/" + url.substring(url.lastIndexOf("/"))).renameTo(file("dep/" + name + ".jar"))
 }
+
+processResources
+        {
+            // this will ensure that this task is redone when the versions change.
+            inputs.property "version", project.version
+            inputs.property "mcversion", project.minecraft.version
+
+            // replace stuff in mcmod.info, nothing else
+            from(sourceSets.main.resources.srcDirs) {
+                include '*.info'
+
+                // replace version and mcversion
+                expand 'version':project.version, 'mcversion':project.minecraft.version
+            }
+
+            // copy everything else, thats not the mcmod.info
+            from(sourceSets.main.resources.srcDirs) {
+                exclude '**/*.info'
+            }
+        }
+
 
 dependencies {
     def f = new File('dep/')
@@ -58,8 +81,33 @@ dependencies {
 	grabDep('fmp', 'http://files.minecraftforge.net/maven/codechicken/ForgeMultipart/1.7.10-1.1.0.297/ForgeMultipart-1.7.10-1.1.0.297-dev.jar')
 	grabDep('ccc', 'http://chickenbones.net/maven/codechicken/CodeChickenCore/1.7.10-1.0.2.9/CodeChickenCore-1.7.10-1.0.2.9-dev.jar')
 	grabDep('nei', 'http://chickenbones.net/maven/codechicken/NotEnoughItems/1.7.10-1.0.2.15/NotEnoughItems-1.7.10-1.0.2.15-dev.jar')
-	grabDep('mmc', 'http://tattyseal.com:8080/job/ModmussCore/15/artifact/build/libs/ModmussCore-dev-0.0.15.jar')
+	grabDep('mmc', 'http://tattyseal.com:8080/job/ModmussCore/18/artifact/build/libs/ModmussCore-dev-1.1.18.jar')
 	println("  Adding dependencies!")
     compile files("dep/ccl.jar", "dep/fmp.jar", "dep/nei.jar", "dep/ccc.jar", "dep/mmc.jar")
 	println("  Finished adding dependencies!")
+}
+
+jar {
+    exclude "**/*.psd"
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'dev'
+    exclude "**/*.psd"
+}
+
+jar {
+    exclude "**/*.psd"
+    appendix = 'mod'
+}
+
+artifacts {
+    archives sourceJar
+    archives deobfJar
 }

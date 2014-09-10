@@ -35,7 +35,7 @@ import sourceteam.network.netty.PacketPipeline;
 import java.util.logging.Logger;
 
 //Give some of the basic info about the mod here
-@Mod(modid = "network", name = "Network", version = "0.01", dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
+@Mod(modid = "network", name = "Network", version = "@MODVERSION@", dependencies = "required-after:sourcecore;required-after:CodeChickenCore;required-after:NotEnoughItems;required-after:ForgeMultipart")
 public class NetworkCore implements ISourceMod {
 
     //this is the main packet handler
@@ -154,7 +154,7 @@ public class NetworkCore implements ISourceMod {
 
     @Override
     public String modVersion() {
-        return "0.01";
+        return "@MODVERSION@";
     }
 
     @Override
