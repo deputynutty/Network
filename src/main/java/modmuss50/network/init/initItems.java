@@ -8,7 +8,6 @@ import modmuss50.network.items.ItemBattery;
 import modmuss50.network.items.ItemPart;
 import modmuss50.network.items.ItemTablet;
 import modmuss50.network.items.NetworkItems;
-import modmuss50.network.multiparts.Multipart;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -57,7 +56,6 @@ public class initItems {
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedGlassStrip"), ItemPart.getItemstack("InfusedGlassStrip"));
         InfusionFurnaceRecipes.smelting().addRecipe(ItemPart.getItemstack("ReinforcedTank"), ItemPart.getItemstack("InfusedTank"));
 
-        GameRegistry.addRecipe(new ItemStack(Multipart.cablepartitem, 16), "ddd", "rrr", "ddd", 'r', ItemPart.getItemstack("FiberCable"), 'd', ItemPart.getItemstack("ReinforcedIron"));
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.powerSink, 1), "pbp", "pcp", "ppp", 'p', ItemPart.getItemstack("HardenedIronPlate"), 'b', Blocks.iron_bars, 'c', NetworkBlocks.computer);
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.computer, 1), "pbp", "pcp", "ppp", 'p', ItemPart.getItemstack("HardenedIronPlate"), 'b', Blocks.redstone_block, 'c', Blocks.hopper);
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.FluidGen, 1), "pbp", "ptp", "ppp", 'p', ItemPart.getItemstack("HardenedIronPlate"), 'b', Items.bucket, 't', ItemPart.getItemstack("BasicTank"));
@@ -73,11 +71,9 @@ public class initItems {
         GameRegistry.addRecipe(ItemPart.getItemstack("ReinforcedGlassStrip", 1), "rge", "rgr", "rgr", 'r', ItemPart.getItemstack("ReinforcedIron"), 'g', ItemPart.getItemstack("GlassStrip"));
         GameRegistry.addRecipe(ItemPart.getItemstack("GlassStrip", 1), "rgr", "rgr", "rgr", 'r', ItemPart.getItemstack("HardenedIron"), 'g', Blocks.glass);
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.NetworkedFurnace), "iii", "ifi", "iii", 'i', ItemPart.getItemstack("InfusedIron"), 'f', Blocks.furnace);
-        GameRegistry.addRecipe(new ItemStack(NetworkBlocks.infusionFurnace), "ldg", "cfc", "ehe", 'l', Blocks.lapis_block, 'd', Blocks.diamond_block, 'g', Blocks.gold_block, 'c', Multipart.cablepartitem, 'f', Blocks.furnace, 'e', Blocks.enchanting_table, 'h', Blocks.ender_chest);
+        GameRegistry.addRecipe(new ItemStack(NetworkBlocks.infusionFurnace), "ldg", "cfc", "ehe", 'l', Blocks.lapis_block, 'd', Blocks.diamond_block, 'g', Blocks.gold_block, 'c', NetworkBlocks.networkCable, 'f', Blocks.furnace, 'e', Blocks.enchanting_table, 'h', Blocks.ender_chest);
         GameRegistry.addRecipe(new ItemStack(NetworkItems.ItemBattery), "ppp", "pfp", "pfp", 'p', ItemPart.getItemstack("InfusedIron"), 'f', ItemPart.getItemstack("FiberCable"));
         GameRegistry.addRecipe(new ItemStack(NetworkItems.wifiGoggles), "iii", "i i", "   ", 'i', ItemPart.getItemstack("InfusedIron"));
-        GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWire), "   ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"));
-        GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWireNFC), " d ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"), 'd', Items.diamond);
     }
 
 }
