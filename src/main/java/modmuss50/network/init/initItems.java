@@ -74,6 +74,7 @@ public class initItems {
         GameRegistry.addRecipe(new ItemStack(NetworkBlocks.infusionFurnace), "ldg", "cfc", "ehe", 'l', Blocks.lapis_block, 'd', Blocks.diamond_block, 'g', Blocks.gold_block, 'c', NetworkBlocks.networkCable, 'f', Blocks.furnace, 'e', Blocks.enchanting_table, 'h', Blocks.ender_chest);
         GameRegistry.addRecipe(new ItemStack(NetworkItems.ItemBattery), "ppp", "pfp", "pfp", 'p', ItemPart.getItemstack("InfusedIron"), 'f', ItemPart.getItemstack("FiberCable"));
         GameRegistry.addRecipe(new ItemStack(NetworkItems.wifiGoggles), "iii", "i i", "   ", 'i', ItemPart.getItemstack("InfusedIron"));
+        GameRegistry.addRecipe(new ItemStack(NetworkBlocks.networkCable, 16), "ddd", "rrr", "ddd", 'r', ItemPart.getItemstack("FiberCable"), 'd', ItemPart.getItemstack("ReinforcedIron"));
     }
 
 }

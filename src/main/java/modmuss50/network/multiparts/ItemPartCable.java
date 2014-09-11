@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 public class ItemPartCable extends JItemMultiPart {
     public ItemPartCable() {
         super();
-
         setCreativeTab(NetworkCore.Network);
         setUnlocalizedName("Network.parts.cable");
         setTextureName("network:networkCable");

@@ -5,6 +5,7 @@ import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.TMultiPart;
 import codechicken.multipart.TileMultipart;
 import cpw.mods.fml.common.registry.GameRegistry;
+import modmuss50.network.NetworkCore;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
