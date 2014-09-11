@@ -1,6 +1,9 @@
 package modmuss50.network.client.gui;
 
+import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.Containers.ContainerPowerUserBase;
+import modmuss50.network.blocks.tileentities.TileEntityRemoteUser;
+import modmuss50.network.client.gui.componets.GuiButtonItem;
 import modmuss50.network.netty.packets.PacketRemoteGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -10,9 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sourceteam.mods.lib.client.GuiRenderHelper;
-import modmuss50.network.NetworkCore;
-import modmuss50.network.blocks.tileentities.TileEntityRemoteUser;
-import modmuss50.network.client.gui.componets.GuiButtonItem;
 
 public class GuiRemoteUser extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");

@@ -3,12 +3,12 @@ package modmuss50.network.client.gui;
 import cpw.mods.fml.common.network.IGuiHandler;
 import modmuss50.network.blocks.Containers.*;
 import modmuss50.network.blocks.tileentities.*;
+import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import modmuss50.network.dataSystems.itemSystem.gui.GuiStorageChest;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 
 public class GuiHandler implements IGuiHandler {
 

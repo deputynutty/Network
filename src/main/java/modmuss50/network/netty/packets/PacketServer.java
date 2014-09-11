@@ -2,11 +2,11 @@ package modmuss50.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import modmuss50.network.netty.AbstractPacket;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class PacketServer extends AbstractPacket {
     int posX, posY, posZ;

@@ -1,13 +1,13 @@
 package modmuss50.network.blocks.tileentities;
 
+import modmuss50.network.NetworkCore;
 import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.netty.packets.PacketLight;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import sourceteam.mods.lib.api.IRGB;
-import modmuss50.network.NetworkCore;
-import modmuss50.network.netty.packets.PacketLight;
 
 /**
  * Created with IntelliJ IDEA. User: Mark Date: 25/02/14 Time: 13:11

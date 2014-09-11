@@ -1,12 +1,12 @@
 package modmuss50.network.blocks;
 
+import modmuss50.network.NetworkCore;
+import modmuss50.network.blocks.tileentities.TileEntityPowerUserBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.network.NetworkCore;
-import modmuss50.network.blocks.tileentities.TileEntityPowerUserBase;
 
 public class BlockPowerUserBase extends BlockBase {
 

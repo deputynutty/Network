@@ -1,5 +1,7 @@
 package modmuss50.network.dataSystems.itemSystem.tileEntitys;
 
+import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
 import modmuss50.network.multiparts.Multipart;
 import modmuss50.network.multiparts.PartWireNFC;
@@ -11,8 +13,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.invUtil;
-import modmuss50.network.blocks.WorldCoordinate;
-import modmuss50.network.blocks.tileentities.BaseTile;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
 package modmuss50.network.blocks;
 
+import modmuss50.network.blocks.tileentities.TileEntityCreativePower;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.network.blocks.tileentities.TileEntityCreativePower;
 
 public class BlockCreativePower extends BlockBase {
     public BlockCreativePower() {

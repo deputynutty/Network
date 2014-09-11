@@ -1,6 +1,12 @@
 package modmuss50.network.blocks.tileentities;
 
+import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.api.IPeripheral;
+import modmuss50.network.blocks.NetworkBlocks;
+import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.multiparts.Multipart;
 import modmuss50.network.multiparts.PartWireNFC;
+import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -13,12 +19,6 @@ import net.minecraftforge.fluids.*;
 import sourceteam.mods.lib.Location;
 import sourceteam.mods.lib.client.IColour;
 import sourceteam.mods.lib.client.IRGBColour;
-import modmuss50.network.api.INetworkComponent;
-import modmuss50.network.api.IPeripheral;
-import modmuss50.network.blocks.NetworkBlocks;
-import modmuss50.network.blocks.WorldCoordinate;
-import modmuss50.network.multiparts.Multipart;
-import modmuss50.network.netty.ChannelHandler;
 
 import java.util.ArrayList;
 import java.util.List;

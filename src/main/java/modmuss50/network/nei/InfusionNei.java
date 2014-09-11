@@ -3,13 +3,13 @@ package modmuss50.network.nei;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import modmuss50.network.api.InfusionFurnaceRecipes;
+import modmuss50.network.api.InfusionRecipe;
+import modmuss50.network.blocks.tileentities.TileEntityInfusionFurnace;
 import modmuss50.network.client.gui.GuiInfusionFurnace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
-import modmuss50.network.api.InfusionFurnaceRecipes;
-import modmuss50.network.api.InfusionRecipe;
-import modmuss50.network.blocks.tileentities.TileEntityInfusionFurnace;
 
 import java.util.ArrayList;
 import java.util.Arrays;

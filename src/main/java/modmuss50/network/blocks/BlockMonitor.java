@@ -1,5 +1,6 @@
 package modmuss50.network.blocks;
 
+import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityMonitor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -12,7 +13,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.network.NetworkCore;
 
 import java.util.List;
 

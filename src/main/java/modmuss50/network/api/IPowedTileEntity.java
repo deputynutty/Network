@@ -1,8 +1,8 @@
 package modmuss50.network.api;
 
 import modmuss50.network.blocks.tileentities.TileEntityCable;
-import net.minecraft.world.World;
 import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
+import net.minecraft.world.World;
 
 public class IPowedTileEntity extends TileEntityCable {
 

@@ -3,6 +3,7 @@ package modmuss50.network.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.NetworkCore;
+import modmuss50.network.blocks.tileentities.TileEntityMover;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,7 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import modmuss50.network.blocks.tileentities.TileEntityMover;
 
 import java.util.Random;
 

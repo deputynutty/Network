@@ -1,6 +1,7 @@
 package modmuss50.network.client.Render;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import modmuss50.network.items.NetworkItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
-import modmuss50.network.items.NetworkItems;
 
 import java.awt.*;
 import java.math.BigDecimal;

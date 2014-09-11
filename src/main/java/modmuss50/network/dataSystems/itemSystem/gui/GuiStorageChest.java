@@ -1,10 +1,10 @@
 package modmuss50.network.dataSystems.itemSystem.gui;
 
+import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 
 /**
  * Created by Mark on 11/08/2014.

@@ -3,6 +3,8 @@ package modmuss50.network.dataSystems.itemSystem.blocks;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.network.NetworkCore;
+import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -19,8 +21,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.network.NetworkCore;
-import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 
 import java.util.ArrayList;
 import java.util.Random;

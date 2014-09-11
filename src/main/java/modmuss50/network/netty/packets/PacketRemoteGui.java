@@ -2,9 +2,9 @@ package modmuss50.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import modmuss50.network.netty.AbstractPacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import modmuss50.network.netty.AbstractPacket;
 
 public class PacketRemoteGui extends AbstractPacket {
 

@@ -1,13 +1,13 @@
 package modmuss50.network.client.gui;
 
+import modmuss50.network.blocks.Containers.ContainerPowerSink;
+import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import sourceteam.mods.lib.client.GuiRenderHelper;
-import modmuss50.network.blocks.Containers.ContainerPowerSink;
-import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 
 public class GuiPowerSink extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");

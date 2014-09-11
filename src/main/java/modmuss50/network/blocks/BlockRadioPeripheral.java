@@ -1,9 +1,9 @@
 package modmuss50.network.blocks;
 
+import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.api.IPeripheral;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import modmuss50.network.api.INetworkComponent;
 
 public class BlockRadioPeripheral extends Block implements IPeripheral, INetworkComponent {
 

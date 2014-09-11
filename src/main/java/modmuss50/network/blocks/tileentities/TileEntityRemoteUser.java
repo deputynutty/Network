@@ -1,6 +1,8 @@
 package modmuss50.network.blocks.tileentities;
 
 import modmuss50.network.api.IRemoteTile;
+import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -10,8 +12,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import modmuss50.network.blocks.WorldCoordinate;
-import modmuss50.network.netty.ChannelHandler;
 
 import java.util.ArrayList;
 import java.util.List;

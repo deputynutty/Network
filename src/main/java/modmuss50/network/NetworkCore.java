@@ -12,25 +12,25 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.network.app.AppManager;
 import modmuss50.network.client.gui.GuiHandler;
+import modmuss50.network.compact.CompactManager;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
+import modmuss50.network.entity.minecart.ServerCart;
 import modmuss50.network.event.DropItemEvent;
 import modmuss50.network.init.initBlocks;
 import modmuss50.network.init.initCommand;
+import modmuss50.network.init.initConfig;
 import modmuss50.network.init.initItems;
-import modmuss50.network.multiparts.Multipart;
+import modmuss50.network.items.NetworkItems;
+import modmuss50.network.netty.ChannelHandler;
+import modmuss50.network.netty.PacketPipeline;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import sourceteam.mods.core.client.BaseModGui;
 import sourceteam.mods.core.mod.ModRegistry;
 import sourceteam.mods.lib.mod.ISourceMod;
-import modmuss50.network.app.AppManager;
-import modmuss50.network.entity.minecart.ServerCart;
-import modmuss50.network.init.initConfig;
-import modmuss50.network.items.NetworkItems;
-import modmuss50.network.netty.ChannelHandler;
-import modmuss50.network.netty.PacketPipeline;
 
 import java.util.logging.Logger;
 
@@ -110,14 +110,13 @@ public class NetworkCore implements ISourceMod {
         //load the app manager
         AppManager.init();
 
-        //load the multiparts
-        Multipart.init();
-
         //load the recipes
         initItems.Recipes();
 
         //load the item system
         ItemSystem.init(event);
+
+        CompactManager.init();
 
     }
 

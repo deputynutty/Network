@@ -1,6 +1,11 @@
 package modmuss50.network.blocks.tileentities;
 
 import cpw.mods.fml.common.Loader;
+import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.blocks.NetworkBlocks;
+import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.multiparts.PartCable;
+import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -10,11 +15,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import sourceteam.mods.lib.BlockHelper;
-import modmuss50.network.api.INetworkComponent;
-import modmuss50.network.blocks.NetworkBlocks;
-import modmuss50.network.blocks.WorldCoordinate;
-import modmuss50.network.multiparts.PartCable;
-import modmuss50.network.netty.ChannelHandler;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,10 @@
 package modmuss50.network.blocks;
 
 import modmuss50.network.api.IWirelessSignalProvider;
+import modmuss50.network.blocks.tileentities.TileEntityModem;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.network.blocks.tileentities.TileEntityModem;
 
 public class BlockModem extends BlockBase implements IWirelessSignalProvider {
 

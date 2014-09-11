@@ -1,9 +1,9 @@
 package modmuss50.network.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import modmuss50.network.items.NetworkItems;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import modmuss50.network.items.NetworkItems;
 
 public class DropItemEvent {
 

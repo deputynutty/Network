@@ -2,11 +2,11 @@ package modmuss50.network.blocks.tileentities;
 
 
 import modmuss50.network.blocks.NetworkBlocks;
+import modmuss50.network.client.particles.NetworkParticleHelper;
 import modmuss50.network.items.NetworkItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import modmuss50.network.client.particles.NetworkParticleHelper;
 
 public class TileEntityNetworkPeripheral extends BaseTile {
 

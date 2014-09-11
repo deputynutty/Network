@@ -1,20 +1,20 @@
 package modmuss50.network.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import modmuss50.network.NetworkCore;
+import modmuss50.network.api.InfusionFurnaceRecipes;
+import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.items.ItemBattery;
 import modmuss50.network.items.ItemPart;
+import modmuss50.network.items.ItemTablet;
+import modmuss50.network.items.NetworkItems;
+import modmuss50.network.multiparts.Multipart;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import modmuss50.network.NetworkCore;
-import modmuss50.network.api.InfusionFurnaceRecipes;
-import modmuss50.network.blocks.NetworkBlocks;
-import modmuss50.network.items.ItemTablet;
-import modmuss50.network.items.NetworkItems;
-import modmuss50.network.multiparts.Multipart;
 
 public class initItems {
 

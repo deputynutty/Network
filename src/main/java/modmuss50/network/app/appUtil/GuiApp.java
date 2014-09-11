@@ -2,13 +2,13 @@ package modmuss50.network.app.appUtil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.network.app.App;
+import modmuss50.network.client.gui.GuiComputer;
+import modmuss50.network.client.gui.GuiTablet;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import modmuss50.network.app.App;
-import modmuss50.network.client.gui.GuiComputer;
-import modmuss50.network.client.gui.GuiTablet;
 
 /**
  * Created by Mark on 02/08/2014.

@@ -1,12 +1,12 @@
 package modmuss50.network.blocks.Containers;
 
+import modmuss50.network.blocks.tileentities.TileEntityRemoteUser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import modmuss50.network.blocks.tileentities.TileEntityRemoteUser;
 
 public class ContainerRemoteUser extends Container {
     private IInventory lowerChestInventory;

@@ -1,5 +1,6 @@
 package modmuss50.network.blocks;
 
+import modmuss50.network.blocks.tileentities.BaseTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -7,7 +8,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.network.blocks.tileentities.BaseTile;
 
 public abstract class BlockBase extends BlockContainer {
 
