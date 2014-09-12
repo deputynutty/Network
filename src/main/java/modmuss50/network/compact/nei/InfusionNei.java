@@ -1,4 +1,4 @@
-package modmuss50.network.nei;
+package modmuss50.network.compact.NEI;
 
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-//This is the nei recipe handler for the infusion furncace
+//This is the NEI recipe handler for the infusion furncace
 public class InfusionNei extends TemplateRecipeHandler {
     @Override
     public void loadTransferRects() {

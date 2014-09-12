@@ -1,5 +1,4 @@
-package modmuss50.network.multiparts;
-
+package modmuss50.network.compact.FMP;
 
 import codechicken.lib.data.MCDataInput;
 import codechicken.lib.data.MCDataOutput;
@@ -9,61 +8,72 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Vector3;
 import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import modmuss50.network.api.data.IDataPer;
-import modmuss50.network.client.Render.RenderWireNFC;
-import modmuss50.network.client.particles.NetworkParticleHelper;
+import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.blocks.NetworkBlocks;
+import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.blocks.tileentities.TileEntityCable;
+import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
+import modmuss50.network.client.Render.RenderCable;
+import net.minecraft.block.Block;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import sourceteam.mods.lib.Functions;
-import sourceteam.mods.lib.Location;
 
 import java.util.*;
 
-public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOcclusion, ISidedHollowConnect {
+public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclusion, ISidedHollowConnect {
     public static Cuboid6[] boundingBoxes = new Cuboid6[14];
     public static float center = 0.6F;
     public static float offset = 0.10F;
     private static int expandBounds = -1;
     @SideOnly(Side.CLIENT)
-    private static RenderWireNFC renderer;
+    private static RenderCable renderer;
     @SideOnly(Side.CLIENT)
     private static IIcon breakIcon;
-    private final boolean[] connectedSideFlags = new boolean[6];
-    public int colour = 9; //Defaults to pink might change this
-
+    public final boolean[] connectedSideFlags = new boolean[6];
+    public Map<ForgeDirection, TileEntity> connectedSides;
+    int ticks;
     static {
         refreshBounding();
     }
-    public ArrayList<Location> conecatable = new ArrayList<Location>();
-    private Map<ForgeDirection, TileEntity> connectedSides;
+    boolean gotSerpos = false;
+    int ServX;
+    int ServY;
+    int ServZ;
     private boolean needToCheckNeighbors;
     private boolean connectedSidesHaveChanged = true;
     private boolean hasCheckedSinceStartup;
-    private int ticks;
 
+    public static boolean isCable(TileEntity tile) {
+
+        if (tile instanceof TileEntityCable || tile instanceof INetworkComponent) return true;
+
+        return tile instanceof TileMultipart && Multipart.hasPartCable((TileMultipart) tile);
+    }
 
     public static void refreshBounding() {
         float centerFirst = center - offset;
         double w = 0.2D / 2;
-        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w - 0.4, centerFirst - w, centerFirst + w, centerFirst + w - 0.3, centerFirst + w);
+        boundingBoxes[6] = new Cuboid6(centerFirst - w - 0.03, centerFirst - w - 0.08, centerFirst - w - 0.03, centerFirst + w + 0.08, centerFirst + w + 0.04, centerFirst + w + 0.08);
+
+        boundingBoxes[6] = new Cuboid6(centerFirst - w, centerFirst - w, centerFirst - w, centerFirst + w, centerFirst + w, centerFirst + w);
 
         int i = 0;
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
             double xMin1 = (dir.offsetX < 0 ? 0.0 : (dir.offsetX == 0 ? centerFirst - w : centerFirst + w));
             double xMax1 = (dir.offsetX > 0 ? 1.0 : (dir.offsetX == 0 ? centerFirst + w : centerFirst - w));
 
-            double yMin1 = (dir.offsetY < 0 ? 0.0 : (dir.offsetY == 0 ? centerFirst - w : centerFirst + w)) - 0.4;
-            double yMax1 = (dir.offsetY > 0 ? 1.0 : (dir.offsetY == 0 ? centerFirst + w : centerFirst - w)) - 0.5;
+            double yMin1 = (dir.offsetY < 0 ? 0.0 : (dir.offsetY == 0 ? centerFirst - w : centerFirst + w));
+            double yMax1 = (dir.offsetY > 0 ? 1.0 : (dir.offsetY == 0 ? centerFirst + w : centerFirst - w));
 
             double zMin1 = (dir.offsetZ < 0 ? 0.0 : (dir.offsetZ == 0 ? centerFirst - w : centerFirst + w));
             double zMax1 = (dir.offsetZ > 0 ? 1.0 : (dir.offsetZ == 0 ? centerFirst + w : centerFirst - w));
@@ -73,9 +83,23 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
         }
     }
 
+    public static boolean isConnectedTo(WorldCoordinate start, World world) {
+        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+            PartCable cable = (Multipart.getCable(world.getTileEntity(start.getX(), start.getY(), start.getZ())));
+            if (cable != null) {
+                for (int i = 0; i < cable.connectedSides.size(); i++) {
+                    if (cable.connectedSides.containsKey(cable)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public String getType() {
-        return Multipart.wireNfcName;
+        return "tile.network.cable";
     }
 
     @Override
@@ -83,20 +107,16 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
         super.load(tagCompound);
         connectedSides = new HashMap<ForgeDirection, TileEntity>();
         readConnectedSidesFromNBT(tagCompound);
-
-        colour = tagCompound.getInteger("colour");
     }
 
     @Override
     public void save(NBTTagCompound tagCompound) {
         super.save(tagCompound);
         writeConnectedSidesToNBT(tagCompound);
-        tagCompound.setInteger("colour", colour);
     }
 
     @Override
     public void writeDesc(MCDataOutput packet) {
-        packet.writeInt(colour);
         NBTTagCompound mainCompound = new NBTTagCompound();
         NBTTagCompound handlerCompound = new NBTTagCompound();
         if (connectedSidesHaveChanged && world() != null && !world().isRemote) {
@@ -132,7 +152,6 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
     @Override
     public void readDesc(MCDataInput packet) {
-        colour = packet.readInt();
         NBTTagCompound mainCompound = packet.readNBTTagCompound();
         NBTTagCompound handlerCompound = mainCompound.getCompoundTag("handler");
         if (mainCompound.getBoolean("connectedSidesHaveChanged")) {
@@ -191,48 +210,42 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     public void renderDynamic(Vector3 pos, float frame, int pass) {
         if (pass == 0) {
             if (renderer == null) {
-                renderer = new RenderWireNFC();
+                renderer = new RenderCable();
             }
-            renderer.doRender(pos.x, pos.y, pos.z, connectedSides, colour);
+            renderer.doRender(pos.x, pos.y, pos.z, connectedSides, getSerX(), getSerY(), getSerZ());
         }
     }
 
-    private boolean shouldConnectTo(TileEntity entity, ForgeDirection dir, Object caller) {
+    public boolean shouldConnectTo(TileEntity entity, ForgeDirection dir, Object caller) {
         int opposite = Functions.getIntDirFromDirection(dir.getOpposite());
         if (entity instanceof TileMultipart) {
             List<TMultiPart> t = ((TileMultipart) entity).jPartList();
 
-            if (Multipart.hasPartWireNFC((TileMultipart) entity) || Multipart.hasPartWire((TileMultipart) entity)) {
+            if (Multipart.hasPartCable((TileMultipart) entity)) {
                 if (!((TileMultipart) entity).canAddPart(new NormallyOccludedPart(boundingBoxes[opposite])))
                     return false;
             }
 
             for (TMultiPart p : t) {
 
-                if (p instanceof IDataPer) {
+                if (p instanceof INetworkComponent) {
                     return true;
                 }
             }
 
             for (TMultiPart p : t) {
-                if (p instanceof PartWire && caller.equals(this)) {
-                    if (((PartWire) p).colour == this.colour)
-                        ((PartWire) p).checkConnectedSides(this);
+                if (p instanceof PartCable && caller.equals(this)) {
+                    ((PartCable) p).checkConnectedSides(this);
                 }
 
-                if (p instanceof PartWire) {
-                    if (((PartWire) p).colour == this.colour)
-                        return ((PartWire) p).canConnectTo(dir.getOpposite());
+                if (p instanceof PartCable) {
+                    return ((PartCable) p).canConnectTo(dir.getOpposite());
                 }
             }
 
             return false;
         } else {
-            if (entity instanceof IDataPer) {
-                return true;
-            } else {
-                return false;
-            }
+            return entity instanceof INetworkComponent;
         }
     }
 
@@ -269,8 +282,6 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
 
     public boolean canConnectTo(ForgeDirection side) {
         int d = side.ordinal();
-        if (side == ForgeDirection.DOWN || side == ForgeDirection.UP)
-            return false;
         return tile().canAddPart(new NormallyOccludedPart(boundingBoxes[d]));
     }
 
@@ -280,7 +291,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     }
 
     public ItemStack getItem() {
-        return new ItemStack(Multipart.itemPartWireNFC, 1);
+        return new ItemStack(Multipart.cablepartitem, 1);
     }
 
     @Override
@@ -306,7 +317,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     public void update() {
 
         if (world() != null) {
-            if (world().getTotalWorldTime() % 10 == 0 && hasCheckedSinceStartup == false) {
+            if (world().getTotalWorldTime() % 10 == 0 && !hasCheckedSinceStartup) {
                 checkConnectedSides();
                 hasCheckedSinceStartup = true;
             }
@@ -328,36 +339,12 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
             }
         }
 
-
-        if (ticks == 0) {
-            conecatable.clear();
-            int radius = 4;
-            for (int x = -radius; x < radius; x++) {
-                for (int y = -radius; y < radius; y++) {
-                    for (int z = -radius; z < radius; z++) {
-                        if (Multipart.hasPartWireNFC(world().getTileEntity(this.x() + x, this.y() + y, this.z() + z)) && Multipart.getWireNFC(world().getTileEntity(this.x() + x, this.y() + y, this.z() + z)).colour == this.colour) {
-                            conecatable.add(new Location(this.x() + x, this.y() + y, this.z() + z));
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < conecatable.size(); i++) {
-            if (conecatable.get(i) != null && Multipart.hasPartWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())) == true && Multipart.getWireNFC(world().getTileEntity(conecatable.get(i).getX(), conecatable.get(i).getY(), conecatable.get(i).getZ())).colour == this.colour) {
-                if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-                    NetworkParticleHelper.runNFCFX(this.world(), this.x() + 0.5, this.y() + 0.3, this.z() + 0.5, conecatable.get(i).getX() + 0.5, conecatable.get(i).getY() + 0.3, conecatable.get(i).getZ() + 0.5, 1F, 1F, 1F, 10);
-            } else {
-                conecatable.remove(i);
-            }
-        }
-
-        if (ticks != 20) {
+        if (ticks != 30) {
             ticks += 1;
         } else {
+            updateCables(world(), this.x(), this.y(), this.z());
             ticks = 0;
         }
-
     }
 
     public Map<ForgeDirection, TileEntity> getConnectedSides() {
@@ -366,6 +353,8 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
         }
         return connectedSides;
     }
+
+    // SOME OF THE SUFF FROM TileEntityCable
 
     @Override
     public void onRemoved() {
@@ -410,20 +399,89 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
         return 6;
     }
 
+    public void updateCables(World world, int blockX, int blockY, int blockZ) {
+        List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
+        int cableMaxLenghth = 128;
+        Queue<WorldCoordinate> queue = new PriorityQueue<WorldCoordinate>();
+        WorldCoordinate start = new WorldCoordinate(blockX, blockY, blockZ, 0);
+        queue.add(start);
+        visited.add(start);
 
-    public void onPlaced() {
+        while (!queue.isEmpty()) {
+            WorldCoordinate element = queue.poll();
 
-    }
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    for (int z = -1; z <= 1; z++) {
+                        if (Math.abs(x) + Math.abs(y) + Math.abs(z) == 1) {
+                            WorldCoordinate target = new WorldCoordinate(element.getX() + x, element.getY() + y, element.getZ() + z, element.getDepth() + 1);
 
+                            if (!visited.contains(target)) {
+                                visited.add(target);
+                                if (element.getDepth() < cableMaxLenghth) {// && PartCable.isConnectedTo(target, this.world())) {
+                                    Block block = world.getBlock(target.getX(), target.getY(), target.getZ());
+                                    TileEntity tile = world.getTileEntity(target.getX(), target.getY(), target.getZ());
+                                    int meta = world.getBlockMetadata(target.getX(), target.getY(), target.getZ());
+                                    if (block == NetworkBlocks.powerSink) {
+                                        TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
+                                        if (tileEntity != null && tileEntity instanceof TileEntityPowerSink) {
+                                            TileEntityPowerSink server = (TileEntityPowerSink) tileEntity;
+                                            setSerpos(target.getX(), target.getY(), target.getZ(), true);
+                                            return;
+                                        } else {
+                                            setSerpos(0, 0, 0, false);
+                                            return;
+                                        }
+                                    } else if (isCable(tile) && target.getDepth() < cableMaxLenghth) {
+                                        queue.add(target);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-    @Override
-    public boolean activate(EntityPlayer player, MovingObjectPosition hit, ItemStack item) {
-        if (item != null && item.getItem() instanceof ItemDye) {
-            colour = item.getItemDamage();
-            System.out.println("Set Colour to: " + item.getDisplayName());
-        } else {
-            System.out.println("Colour =" + colour);
         }
-        return super.activate(player, hit, item);
+
+        setSerpos(0, 0, 0, false);
+
     }
+
+    public int getSerX() {
+        if (gotSerpos != false) {
+            return ServX;
+        }
+        return 0;
+    }
+
+    public int getSerY() {
+        if (gotSerpos != false) {
+            return ServY;
+        }
+        return 0;
+    }
+
+    public int getSerZ() {
+        if (gotSerpos != false) {
+            return ServZ;
+        }
+        return 0;
+    }
+
+    public void setSerpos(int x, int y, int z, boolean pos) {
+        ServX = x;
+        ServY = y;
+        ServZ = z;
+        gotSerpos = pos;
+    }
+
+    public void clearSerPos() {
+        ServX = 0;
+        ServY = 0;
+        ServZ = 0;
+        gotSerpos = false;
+
+    }
+
 }

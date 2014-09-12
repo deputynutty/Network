@@ -1,4 +1,4 @@
-package modmuss50.network.multiparts;
+package modmuss50.network.compact.FMP;
 
 import codechicken.lib.vec.BlockCoord;
 import codechicken.lib.vec.Vector3;

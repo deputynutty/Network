@@ -1,4 +1,4 @@
-package modmuss50.network.multiparts;
+package modmuss50.network.compact.FMP;
 
 
 import codechicken.lib.data.MCDataInput;

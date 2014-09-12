@@ -2,7 +2,7 @@ package modmuss50.network.compact;
 
 
 import codechicken.nei.api.API;
-import modmuss50.network.nei.InfusionNei;
+import modmuss50.network.compact.NEI.InfusionNei;
 
 public class ClientNEI {
 

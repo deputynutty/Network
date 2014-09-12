@@ -5,7 +5,7 @@ import codechicken.microblock.handler.MicroblockProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.items.ItemPart;
-import modmuss50.network.multiparts.Multipart;
+import modmuss50.network.compact.FMP.Multipart;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

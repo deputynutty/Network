@@ -4,7 +4,7 @@ import cpw.mods.fml.common.Loader;
 import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.WorldCoordinate;
-import modmuss50.network.multiparts.PartCable;
+import modmuss50.network.compact.FMP.PartCable;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
