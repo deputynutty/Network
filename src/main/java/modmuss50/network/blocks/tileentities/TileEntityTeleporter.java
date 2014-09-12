@@ -88,9 +88,9 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
         }
 
         if (update(this.worldObj, this.xCoord, this.yCoord, this.zCoord) != null) {
-            System.out.println("not null");
+          //  System.out.println("not null");
         } else {
-            System.out.println("null");
+           // System.out.println("null");
         }
 
         //   System.out.println(update(this.worldObj, this.xCoord, this.yCoord, this.zCoord));
@@ -166,7 +166,7 @@ public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetw
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
         tag.setInteger("fq", fq);
-        System.out.println("TEP " + fq);
+     //   System.out.println("TEP " + fq);
     }
 
     /* IFluidHandler */
