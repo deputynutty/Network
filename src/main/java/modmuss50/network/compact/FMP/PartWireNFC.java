@@ -13,7 +13,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.data.IDataPer;
-import modmuss50.network.client.Render.RenderWireNFC;
+import modmuss50.network.client.render.RenderWireNFC;
 import modmuss50.network.client.particles.NetworkParticleHelper;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;

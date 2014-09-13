@@ -1,6 +1,6 @@
 package modmuss50.network.client.gui;
 
-import modmuss50.network.blocks.Containers.ContainerFluidGen;
+import modmuss50.network.blocks.containers.ContainerFluidGen;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.blocks.tileentities.TileEntityFluidGen;
 import net.minecraft.client.gui.inventory.GuiContainer;

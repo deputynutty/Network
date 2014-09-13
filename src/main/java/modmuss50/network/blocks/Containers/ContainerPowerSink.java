@@ -1,4 +1,4 @@
-package modmuss50.network.blocks.Containers;
+package modmuss50.network.blocks.containers;
 
 import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import net.minecraft.entity.player.EntityPlayer;

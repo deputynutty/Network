@@ -3,7 +3,7 @@ package modmuss50.network.init;
 import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.*;
-import modmuss50.network.blocks.Rails.RailBase;
+import modmuss50.network.blocks.rails.RailBase;
 import modmuss50.network.blocks.tileentities.*;
 
 public class initBlocks {

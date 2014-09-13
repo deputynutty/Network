@@ -1,4 +1,4 @@
-package modmuss50.network.blocks.Containers;
+package modmuss50.network.blocks.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

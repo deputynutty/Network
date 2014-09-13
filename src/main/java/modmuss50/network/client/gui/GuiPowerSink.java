@@ -1,6 +1,6 @@
 package modmuss50.network.client.gui;
 
-import modmuss50.network.blocks.Containers.ContainerPowerSink;
+import modmuss50.network.blocks.containers.ContainerPowerSink;
 import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;

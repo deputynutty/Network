@@ -1,4 +1,4 @@
-package modmuss50.network.blocks.Containers;
+package modmuss50.network.blocks.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

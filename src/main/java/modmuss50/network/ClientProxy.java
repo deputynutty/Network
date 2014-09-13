@@ -6,7 +6,7 @@ import modmuss50.network.blocks.tileentities.TileEntityCable;
 import modmuss50.network.blocks.tileentities.TileEntityFluidGen;
 import modmuss50.network.blocks.tileentities.TileEntityMonitor;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
-import modmuss50.network.client.Render.*;
+import modmuss50.network.client.render.*;
 import modmuss50.network.entity.minecart.ServerCart;
 import net.minecraftforge.common.MinecraftForge;
 import sourceteam.mods.lib.client.AnimatedBlock.RenderAnimatedTile;

@@ -1,4 +1,4 @@
-package modmuss50.network.client.Render;
+package modmuss50.network.client.render;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;

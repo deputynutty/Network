@@ -1,7 +1,7 @@
 package modmuss50.network.client.gui;
 
 import modmuss50.network.NetworkCore;
-import modmuss50.network.blocks.Containers.ContainerPowerUserBase;
+import modmuss50.network.blocks.containers.ContainerPowerUserBase;
 import modmuss50.network.blocks.tileentities.TileEntityRemoteUser;
 import modmuss50.network.client.gui.componets.GuiButtonItem;
 import modmuss50.network.netty.packets.PacketRemoteGui;

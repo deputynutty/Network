@@ -1,7 +1,7 @@
 package modmuss50.network.client.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import modmuss50.network.blocks.Containers.*;
+import modmuss50.network.blocks.containers.*;
 import modmuss50.network.blocks.tileentities.*;
 import modmuss50.network.dataSystems.itemSystem.containers.ContainerStorageChest;
 import modmuss50.network.dataSystems.itemSystem.gui.GuiStorageChest;

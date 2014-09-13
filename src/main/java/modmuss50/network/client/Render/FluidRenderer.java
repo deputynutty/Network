@@ -1,4 +1,4 @@
-package modmuss50.network.client.Render;
+package modmuss50.network.client.render;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;

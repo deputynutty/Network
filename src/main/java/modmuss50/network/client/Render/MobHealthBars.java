@@ -1,4 +1,4 @@
-package modmuss50.network.client.Render;
+package modmuss50.network.client.render;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import modmuss50.network.items.NetworkItems;

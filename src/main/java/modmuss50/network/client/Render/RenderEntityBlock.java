@@ -1,4 +1,4 @@
-package modmuss50.network.client.Render;
+package modmuss50.network.client.render;
 
 import modmuss50.network.blocks.EntityBlock;
 import net.minecraft.block.Block;

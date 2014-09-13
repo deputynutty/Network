@@ -1,6 +1,6 @@
 package modmuss50.network.client.gui;
 
-import modmuss50.network.blocks.Containers.ContainerPowerUserBase;
+import modmuss50.network.blocks.containers.ContainerPowerUserBase;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.blocks.tileentities.TileEntityPowerUserBase;
 import net.minecraft.client.gui.inventory.GuiContainer;

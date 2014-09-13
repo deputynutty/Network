@@ -15,7 +15,7 @@ import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
 import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
-import modmuss50.network.client.Render.RenderCable;
+import modmuss50.network.client.render.RenderCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;

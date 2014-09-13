@@ -1,4 +1,4 @@
-package modmuss50.network.blocks.Rails;
+package modmuss50.network.blocks.rails;
 
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;

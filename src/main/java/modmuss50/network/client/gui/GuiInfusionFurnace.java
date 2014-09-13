@@ -1,6 +1,6 @@
 package modmuss50.network.client.gui;
 
-import modmuss50.network.blocks.Containers.ContainerInfusionFurnace;
+import modmuss50.network.blocks.containers.ContainerInfusionFurnace;
 import modmuss50.network.blocks.tileentities.TileEntityInfusionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;

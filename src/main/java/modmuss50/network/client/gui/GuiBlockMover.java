@@ -1,6 +1,6 @@
 package modmuss50.network.client.gui;
 
-import modmuss50.network.blocks.Containers.ContinerBlockMover;
+import modmuss50.network.blocks.containers.ContinerBlockMover;
 import modmuss50.network.blocks.tileentities.TileEntityMover;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;

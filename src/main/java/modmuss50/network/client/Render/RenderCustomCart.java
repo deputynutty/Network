@@ -1,4 +1,4 @@
-package modmuss50.network.client.Render;
+package modmuss50.network.client.render;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
@@ -30,8 +30,8 @@ public class RenderCustomCart extends Render {
     /**
      * Actually renders the given argument. This is a synthetic bridge method,
      * always casting down its argument and then handing it off to a worker
-     * function which does the actual work. In all probabilty, the class Render
-     * is generic (Render<T extends Entity) and this method has signature public
+     * function which does the actual work. In all probabilty, the class render
+     * is generic (render<T extends Entity) and this method has signature public
      * void doRender(T entity, double d, double d1, double d2, float f, float
      * f1). But JAD is pre 1.5 so doesn't do that.
      */
@@ -112,7 +112,7 @@ public class RenderCustomCart extends Render {
 
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called
-     * unless you call Render.bindEntityTexture.
+     * unless you call render.bindEntityTexture.
      */
     protected ResourceLocation getEntityTexture(EntityMinecart par1EntityMinecart) {
         return minecartTextures;
@@ -127,7 +127,7 @@ public class RenderCustomCart extends Render {
 
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called
-     * unless you call Render.bindEntityTexture.
+     * unless you call render.bindEntityTexture.
      */
     protected ResourceLocation getEntityTexture(Entity par1Entity) {
         return this.getEntityTexture((EntityMinecart) par1Entity);
@@ -136,8 +136,8 @@ public class RenderCustomCart extends Render {
     /**
      * Actually renders the given argument. This is a synthetic bridge method,
      * always casting down its argument and then handing it off to a worker
-     * function which does the actual work. In all probabilty, the class Render
-     * is generic (Render<T extends Entity) and this method has signature public
+     * function which does the actual work. In all probabilty, the class render
+     * is generic (render<T extends Entity) and this method has signature public
      * void doRender(T entity, double d, double d1, double d2, float f, float
      * f1). But JAD is pre 1.5 so doesn't do that.
      */
