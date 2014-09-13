@@ -42,9 +42,11 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
     public final boolean[] connectedSideFlags = new boolean[6];
     public Map<ForgeDirection, TileEntity> connectedSides;
     int ticks;
+
     static {
         refreshBounding();
     }
+
     boolean gotSerpos = false;
     int ServX;
     int ServY;

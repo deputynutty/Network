@@ -7,13 +7,13 @@ import cpw.mods.fml.relauncher.Side;
 
 public class CompactManager {
 
-    public static void init(){
+    public static void init() {
 
-        if(Loader.isModLoaded("ForgeMultipart")){
+        if (Loader.isModLoaded("ForgeMultipart")) {
             CommonFMP.init();
         }
 
-        if(Loader.isModLoaded("NotEnoughItems") && FMLCommonHandler.instance().getSide() == Side.CLIENT){
+        if (Loader.isModLoaded("NotEnoughItems") && FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             ClientNEI.init();
         }
 

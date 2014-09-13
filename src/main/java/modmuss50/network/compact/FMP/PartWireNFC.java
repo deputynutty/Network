@@ -44,6 +44,7 @@ public class PartWireNFC extends TMultiPart implements TSlottedPart, JNormalOccl
     static {
         refreshBounding();
     }
+
     public ArrayList<Location> conecatable = new ArrayList<Location>();
     private Map<ForgeDirection, TileEntity> connectedSides;
     private boolean needToCheckNeighbors;

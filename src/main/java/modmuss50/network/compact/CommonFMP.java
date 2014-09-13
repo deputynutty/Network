@@ -4,15 +4,15 @@ package modmuss50.network.compact;
 import codechicken.microblock.handler.MicroblockProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.blocks.NetworkBlocks;
-import modmuss50.network.items.ItemPart;
 import modmuss50.network.compact.FMP.Multipart;
+import modmuss50.network.items.ItemPart;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class CommonFMP {
 
-    public static void init(){
+    public static void init() {
         Multipart.init();
 
         GameRegistry.addShapelessRecipe(new ItemStack(Multipart.cablepartitem, 1), new ItemStack(MicroblockProxy.sawIron()), new ItemStack(NetworkBlocks.networkCable));

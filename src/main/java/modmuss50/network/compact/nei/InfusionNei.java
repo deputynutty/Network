@@ -97,6 +97,7 @@ public class InfusionNei extends TemplateRecipeHandler {
     public static class FuelPair {
         public PositionedStack stack;
         public int burnTime;
+
         public FuelPair(ItemStack ingred, int burnTime) {
             this.stack = new PositionedStack(ingred, 51, 42, false);
             this.burnTime = burnTime;
