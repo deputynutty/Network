@@ -37,14 +37,9 @@ public class GuiHandler implements IGuiHandler {
             return null;
         }
         if (ID == PowerUserBaseID) {
-            return new ContainerPowerUserBase(player.inventory, (TileEntityPowerUserBase) te);
-        }
-        if (ID == PowerUserBaseID) {
             return new ContainerFluidGen(player.inventory, (TileEntityFluidGen) te);
         }
-        if (ID == PowerSinkID) {
-            return new ContainerPowerSink(player.inventory, (TileEntityPowerSink) te);
-        }
+
         // if (ID == BcUserID) {
         // return new ContainerBcUser(player.inventory,
         // (TileEntityBCUser) te);
@@ -100,17 +95,9 @@ public class GuiHandler implements IGuiHandler {
                 if (te instanceof TileEntityMonitor) {
                     return new GuiMonitor((TileEntityMonitor) te);
                 }
-            } else if (ID == PowerUserBaseID) {
-                if (te instanceof TileEntityPowerUserBase) {
-                    return new GuiPowerUserBase(player.inventory, (TileEntityPowerUserBase) te);
-                }
             } else if (ID == FluidGenID) {
                 if (te instanceof TileEntityFluidGen) {
                     return new GuiTank(player.inventory, (TileEntityFluidGen) te);
-                }
-            } else if (ID == PowerSinkID) {
-                if (te instanceof TileEntityPowerSink) {
-                    return new GuiPowerSink(player.inventory, (TileEntityPowerSink) te);
                 }
             }
 

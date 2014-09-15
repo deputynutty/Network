@@ -14,7 +14,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 import modmuss50.network.netty.packets.PacketLight;
 import modmuss50.network.netty.packets.PacketRemoteGui;
-import modmuss50.network.netty.packets.PacketServer;
 import modmuss50.network.netty.packets.PacketSetTeleporterFQ;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -122,7 +121,6 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
 
     private void registerPackets() {
         registerPacket(PacketLight.class);
-        registerPacket(PacketServer.class);
         registerPacket(PacketRemoteGui.class);
         registerPacket(PacketSetTeleporterFQ.class);
     }

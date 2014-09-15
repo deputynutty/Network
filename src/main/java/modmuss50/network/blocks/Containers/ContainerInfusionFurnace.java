@@ -51,7 +51,7 @@ public class ContainerInfusionFurnace extends Container {
     public void addCraftingToCrafters(ICrafting player) {
         super.addCraftingToCrafters(player);
         player.sendProgressBarUpdate(this, 0, te.timeSmelted);
-        player.sendProgressBarUpdate(this, 1, te.currentPower);
+        player.sendProgressBarUpdate(this, 1, te.energySystem.power);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ContainerInfusionFurnace extends Container {
         if (id == 0) {
             te.timeSmelted = data;
         } else if (id == 1) {
-            te.currentPower = data;
+            te.energySystem.power = data;
         }
     }
 
@@ -70,7 +70,7 @@ public class ContainerInfusionFurnace extends Container {
 
         for (Object player : crafters) {
             ((ICrafting) player).sendProgressBarUpdate(this, 0, te.timeSmelted);
-            ((ICrafting) player).sendProgressBarUpdate(this, 1, te.currentPower);
+            ((ICrafting) player).sendProgressBarUpdate(this, 1, te.energySystem.power);
         }
     }
 }

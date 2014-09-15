@@ -20,7 +20,7 @@ import sourceteam.mods.lib.Location;
 
 import java.util.ArrayList;
 
-public class TileEntityMover extends TileEntityPowerUserBase implements IInventory, IRemoteTile {
+public class TileEntityMover extends BaseTile implements IInventory, IRemoteTile {
 
     public final int invSize = 7;
     public ItemStack[] Contents = new ItemStack[invSize];
@@ -28,8 +28,7 @@ public class TileEntityMover extends TileEntityPowerUserBase implements IInvento
     public int powerMulti = 10;
 
     public TileEntityMover() {
-        PowerStorageSize = 100000000;
-        powerimputspeed = 10000;
+
     }
 
     @Override
@@ -67,8 +66,8 @@ public class TileEntityMover extends TileEntityPowerUserBase implements IInvento
                     }
                 }
             }
-            if (canmove() && currentPower >= movingBlocks.size() * powerMulti) {
-                removePowerFromBase(movingBlocks.size() * powerMulti);
+            if (canmove() ) {
+     //TODO add power requiments back in
                 removeblocks();
                 addblocks();
             }
@@ -328,6 +327,16 @@ public class TileEntityMover extends TileEntityPowerUserBase implements IInvento
 
     }
 
+    @Override
+    public void closeInventory() {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
+        return false;
+    }
+
     public void invalidate() {
         super.invalidate();
         this.updateContainingBlockInfo();
@@ -364,7 +373,6 @@ public class TileEntityMover extends TileEntityPowerUserBase implements IInvento
     @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
-        currentPower = tag.getInteger("currentPower");
         NBTTagList nbttaglist = tag.getTagList("Items", 10);
         this.Contents = new ItemStack[this.getSizeInventory()];
 
@@ -383,7 +391,6 @@ public class TileEntityMover extends TileEntityPowerUserBase implements IInvento
     @Override
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
-        tag.setInteger("currentPower", currentPower);
         NBTTagList nbttaglist = new NBTTagList();
         for (int i = 0; i < this.Contents.length; ++i) {
             if (this.Contents[i] != null) {

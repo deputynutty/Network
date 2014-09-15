@@ -33,11 +33,7 @@ public class RenderCable extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) x + 0.5F + 0.05F, (float) y + 1.5f - 0.05F, (float) z + 0.5F + 0.05F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
-        if (tile.getSerX() != 0 & tile.getSerY() != 0 & tile.getSerZ() != 0 & tile.hasServerPos()) {
             Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/advanedcable_on.png"));
-        } else {
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/advanedcable_off.png"));
-        }
         if (!tile.back) {
             this.model.Right.render(0.0625F);
         }
@@ -67,7 +63,7 @@ public class RenderCable extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
     }
 
-    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides, int serX, int serY, int serZ) {
+    public void doRender(double x, double y, double z, Map<ForgeDirection, TileEntity> connectedSides) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef((float) x, (float) y, (float) z);
@@ -79,11 +75,9 @@ public class RenderCable extends TileEntitySpecialRenderer {
             }
         }
 
-        if (serX != 0 & serY != 0 & serZ != 0) {
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/advanedcable_on.png"));
-        } else {
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/advanedcable_off.png"));
-        }
+
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/advanedcable_off.png"));
+
 
         GL11.glColor3f(0.8F, 0.8F, 0.8F);
         GL11.glPushMatrix();

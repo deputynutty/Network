@@ -1,15 +1,11 @@
 package modmuss50.network.blocks;
 
-import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
 import modmuss50.network.blocks.tileentities.TileEntityPowerImputCable;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -18,7 +14,7 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA. User: Mark Date: 24/02/14 Time: 13:12
  */
-public class BlockNetworkCable extends BlockBase implements INetworkComponent {
+public class BlockNetworkCable extends BlockBase {
 
     public BlockNetworkCable() {
         super(Material.circuits);
@@ -70,16 +66,6 @@ public class BlockNetworkCable extends BlockBase implements INetworkComponent {
         return false;
     }
 
-    @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        TileEntityCable te;
-        te = (TileEntityCable) par1World.getTileEntity(par2, par3, par4);
-
-        if (!par1World.isRemote)
-            par5EntityPlayer.addChatMessage(new ChatComponentText("The Cable is conected to:" + Integer.toString(te.getSerX()) + " " + Integer.toString(te.getSerY()) + " " + Integer.toString(te.getSerZ())));
-
-        return true;
-    }
 
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axis, List list, Entity entity) {
         // setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
@@ -173,33 +159,4 @@ public class BlockNetworkCable extends BlockBase implements INetworkComponent {
         super.setBlockBoundsBasedOnState(world, x, y, z);
     }
 
-    @Override
-    public void onBlockAdded(World world, int x, int y, int z) {
-        TileEntityCable thiscable = (TileEntityCable) world.getTileEntity(x, y, z);
-        if (thiscable != null) {
-            thiscable.updateCables(world, x, y, z);
-        } else {
-            System.out.println("TILE = NULL");
-        }
-        super.onBlockAdded(world, x, y, z);
-
-    }
-
-    @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-        super.onNeighborBlockChange(world, x, y, z, block);
-        TileEntityCable thiscable = (TileEntityCable) world.getTileEntity(x, y, z);
-        if (thiscable != null) {
-            thiscable.updateCables(world, x, y, z);
-        }
-    }
-
-    @Override
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        super.breakBlock(world, x, y, z, block, meta);
-        TileEntityCable thiscable = (TileEntityCable) world.getTileEntity(x, y, z);
-        if (thiscable != null) {
-            thiscable.updateCables(world, x, y, z);
-        }
-    }
 }

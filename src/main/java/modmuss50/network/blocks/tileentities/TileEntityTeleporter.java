@@ -1,6 +1,6 @@
 package modmuss50.network.blocks.tileentities;
 
-import modmuss50.network.api.INetworkComponent;
+
 import modmuss50.network.api.IPeripheral;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.WorldCoordinate;
@@ -28,7 +28,7 @@ import java.util.Queue;
 /**
  * Created by Mark on 19/04/14.
  */
-public class TileEntityTeleporter extends BaseTile implements IPeripheral, INetworkComponent, IColour, IRGBColour, IFluidHandler {
+public class TileEntityTeleporter extends BaseTile implements IPeripheral, IColour, IRGBColour, IFluidHandler {
     public int fq = 0;
     public FluidTank tank = new FluidTank(1000) {
         public FluidTank readFromNBT(NBTTagCompound nbt) {

@@ -36,12 +36,12 @@ public class GuiInfusionFurnace extends GuiContainer {
 
         String s = "Infusion Furnace";
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, GuiContants.guiColour);
-        s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
+        s = "Power: " + this.tile.energySystem.power + "/" + this.tile.energySystem.PowerStorageSize;
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 + 27, 58, GuiContants.guiColour);
-        if (this.tile.getCurrentPower() != 0) {
+        if (this.tile.energySystem.getPower() != 0) {
             int i1, i2;
-            i1 = this.tile.getCurrentPower();
-            i2 = this.tile.getPowerStorageSize();
+            i1 = this.tile.energySystem.power;
+            i2 = this.tile.energySystem.PowerStorageSize;
             int perint1 = (i1 * 100);
             int perint2 = (perint1 / i2);
 
@@ -76,7 +76,7 @@ public class GuiInfusionFurnace extends GuiContainer {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-        GuiRenderHelper.drawPowerBar(k + 65, l + 54, tile.getPowerStorageSize(), tile.getCurrentPower(), this);
+        GuiRenderHelper.drawPowerBar(k + 65, l + 54, tile.energySystem.getPowerStorageSize(), tile.energySystem.getPower(), this);
         GuiRenderHelper.drawItemContainer(k + 56 - 1, l + 35 - 1, this);
         GuiRenderHelper.drawItemContainer(k + 116 - 1, l + 35 - 1, this);
     }

@@ -1,6 +1,7 @@
 package modmuss50.network.blocks.containers;
 
-import modmuss50.network.blocks.tileentities.TileEntityPowerUserBase;
+
+import modmuss50.network.blocks.tileentities.TileEntityRemoteUser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,9 +13,9 @@ public class ContainerPowerUserBase extends Container {
     private IInventory lowerChestInventory;
     private int numRows = 3;
 
-    private TileEntityPowerUserBase tileEntity;
+    private TileEntityRemoteUser tileEntity;
 
-    public ContainerPowerUserBase(InventoryPlayer player, TileEntityPowerUserBase tile) {
+    public ContainerPowerUserBase(InventoryPlayer player, TileEntityRemoteUser tile) {
         this.tileEntity = tile;
         lowerChestInventory = this.tileEntity;
 

@@ -1,13 +1,12 @@
 package modmuss50.network.blocks;
 
-import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.api.IPeripheral;
 import modmuss50.network.blocks.tileentities.TileEntityNetworkPeripheral;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockNetworkPeripheral extends BlockBase implements IPeripheral, INetworkComponent {
+public class BlockNetworkPeripheral extends BlockBase implements IPeripheral{
 
     public BlockNetworkPeripheral() {
         super(Material.rock);

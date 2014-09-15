@@ -1,13 +1,14 @@
 package modmuss50.network.blocks.tileentities;
 
-import modmuss50.network.api.INetworkComponent;
-import modmuss50.network.api.IPowedTileEntity;
+
+import modmuss50.network.api.power.EnergySystem;
+import modmuss50.network.api.power.IEnergyFace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileEntityComputer extends IPowedTileEntity implements IInventory, INetworkComponent {
+public class TileEntityComputer extends BaseTile implements IInventory, IEnergyFace {
 
     private int name;
 
@@ -117,4 +118,8 @@ public class TileEntityComputer extends IPowedTileEntity implements IInventory, 
 
     }
 
+    @Override
+    public EnergySystem ENERGY_SYSTEM() {
+        return null;
+    }
 }

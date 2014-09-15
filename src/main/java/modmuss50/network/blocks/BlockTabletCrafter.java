@@ -3,7 +3,6 @@ package modmuss50.network.blocks;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import modmuss50.network.api.INetworkComponent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -12,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import java.awt.*;
 import java.util.Random;
 
-public class BlockTabletCrafter extends Block implements INetworkComponent {
+public class BlockTabletCrafter extends Block {
 
     public BlockTabletCrafter() {
         super(Material.circuits);

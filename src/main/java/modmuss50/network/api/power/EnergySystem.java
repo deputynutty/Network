@@ -1,7 +1,6 @@
 package modmuss50.network.api.power;
 
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
@@ -10,8 +9,6 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import sourceteam.mods.lib.Location;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,37 +24,31 @@ public class EnergySystem {
     public boolean canGivePower;
     public boolean canTakePower;
 
-    public Location location;
-
-    public EnergySystem(int x, int y, int z) {
+    public EnergySystem() {
         setPowerInputSpeed(100);
         setPowerStorageSize(10000);
         setCanGivePower(false);
         setCanTakePower(true);
-        location = new Location(x, y, z);
     }
 
-    public EnergySystem(int maxEnergyStored , int x, int y, int z) {
+    public EnergySystem(int maxEnergyStored) {
         setPowerStorageSize(maxEnergyStored);
         setCanGivePower(false);
         setCanTakePower(true);
-        location = new Location(x, y, z);
     }
 
-    public EnergySystem(int maxEnergyStored, int powerInputSpeed, int x, int y, int z) {
+    public EnergySystem(int maxEnergyStored, int powerInputSpeed) {
         setPowerStorageSize(maxEnergyStored);
         setPowerInputSpeed(powerInputSpeed);
         setCanGivePower(false);
         setCanTakePower(true);
-        location = new Location(x, y, z);
     }
 
-    public EnergySystem(int maxEnergyStored, int powerInputSpeed, boolean canGivePower, boolean canTakePower, int x, int y, int z) {
+    public EnergySystem(int maxEnergyStored, int powerInputSpeed, boolean canGivePower, boolean canTakePower) {
         setPowerStorageSize(maxEnergyStored);
         setPowerInputSpeed(powerInputSpeed);
         setCanGivePower(canGivePower);
         setCanTakePower(canTakePower);
-        location = new Location(x, y, z);
     }
 
     public int getPower() {

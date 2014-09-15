@@ -9,7 +9,7 @@ public class TileEntitySolarPanel extends BaseTile implements IEnergyFace {
     EnergySystem energySystem;
 
     public TileEntitySolarPanel() {
-        this.energySystem = new EnergySystem(10000, 0, true, false, this.xCoord, this.yCoord, this.zCoord);
+        this.energySystem = new EnergySystem(10000, 0, true, false);
     }
 
     @Override

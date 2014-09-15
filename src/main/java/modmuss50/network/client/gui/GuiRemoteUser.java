@@ -12,7 +12,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import sourceteam.mods.lib.client.GuiRenderHelper;
 
 public class GuiRemoteUser extends GuiContainer {
     private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");
@@ -34,8 +33,8 @@ public class GuiRemoteUser extends GuiContainer {
      * the items)
      */
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-        String s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
-        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 + 27, 58 + 10, GuiContants.guiColour);
+       // String s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
+      //  this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 + 27, 58 + 10, GuiContants.guiColour);
     }
 
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
@@ -44,7 +43,7 @@ public class GuiRemoteUser extends GuiContainer {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-        GuiRenderHelper.drawPowerBar(k + 65, l + 54 + 10, tile.getPowerStorageSize(), tile.getCurrentPower(), this);
+      //  GuiRenderHelper.drawPowerBar(k + 65, l + 54 + 10, tile.getPowerStorageSize(), tile.getCurrentPower(), this);
     }
 
     public void initButtons() {

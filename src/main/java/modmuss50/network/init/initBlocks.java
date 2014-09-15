@@ -21,9 +21,6 @@ public class initBlocks {
         NetworkBlocks.BouncyItemConveyor = new BouncyItemConveyor().setBlockName(prefix + "BouncyItemConveyor").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BouncyItemConveyor");
         GameRegistry.registerBlock(NetworkBlocks.BouncyItemConveyor, prefix + "BouncyItemConveyor");
 
-        NetworkBlocks.powerSink = new BlockPowerSink().setBlockName(prefix + "powerSink").setHardness(1.5F).setCreativeTab(NetworkCore.Network);
-        GameRegistry.registerBlock(NetworkBlocks.powerSink, prefix + "powerSink");
-        GameRegistry.registerTileEntity(TileEntityPowerSink.class, prefix + "TileEntityPowerSink");
 
         NetworkBlocks.networkCable = new BlockNetworkCable().setBlockName(prefix + "networkCable").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:networkCable");
         GameRegistry.registerBlock(NetworkBlocks.networkCable, prefix + "networkCable");
@@ -57,10 +54,6 @@ public class initBlocks {
         GameRegistry.registerBlock(NetworkBlocks.BlockSolarPanel, prefix + "BlockSolarPanel");
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, prefix + "TileEntitySolarPanel");
 
-
-        //NetworkBlocks.BlockPowerUserBase = new BlockPowerUserBase().setBlockName(prefix + "BlockPowerUserBase").setHardness(1.5F).setBlockTextureName("network:BlockPowerUserBase");
-        //GameRegistry.registerBlock(NetworkBlocks.BlockPowerUserBase, prefix + "BlockPowerUserBase");
-        GameRegistry.registerTileEntity(TileEntityPowerUserBase.class, prefix + "TileEntityPowerUserBase");
 
         NetworkBlocks.FluidGen = new BlockFluidGen().setBlockName(prefix + "BlockFluidGen").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:fluidgen/fluid");
         GameRegistry.registerBlock(NetworkBlocks.FluidGen, prefix + "BlockFluidGen");

@@ -14,7 +14,6 @@ import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
-import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import modmuss50.network.client.render.RenderCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.particle.EffectRenderer;
@@ -214,7 +213,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
             if (renderer == null) {
                 renderer = new RenderCable();
             }
-            renderer.doRender(pos.x, pos.y, pos.z, connectedSides, getSerX(), getSerY(), getSerZ());
+            renderer.doRender(pos.x, pos.y, pos.z, connectedSides);
         }
     }
 
@@ -340,13 +339,6 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
                 connectedSidesHaveChanged = true;
             }
         }
-
-        if (ticks != 30) {
-            ticks += 1;
-        } else {
-            updateCables(world(), this.x(), this.y(), this.z());
-            ticks = 0;
-        }
     }
 
     public Map<ForgeDirection, TileEntity> getConnectedSides() {
@@ -399,91 +391,6 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
     @Override
     public int getHollowSize(int arg0) {
         return 6;
-    }
-
-    public void updateCables(World world, int blockX, int blockY, int blockZ) {
-        List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
-        int cableMaxLenghth = 128;
-        Queue<WorldCoordinate> queue = new PriorityQueue<WorldCoordinate>();
-        WorldCoordinate start = new WorldCoordinate(blockX, blockY, blockZ, 0);
-        queue.add(start);
-        visited.add(start);
-
-        while (!queue.isEmpty()) {
-            WorldCoordinate element = queue.poll();
-
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
-                        if (Math.abs(x) + Math.abs(y) + Math.abs(z) == 1) {
-                            WorldCoordinate target = new WorldCoordinate(element.getX() + x, element.getY() + y, element.getZ() + z, element.getDepth() + 1);
-
-                            if (!visited.contains(target)) {
-                                visited.add(target);
-                                if (element.getDepth() < cableMaxLenghth) {// && PartCable.isConnectedTo(target, this.world())) {
-                                    Block block = world.getBlock(target.getX(), target.getY(), target.getZ());
-                                    TileEntity tile = world.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                    int meta = world.getBlockMetadata(target.getX(), target.getY(), target.getZ());
-                                    if (block == NetworkBlocks.powerSink) {
-                                        TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                        if (tileEntity != null && tileEntity instanceof TileEntityPowerSink) {
-                                            TileEntityPowerSink server = (TileEntityPowerSink) tileEntity;
-                                            setSerpos(target.getX(), target.getY(), target.getZ(), true);
-                                            return;
-                                        } else {
-                                            setSerpos(0, 0, 0, false);
-                                            return;
-                                        }
-                                    } else if (isCable(tile) && target.getDepth() < cableMaxLenghth) {
-                                        queue.add(target);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-        setSerpos(0, 0, 0, false);
-
-    }
-
-    public int getSerX() {
-        if (gotSerpos != false) {
-            return ServX;
-        }
-        return 0;
-    }
-
-    public int getSerY() {
-        if (gotSerpos != false) {
-            return ServY;
-        }
-        return 0;
-    }
-
-    public int getSerZ() {
-        if (gotSerpos != false) {
-            return ServZ;
-        }
-        return 0;
-    }
-
-    public void setSerpos(int x, int y, int z, boolean pos) {
-        ServX = x;
-        ServY = y;
-        ServZ = z;
-        gotSerpos = pos;
-    }
-
-    public void clearSerPos() {
-        ServX = 0;
-        ServY = 0;
-        ServZ = 0;
-        gotSerpos = false;
-
     }
 
 }

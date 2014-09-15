@@ -4,6 +4,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.IRemoteTile;
 import modmuss50.network.api.InfusionFurnaceRecipes;
+import modmuss50.network.api.power.EnergySystem;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.client.gui.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -18,17 +20,17 @@ import net.minecraftforge.common.util.Constants;
 /**
  * Created by Mark on 28/07/2014.
  */
-public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implements IInventory, IRemoteTile {
+public class TileEntityInfusionFurnace extends BaseTile implements IInventory, IRemoteTile, IEnergyFace{
     public static int maxSmeltTime = 140;
     public ItemStack[] items;
     public boolean isSmelting = false;
     public int timeSmelted = 0;
 
+    public EnergySystem energySystem = new EnergySystem(100000);
+
     public TileEntityInfusionFurnace() {
         super();
         items = new ItemStack[getSizeInventory()];
-        PowerStorageSize = 100000;
-        powerimputspeed = 50;
     }
 
     public static int getNeededPower() {
@@ -80,7 +82,7 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
 
     public void determineIfSmelting() {
 
-        if (this.getCurrentPower() >= this.getNeededPower()) {
+        if (this.energySystem.getPower() >= this.getNeededPower()) {
             if (!isSmelting && getStackInSlot(0) != null && InfusionFurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)) != null) {
                 ItemStack input = getStackInSlot(0);
                 ItemStack output = getStackInSlot(2);
@@ -105,13 +107,13 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
     public void smelt() {
         boolean removePower = false;
 
-        if (isSmelting && !worldObj.isRemote && currentPower >= getNeededPower()) {
+        if (isSmelting && !worldObj.isRemote && energySystem.getPower() >= getNeededPower()) {
             timeSmelted += 1;
 
             ItemStack input = getStackInSlot(0);
             ItemStack output = getStackInSlot(2);
 
-            currentPower -= getNeededPower();
+            energySystem.power -= getNeededPower();
 
             if (input == null) {
                 isSmelting = false;
@@ -264,5 +266,10 @@ public class TileEntityInfusionFurnace extends TileEntityPowerUserBase implement
         this.writeToNBT(nbt);
         new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, nbt);
 
+    }
+
+    @Override
+    public EnergySystem ENERGY_SYSTEM() {
+        return null;
     }
 }

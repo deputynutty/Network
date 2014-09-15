@@ -1,7 +1,9 @@
 package modmuss50.network.blocks.tileentities;
 
-import modmuss50.network.api.IPowedTileEntity;
+
 import modmuss50.network.api.IRemoteTile;
+import modmuss50.network.api.power.EnergySystem;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.client.gui.GuiHandler;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +17,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public class TileEntityFluidGen extends IPowedTileEntity implements IFluidHandler, IInventory, IRemoteTile {
+public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInventory, IRemoteTile, IEnergyFace {
+
+    EnergySystem energySystem = new EnergySystem(10000, 0 , true, false);
 
     public FluidTank tank = new FluidTankRestricted(8000, new String[]{"lava"}) {
         public FluidTank readFromNBT(NBTTagCompound nbt) {
@@ -31,12 +35,9 @@ public class TileEntityFluidGen extends IPowedTileEntity implements IFluidHandle
     private FluidStack lastBeforeUpdate = null;
 
     public void doWorkTick() {
-        super.doWorkTick();
 
         if (tank.getFluid() != null) {
-            if (hasServer())
-
-                if (addPowerServer(100)) {
+                if (energySystem.tryInsertEnergy(100)) {
                     tank.drain(1, true);
                 }
 
@@ -301,5 +302,10 @@ public class TileEntityFluidGen extends IPowedTileEntity implements IFluidHandle
     @Override
     public int guiID() {
         return GuiHandler.FluidGenID;
+    }
+
+    @Override
+    public EnergySystem ENERGY_SYSTEM() {
+        return energySystem;
     }
 }

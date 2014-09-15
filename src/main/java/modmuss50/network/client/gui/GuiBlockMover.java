@@ -24,7 +24,7 @@ public class GuiBlockMover extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
         String s = "Block Mover";
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 + 50, 6, GuiContants.guiColour);
-        s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
+     //   s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 - 35, 68, GuiContants.guiColour);
 
         s = "blocks: " + this.tile.blocksToMove();
@@ -38,7 +38,7 @@ public class GuiBlockMover extends GuiContainer {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-        GuiRenderHelper.drawPowerBar(k + 5, l + 64, tile.getPowerStorageSize(), tile.getCurrentPower(), this);
+    //    GuiRenderHelper.drawPowerBar(k + 5, l + 64, tile.getPowerStorageSize(), tile.getCurrentPower(), this);
 
         GuiRenderHelper.drawItemContainer(k + 8 - 1, l + 14 - 1, this); // direction
 

@@ -22,18 +22,10 @@ public class TileEntityMonitor extends TileEntityShell {
     public void updateEntity() {
         super.updateEntity();
         textLines.clear();
-        if (this.getSerX() != 0 && this.getSerY() != 0 && this.getSerZ() != 0) {
-            int p = ((TileEntityPowerSink) this.worldObj.getTileEntity(this.getSerX(), this.getSerY(), this.getSerZ())).getNetworkNetUnits();
-            if (p != 0) {
-                textLines.add("Power: " + Integer.toString(p));
-            } else {
-                textLines.add("Power: 0");
 
-            }
-        } else {
-            textLines.add("Power: 0");
+        textLines.add("Power: 0");
 
-        }
+
 
     }
 

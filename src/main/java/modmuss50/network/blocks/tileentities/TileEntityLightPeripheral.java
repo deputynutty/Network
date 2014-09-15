@@ -1,7 +1,6 @@
 package modmuss50.network.blocks.tileentities;
 
 import modmuss50.network.NetworkCore;
-import modmuss50.network.api.INetworkComponent;
 import modmuss50.network.netty.packets.PacketLight;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -12,7 +11,7 @@ import sourceteam.mods.lib.api.IRGB;
 /**
  * Created with IntelliJ IDEA. User: Mark Date: 25/02/14 Time: 13:11
  */
-public class TileEntityLightPeripheral extends BaseTile implements INetworkComponent, IRGB {
+public class TileEntityLightPeripheral extends BaseTile implements IRGB {
 
     public int red = 255;
     public int green = 255;

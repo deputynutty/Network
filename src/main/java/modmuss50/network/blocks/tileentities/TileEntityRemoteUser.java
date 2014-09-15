@@ -1,7 +1,10 @@
 package modmuss50.network.blocks.tileentities;
 
+import cpw.mods.fml.common.Loader;
 import modmuss50.network.api.IRemoteTile;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.compact.FMP.PartCable;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,13 +15,14 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class TileEntityRemoteUser extends TileEntityPowerUserBase implements IInventory {
+public class TileEntityRemoteUser extends BaseTile implements IInventory {
 
     public ArrayList<TileEntity> remotetiles = new ArrayList<TileEntity>();
 
@@ -33,10 +37,10 @@ public class TileEntityRemoteUser extends TileEntityPowerUserBase implements IIn
     }
 
     public void findRemoteTile() {
-        BlockX = this.xCoord;
-        BlockY = this.yCoord;
-        BlockZ = this.zCoord;
-        World = this.getWorldObj();
+        int BlockX = this.xCoord;
+       int BlockY = this.yCoord;
+       int BlockZ = this.zCoord;
+       World World = this.getWorldObj();
 
         List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
         int cableMaxLenghth = 128;
@@ -158,5 +162,16 @@ public class TileEntityRemoteUser extends TileEntityPowerUserBase implements IIn
 
     public void syncTile() {
         ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
+    }
+
+    public boolean isCable(TileEntity tile) {
+        if (Loader.isModLoaded("ForgeMultipart")) {
+            return PartCable.isCable(tile);
+        }
+
+        if (tile instanceof IEnergyFace)
+            return true;
+
+        return tile instanceof TileEntityCable;
     }
 }

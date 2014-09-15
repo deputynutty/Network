@@ -28,7 +28,7 @@ public class TileEntityNetworkedFurnace extends BaseTile implements IInventory, 
     public TileEntityNetworkedFurnace() {
         super();
         items = new ItemStack[getSizeInventory()];
-        energySystem = new EnergySystem(10000, this.xCoord, this.yCoord, this.zCoord);
+        energySystem = new EnergySystem(10000);
     }
 
     @Override
