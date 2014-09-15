@@ -33,12 +33,12 @@ public class GuiNetworkedFurnace extends GuiContainer {
 
         String s = "Networked Furnace";
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, GuiContants.guiColour);
-        s = "Power: " + this.tile.getCurrentPower() + "/" + this.tile.getPowerStorageSize();
+        s = "Power: " + this.tile.ENERGY_SYSTEM().getPower() + "/" + this.tile.energySystem.getPowerStorageSize();
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2 + 27, 58, GuiContants.guiColour);
-        if (this.tile.getCurrentPower() != 0) {
+        if (this.tile.energySystem.getPower() != 0) {
             int i1, i2;
-            i1 = this.tile.getCurrentPower();
-            i2 = this.tile.getPowerStorageSize();
+            i1 = this.tile.energySystem.getPower();
+            i2 = this.tile.energySystem.getPowerStorageSize();
             int perint1 = (i1 * 100);
             int perint2 = (perint1 / i2);
 
@@ -73,7 +73,7 @@ public class GuiNetworkedFurnace extends GuiContainer {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-        GuiRenderHelper.drawPowerBar(k + 65, l + 54, tile.getPowerStorageSize(), tile.getCurrentPower(), this);
+        GuiRenderHelper.drawPowerBar(k + 65, l + 54, tile.energySystem.getPowerStorageSize(), tile.energySystem.getPower(), this);
         GuiRenderHelper.drawItemContainer(k + 56 - 1, l + 35 - 1, this);
         GuiRenderHelper.drawItemContainer(k + 116 - 1, l + 35 - 1, this);
     }

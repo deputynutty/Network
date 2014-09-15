@@ -4,6 +4,7 @@ import modmuss50.network.blocks.tileentities.TileEntityCable;
 import modmuss50.network.blocks.tileentities.TileEntityPowerSink;
 import net.minecraft.world.World;
 
+@Deprecated
 public class IPowedTileEntity extends TileEntityCable {
 
     public void updateEntity() {
@@ -12,10 +13,12 @@ public class IPowedTileEntity extends TileEntityCable {
         doWorkTick();
     }
 
+    @Deprecated
     public void doWorkTick() {
 
     }
 
+    @Deprecated
     public int Getpower() {
 
         World world = this.worldObj;
@@ -34,6 +37,7 @@ public class IPowedTileEntity extends TileEntityCable {
 
     }
 
+    @Deprecated
     public boolean hasConectionServer() {
         World world = this.worldObj;
         if (world.getTileEntity(getSerX(), getSerY(), getSerZ()) instanceof TileEntityPowerSink) {
@@ -42,6 +46,7 @@ public class IPowedTileEntity extends TileEntityCable {
         return false;
     }
 
+    @Deprecated
     public boolean addPowerServer(int i) {
 
         World world = this.worldObj;
@@ -56,6 +61,7 @@ public class IPowedTileEntity extends TileEntityCable {
 
     }
 
+    @Deprecated
     public void fillPowerServer() {
 
         World world = this.worldObj;
@@ -68,6 +74,7 @@ public class IPowedTileEntity extends TileEntityCable {
 
     }
 
+    @Deprecated
     public boolean removePowerServer(int i) {
 
         World world = this.worldObj;
@@ -87,6 +94,7 @@ public class IPowedTileEntity extends TileEntityCable {
 
     }
 
+    @Deprecated
     public boolean hasServer() {
         World world = this.worldObj;
         if (world.getTileEntity(getSerX(), getSerY(), getSerZ()) instanceof TileEntityPowerSink) {

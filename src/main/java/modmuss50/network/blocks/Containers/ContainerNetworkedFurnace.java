@@ -48,7 +48,7 @@ public class ContainerNetworkedFurnace extends Container {
     public void addCraftingToCrafters(ICrafting player) {
         super.addCraftingToCrafters(player);
         player.sendProgressBarUpdate(this, 0, te.timeSmelted);
-        player.sendProgressBarUpdate(this, 1, te.currentPower);
+        player.sendProgressBarUpdate(this, 1, te.energySystem.getPower());
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ContainerNetworkedFurnace extends Container {
         if (id == 0) {
             te.timeSmelted = data;
         } else if (id == 1) {
-            te.currentPower = data;
+            te.energySystem.power = data;
         }
     }
 
@@ -67,7 +67,7 @@ public class ContainerNetworkedFurnace extends Container {
 
         for (Object player : crafters) {
             ((ICrafting) player).sendProgressBarUpdate(this, 0, te.timeSmelted);
-            ((ICrafting) player).sendProgressBarUpdate(this, 1, te.currentPower);
+            ((ICrafting) player).sendProgressBarUpdate(this, 1, te.energySystem.getPower());
         }
     }
 }

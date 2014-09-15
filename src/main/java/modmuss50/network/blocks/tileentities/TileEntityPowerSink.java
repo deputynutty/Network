@@ -23,6 +23,7 @@ import java.util.Set;
 /**
  * Created by Mark on 21/02/14.
  */
+@Deprecated
 public class TileEntityPowerSink extends BaseTile implements INetworkComponent, IInventory, ISidedInventory {
 
     public boolean needsUpdate = false;

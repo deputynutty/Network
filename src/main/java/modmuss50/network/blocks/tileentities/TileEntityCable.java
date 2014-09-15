@@ -2,6 +2,7 @@ package modmuss50.network.blocks.tileentities;
 
 import cpw.mods.fml.common.Loader;
 import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.compact.FMP.PartCable;
@@ -320,7 +321,7 @@ public class TileEntityCable extends BaseTile implements INetworkComponent {
             return PartCable.isCable(tile);
         }
 
-        if (tile instanceof INetworkComponent)
+        if (tile instanceof IEnergyFace)
             return true;
 
         return tile instanceof TileEntityCable;

@@ -3,6 +3,8 @@ package modmuss50.network.blocks.tileentities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.api.IRemoteTile;
+import modmuss50.network.api.power.EnergySystem;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.client.gui.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -15,16 +17,18 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
 
-public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implements IInventory, IRemoteTile {
+public class TileEntityNetworkedFurnace extends BaseTile implements IInventory, IRemoteTile, IEnergyFace {
     public ItemStack[] items;
     public boolean isSmelting = false;
     public int timeSmelted = 0;
     public int maxSmeltTime = 40;
 
+    public EnergySystem energySystem;
+
     public TileEntityNetworkedFurnace() {
         super();
         items = new ItemStack[getSizeInventory()];
-        PowerStorageSize = 10000;
+        energySystem = new EnergySystem(10000, this.xCoord, this.yCoord, this.zCoord);
     }
 
     @Override
@@ -72,7 +76,7 @@ public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implemen
 
     public void determineIfSmelting() {
 
-        if (this.getCurrentPower() >= this.getNeededPower()) {
+        if (this.ENERGY_SYSTEM().getPower() >= this.getNeededPower()) {
             if (!isSmelting && getStackInSlot(0) != null && FurnaceRecipes.smelting().getSmeltingResult(getStackInSlot(0)) != null) {
                 ItemStack input = getStackInSlot(0);
                 ItemStack output = getStackInSlot(2);
@@ -101,13 +105,11 @@ public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implemen
     public void smelt() {
         boolean removePower = false;
 
-        if (isSmelting && !worldObj.isRemote && currentPower >= getNeededPower()) {
+        if (isSmelting && !worldObj.isRemote && this.ENERGY_SYSTEM().tryTakeEnergy(this.getNeededPower())) {
             timeSmelted += 1;
 
             ItemStack input = getStackInSlot(0);
             ItemStack output = getStackInSlot(2);
-
-            currentPower -= getNeededPower();
 
             if (input == null) {
                 isSmelting = false;
@@ -143,6 +145,7 @@ public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implemen
         super.updateEntity();
         determineIfSmelting();
         smelt();
+        energySystem.tick(this);
     }
 
     @Override
@@ -209,6 +212,8 @@ public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implemen
 
         tag.setTag("Items", items);
         tag.setBoolean("isSmelting", isSmelting);
+
+        energySystem.readFromNBT(tag);
     }
 
     @Override
@@ -227,6 +232,8 @@ public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implemen
         }
 
         isSmelting = tag.getBoolean("isSmelting");
+
+        energySystem.readFromNBT(tag);
     }
 
     /**
@@ -262,4 +269,8 @@ public class TileEntityNetworkedFurnace extends TileEntityPowerUserBase implemen
 
     }
 
+    @Override
+    public EnergySystem ENERGY_SYSTEM() {
+        return energySystem;
+    }
 }

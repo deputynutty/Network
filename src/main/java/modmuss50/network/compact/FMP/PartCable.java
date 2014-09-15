@@ -10,7 +10,7 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import modmuss50.network.api.INetworkComponent;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.blocks.NetworkBlocks;
 import modmuss50.network.blocks.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
@@ -57,7 +57,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
     public static boolean isCable(TileEntity tile) {
 
-        if (tile instanceof TileEntityCable || tile instanceof INetworkComponent) return true;
+        if (tile instanceof TileEntityCable) return true;
 
         return tile instanceof TileMultipart && Multipart.hasPartCable((TileMultipart) tile);
     }
@@ -230,7 +230,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
             for (TMultiPart p : t) {
 
-                if (p instanceof INetworkComponent) {
+                if (p instanceof IEnergyFace) {
                     return true;
                 }
             }
@@ -247,7 +247,7 @@ public class PartCable extends TMultiPart implements TSlottedPart, JNormalOcclus
 
             return false;
         } else {
-            return entity instanceof INetworkComponent;
+            return entity instanceof IEnergyFace;
         }
     }
 
