@@ -34,7 +34,8 @@ public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInve
     };
     private FluidStack lastBeforeUpdate = null;
 
-    public void doWorkTick() {
+    @Override
+    public void updateEntity() {
 
         if (tank.getFluid() != null) {
                 if (energySystem.tryInsertEnergy(100)) {
