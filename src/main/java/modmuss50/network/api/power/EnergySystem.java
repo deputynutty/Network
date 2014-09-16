@@ -24,6 +24,8 @@ public class EnergySystem {
     public boolean canGivePower;
     public boolean canTakePower;
 
+    public IEnergyFace lastFace;
+
     public EnergySystem() {
         setPowerInputSpeed(100);
         setPowerStorageSize(10000);
@@ -162,6 +164,7 @@ public class EnergySystem {
                                         if(energySystem != this && energySystem.getPower() >= this.powerInputSpeed){
                                             if (this.tryRequestPower((IEnergyFace) tileEntity) == true) {
                                                 //     System.out.println(getPower());
+                                                this.lastFace = (IEnergyFace) tileEntity;
                                                 return;
                                             }
                                         }
@@ -192,10 +195,22 @@ public class EnergySystem {
 
 
     public void tick(TileEntity tileEntity) {
+        if(this.lastFace != null){
+            EnergySystem energySystem = this.lastFace.ENERGY_SYSTEM();
+            if(energySystem != this && energySystem.getPower() >= this.powerInputSpeed){
+                if (this.tryRequestPower((IEnergyFace) tileEntity) == true) {
+                    return;
+                } else {
+                    this.lastFace = null;
+                }
+            } else{
+                this.lastFace = null;
+            }
+        }
 
-       // if (this.canFitPower(this.getPowerInputSpeed())) {
+        if(lastFace == null){
             this.findAndRequestPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
-      //  }
+        }
     }
 
     public void writeToNBT(NBTTagCompound tag) {
