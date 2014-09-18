@@ -93,22 +93,6 @@ public class initBlocks {
         GameRegistry.registerBlock(NetworkBlocks.BlockMover, prefix + "BlockMover");
         GameRegistry.registerTileEntity(TileEntityMover.class, prefix + "TileEntityMover");
 
-//        NetworkBlocks.BlockMoving = new BlockMovingBlock().setBlockName(prefix + "BlockMovingBlock").setHardness(10000F).setBlockUnbreakable().setResistance(100000F).setBlockTextureName("network:BlockMovingBlock");
-//        GameRegistry.registerBlock(NetworkBlocks.BlockMoving, prefix + "BlockMovingBlock");
-//        GameRegistry.registerTileEntity(TileEntityMovingBlock.class, prefix + "TileEntityMovingBlock");
-
-        NetworkBlocks.robotMK1 = new BlockRobot(1).setBlockName(prefix + "robotMK1").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:robotMK1");
-        GameRegistry.registerBlock(NetworkBlocks.robotMK1, prefix + "robotMK1");
-        GameRegistry.registerTileEntity(TileEntityRobot.class, prefix + "TileEntityRobotMK1");
-
-        NetworkBlocks.robotMK2 = new BlockRobot(2).setBlockName(prefix + "robotMK2").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:robotMK2");
-        GameRegistry.registerBlock(NetworkBlocks.robotMK2, prefix + "robotMK2");
-        GameRegistry.registerTileEntity(TileEntityRobot.class, prefix + "TileEntityRobotMK2");
-
-        NetworkBlocks.robotMK3 = new BlockRobot(3).setBlockName(prefix + "robotMK3").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:robotMK3");
-        GameRegistry.registerBlock(NetworkBlocks.robotMK3, prefix + "robotMK3");
-        GameRegistry.registerTileEntity(TileEntityRobot.class, prefix + "TileEntityRobotMK3");
-
     }
 
 }

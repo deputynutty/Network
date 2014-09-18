@@ -8,4 +8,5 @@ public class NetworkItems {
     public static Item wifiGoggles;
     public static Item ItemBattery;
     public static Item parts;
+    public static Item robot;
 }

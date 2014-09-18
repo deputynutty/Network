@@ -2,7 +2,7 @@ package modmuss50.network.api.power;
 
 
 import cpw.mods.fml.common.Loader;
-import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
 import modmuss50.network.compact.FMP.PartCable;
 import net.minecraft.block.Block;
@@ -17,7 +17,6 @@ import java.util.Queue;
 
 public class EnergySystem {
 
-
     public int power;
     public int PowerStorageSize;
     public int powerInputSpeed = 10;
@@ -25,6 +24,8 @@ public class EnergySystem {
     public boolean canTakePower;
 
     public IEnergyFace lastFace;
+
+    int ticks;
 
     public EnergySystem() {
         setPowerInputSpeed(100);
@@ -159,9 +160,9 @@ public class EnergySystem {
                                     TileEntity tile = world.getTileEntity(target.getX(), target.getY(), target.getZ());
                                     int meta = world.getBlockMetadata(target.getX(), target.getY(), target.getZ());
                                     TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                    if (tileEntity != null && tileEntity instanceof IEnergyFace){
-                                            EnergySystem energySystem = ((IEnergyFace) tileEntity).ENERGY_SYSTEM();
-                                        if(energySystem != this && energySystem.getPower() >= this.powerInputSpeed){
+                                    if (tileEntity != null && tileEntity instanceof IEnergyFace) {
+                                        EnergySystem energySystem = ((IEnergyFace) tileEntity).ENERGY_SYSTEM();
+                                        if (energySystem != this && energySystem.getPower() >= this.powerInputSpeed) {
                                             if (this.tryRequestPower((IEnergyFace) tileEntity) == true) {
                                                 //     System.out.println(getPower());
                                                 this.lastFace = (IEnergyFace) tileEntity;
@@ -182,6 +183,7 @@ public class EnergySystem {
         }
     }
 
+    //TODO make this so the api will complile without the main bit of code
     public boolean isCable(TileEntity tile) {
         if (Loader.isModLoaded("ForgeMultipart")) {
             return PartCable.isCable(tile);
@@ -195,20 +197,28 @@ public class EnergySystem {
 
 
     public void tick(TileEntity tileEntity) {
-        if(this.lastFace != null){
+        if (ticks != 120) {
+            ticks += 1;
+        } else {
+            //Do this to make sure it will recheck the closest power supply
+            this.lastFace = null;
+            ticks = 0;
+        }
+        //This is so the game does not need to recheck the nearest power supply preventing lag.
+        if (this.lastFace != null) {
             EnergySystem energySystem = this.lastFace.ENERGY_SYSTEM();
-            if(energySystem != this && energySystem.getPower() >= this.powerInputSpeed){
+            if (energySystem != this && energySystem.getPower() >= this.powerInputSpeed) {
                 if (this.tryRequestPower((IEnergyFace) tileEntity) == true) {
                     return;
                 } else {
                     this.lastFace = null;
                 }
-            } else{
+            } else {
                 this.lastFace = null;
             }
         }
 
-        if(lastFace == null){
+        if (lastFace == null) {
             this.findAndRequestPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
         }
     }

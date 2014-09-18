@@ -1,4 +1,4 @@
-package modmuss50.network.blocks;
+package modmuss50.network.api;
 
 import net.minecraft.tileentity.TileEntity;
 

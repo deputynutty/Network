@@ -1,6 +1,6 @@
 package modmuss50.network.dataSystems.itemSystem.tileEntitys;
 
-import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.compact.FMP.Multipart;
 import modmuss50.network.compact.FMP.PartWireNFC;

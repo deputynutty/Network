@@ -4,10 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.api.InfusionFurnaceRecipes;
 import modmuss50.network.blocks.NetworkBlocks;
-import modmuss50.network.items.ItemBattery;
-import modmuss50.network.items.ItemPart;
-import modmuss50.network.items.ItemTablet;
-import modmuss50.network.items.NetworkItems;
+import modmuss50.network.items.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -35,6 +32,9 @@ public class initItems {
 
         NetworkItems.parts = new ItemPart().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "ItemPart").setTextureName("network:ItemPart");
         registerItem(NetworkItems.parts);
+
+        NetworkItems.robot = new ItemRobot().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "robot").setTextureName("network:robot");
+        registerItem(NetworkItems.robot);
 
     }
 

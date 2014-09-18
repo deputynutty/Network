@@ -3,7 +3,7 @@ package modmuss50.network.blocks.tileentities;
 import cpw.mods.fml.common.Loader;
 import modmuss50.network.api.IRemoteTile;
 import modmuss50.network.api.power.IEnergyFace;
-import modmuss50.network.blocks.WorldCoordinate;
+import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.compact.FMP.PartCable;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;

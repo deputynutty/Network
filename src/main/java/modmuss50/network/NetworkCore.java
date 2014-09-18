@@ -18,10 +18,7 @@ import modmuss50.network.compact.CompactManager;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
 import modmuss50.network.entity.minecart.ServerCart;
 import modmuss50.network.event.DropItemEvent;
-import modmuss50.network.init.initBlocks;
-import modmuss50.network.init.initCommand;
-import modmuss50.network.init.initConfig;
-import modmuss50.network.init.initItems;
+import modmuss50.network.init.*;
 import modmuss50.network.items.NetworkItems;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
@@ -115,6 +112,9 @@ public class NetworkCore implements ISourceMod {
 
         //load the item system
         ItemSystem.init(event);
+
+        //Load the entity's
+        initEntitys.initEntitys();
 
         CompactManager.init();
 
