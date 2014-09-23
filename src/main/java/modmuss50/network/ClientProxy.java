@@ -8,8 +8,7 @@ import modmuss50.network.blocks.tileentities.TileEntityMonitor;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
 import modmuss50.network.client.render.*;
 import modmuss50.network.entity.minecart.ServerCart;
-import modmuss50.network.entity.robot.EntityRobot;
-import net.minecraft.client.renderer.entity.Render;
+import modmuss50.network.entity.robot.EntityDrone;
 import net.minecraftforge.common.MinecraftForge;
 import sourceteam.mods.lib.client.AnimatedBlock.RenderAnimatedTile;
 
@@ -25,7 +24,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RenderMonitor());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new RenderAnimatedTile());
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityRobot.class, new RenderRobot());
+        RenderingRegistry.registerEntityRenderingHandler(EntityDrone.class, new RenderRobot());
 
         MinecraftForge.EVENT_BUS.register(new MobHealthBars());
     }

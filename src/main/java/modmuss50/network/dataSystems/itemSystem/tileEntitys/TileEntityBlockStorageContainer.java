@@ -1,5 +1,6 @@
 package modmuss50.network.dataSystems.itemSystem.tileEntitys;
 
+import modmuss50.network.api.data.DataType;
 import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
@@ -328,4 +329,8 @@ public class TileEntityBlockStorageContainer extends BaseTile implements IDataPe
 
     }
 
+    @Override
+    public DataType type() {
+        return DataType.inv;
+    }
 }

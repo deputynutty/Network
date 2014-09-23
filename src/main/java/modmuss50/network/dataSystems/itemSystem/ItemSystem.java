@@ -5,11 +5,13 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import modmuss50.network.NetworkCore;
+import modmuss50.network.dataSystems.itemSystem.blocks.BlockExport;
 import modmuss50.network.dataSystems.itemSystem.blocks.BlockImport;
 import modmuss50.network.dataSystems.itemSystem.blocks.BlockStorageChest;
 import modmuss50.network.dataSystems.itemSystem.items.itemFilter;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEnityImport;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityBlockStorageContainer;
+import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityExport;
 import modmuss50.network.init.initBlocks;
 import modmuss50.network.init.initItems;
 import net.minecraft.block.Block;
@@ -22,6 +24,7 @@ public class ItemSystem {
 
     public static Block storageChest;
     public static Block importer;
+    public static Block export;
 
     public static Item itemFilter;
 
@@ -39,6 +42,10 @@ public class ItemSystem {
         importer = new BlockImport().setBlockName(initBlocks.prefix + "import").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
         GameRegistry.registerBlock(importer, initBlocks.prefix + "import");
         GameRegistry.registerTileEntity(TileEnityImport.class, initBlocks.prefix + "TileEnityImport");
+
+        export = new BlockExport().setBlockName(initBlocks.prefix + "export").setCreativeTab(NetworkCore.Network).setBlockTextureName("network:base");
+        GameRegistry.registerBlock(export, initBlocks.prefix + "export");
+        GameRegistry.registerTileEntity(TileEntityExport.class, initBlocks.prefix + "TileEnityExport");
 
         itemFilter = new itemFilter().setUnlocalizedName(initBlocks.prefix + "filter").setTextureName("network:itemFilter");
         registerItem(itemFilter);

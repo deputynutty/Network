@@ -22,6 +22,8 @@ import modmuss50.network.init.*;
 import modmuss50.network.items.NetworkItems;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;

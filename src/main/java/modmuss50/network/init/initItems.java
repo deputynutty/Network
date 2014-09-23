@@ -33,8 +33,8 @@ public class initItems {
         NetworkItems.parts = new ItemPart().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "ItemPart").setTextureName("network:ItemPart");
         registerItem(NetworkItems.parts);
 
-        NetworkItems.robot = new ItemRobot().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "robot").setTextureName("network:robot");
-        registerItem(NetworkItems.robot);
+        NetworkItems.drone = new ItemDrone().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "drone").setTextureName("network:drone");
+        registerItem(NetworkItems.drone);
 
     }
 

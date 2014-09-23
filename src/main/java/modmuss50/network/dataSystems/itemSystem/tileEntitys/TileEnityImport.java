@@ -1,6 +1,8 @@
 package modmuss50.network.dataSystems.itemSystem.tileEntitys;
 
 import modmuss50.network.api.WorldCoordinate;
+import modmuss50.network.api.data.DataType;
+import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.compact.FMP.Multipart;
 import modmuss50.network.compact.FMP.PartWireNFC;
@@ -23,7 +25,7 @@ import java.util.Queue;
  * Created by Mark on 11/08/2014.
  */
 
-public class TileEnityImport extends BaseTile implements IInventory {
+public class TileEnityImport extends BaseTile implements IInventory, IDataPer {
 
     public ArrayList<Location> scanned = new ArrayList<Location>();
     private ItemStack[] Contents = new ItemStack[1];
@@ -202,5 +204,9 @@ public class TileEnityImport extends BaseTile implements IInventory {
         return tile instanceof TileEntityBlockStorageContainer;
     }
 
+    @Override
+    public DataType type() {
+        return DataType.processor;
+    }
 }
 

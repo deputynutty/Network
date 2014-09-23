@@ -1,20 +1,24 @@
 package modmuss50.network.entity.robot;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import sourceteam.mods.lib.Location;
 
 
-public class EntityRobot extends Entity {
+public class EntityDrone extends EntityLivingBase {
 
-    public EntityRobot(World world) {
-        super(world);
+    public EntityDrone(World world) {
+        super(Minecraft.getMinecraft().theWorld);
     }
 
     public Location nextLocation = null;
@@ -77,17 +81,38 @@ public class EntityRobot extends Entity {
     }
 
     @Override
+    public ItemStack getHeldItem() {
+        return null;
+    }
+
+    @Override
+    public ItemStack getEquipmentInSlot(int p_71124_1_) {
+        return null;
+    }
+
+    @Override
+    public void setCurrentItemOrArmor(int p_70062_1_, ItemStack p_70062_2_) {
+
+    }
+
+    @Override
+    public ItemStack[] getLastActiveItems() {
+        return new ItemStack[0];
+    }
+
+    @Override
     protected void entityInit() {
 
     }
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound tagCompound) {
+    public void readEntityFromNBT(NBTTagCompound tagCompound) {
 
     }
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound tagCompound) {
+    public void writeEntityToNBT(NBTTagCompound tagCompound) {
 
     }
+
 }
