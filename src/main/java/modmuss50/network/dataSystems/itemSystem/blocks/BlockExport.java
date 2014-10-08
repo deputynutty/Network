@@ -1,6 +1,8 @@
 package modmuss50.network.dataSystems.itemSystem.blocks;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import modmuss50.network.blocks.BlockBase;
+import modmuss50.network.dataSystems.itemSystem.gui.GuiItemList;
 import modmuss50.network.dataSystems.itemSystem.tileEntitys.TileEntityExport;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +27,7 @@ public class BlockExport extends BlockBase {
             tileEntityExport.stackToFind = player.inventory.getCurrentItem();
             return true;
         }
+        FMLClientHandler.instance().showGuiScreen(new GuiItemList());
         return false;
     }
 }

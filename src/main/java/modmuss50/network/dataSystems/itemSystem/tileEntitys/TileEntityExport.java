@@ -36,6 +36,9 @@ public class TileEntityExport extends BaseTile implements IDataPer {
 
     @Override
     public void updateEntity(){
+        if(!worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
+            return;
+        }
         if(stackToFind == null){
             tiles.clear();
             return;

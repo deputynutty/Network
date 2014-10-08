@@ -41,7 +41,7 @@ public class RenderWireNFC extends TileEntitySpecialRenderer {
 
         //chnage the colour of the texture will do when i have photoshop
 
-        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/NFCWire.png"));
+        Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("network", "models/NFCWire" + colour + ".png"));
 
         GL11.glColor3f(0.8F, 0.8F, 0.8F);
         GL11.glPushMatrix();
