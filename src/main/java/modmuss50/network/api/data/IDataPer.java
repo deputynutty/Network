@@ -5,5 +5,5 @@ package modmuss50.network.api.data;
  */
 public interface IDataPer {
 
-    public DataType type();
+	public DataType type();
 }

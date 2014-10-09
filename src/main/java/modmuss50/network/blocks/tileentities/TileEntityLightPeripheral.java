@@ -13,67 +13,67 @@ import sourceteam.mods.lib.api.IRGB;
  */
 public class TileEntityLightPeripheral extends BaseTile implements IRGB {
 
-    public int red = 255;
-    public int green = 255;
-    public int blue = 255;
+	public int red = 255;
+	public int green = 255;
+	public int blue = 255;
 
-    public TileEntityLightPeripheral() {
+	public TileEntityLightPeripheral() {
 
-    }
+	}
 
-    @Override
-    public void writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
 
-        compound.setInteger("red", red);
-        compound.setInteger("green", green);
-        compound.setInteger("blue", blue);
-    }
+		compound.setInteger("red", red);
+		compound.setInteger("green", green);
+		compound.setInteger("blue", blue);
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
 
-        red = compound.getInteger("red");
-        green = compound.getInteger("green");
-        blue = compound.getInteger("blue");
-        //   updateBlock();
-    }
+		red = compound.getInteger("red");
+		green = compound.getInteger("green");
+		blue = compound.getInteger("blue");
+		//   updateBlock();
+	}
 
-    public void updateBlock() {
-        this.worldObj.markBlockRangeForRenderUpdate(this.xCoord, this.yCoord, this.zCoord, this.xCoord, this.yCoord, this.zCoord);
-        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-    }
+	public void updateBlock() {
+		this.worldObj.markBlockRangeForRenderUpdate(this.xCoord, this.yCoord, this.zCoord, this.xCoord, this.yCoord, this.zCoord);
+		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+	}
 
-    public Packet getDescriptionPacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        writeToNBT(nbtTag);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
-    }
+	public Packet getDescriptionPacket() {
+		NBTTagCompound nbtTag = new NBTTagCompound();
+		writeToNBT(nbtTag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+	}
 
-    @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
-        worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
-        readFromNBT(packet.func_148857_g());
-    }
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+		worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+		readFromNBT(packet.func_148857_g());
+	}
 
-    public void syncWithServer() {
-        // checks to see if the tile enity is not no the client then sneds the
-        // data to the client when called.
-        NetworkCore.packetPipeline.sendToServer(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
+	public void syncWithServer() {
+		// checks to see if the tile enity is not no the client then sneds the
+		// data to the client when called.
+		NetworkCore.packetPipeline.sendToServer(new PacketLight(this.xCoord, this.yCoord, this.zCoord, red, green, blue));
 
-        updateBlock();
-    }
-
-
-    @Override
-    public boolean canUpdate() {
-        return true;
-    }
+		updateBlock();
+	}
 
 
-    @Override
-    public float[] getRGB() {
-        return new float[]{red / 255, green / 255, blue / 255};
-    }
+	@Override
+	public boolean canUpdate() {
+		return true;
+	}
+
+
+	@Override
+	public float[] getRGB() {
+		return new float[]{red / 255, green / 255, blue / 255};
+	}
 }

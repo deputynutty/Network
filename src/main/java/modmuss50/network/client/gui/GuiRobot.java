@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class GuiRobot extends GuiScreen {
 
-    public GuiRobot(GuiModList parent, ArrayList<String> mods, int listWidth) {
+	public GuiRobot(GuiModList parent, ArrayList<String> mods, int listWidth) {
 
-    }
+	}
 
 }

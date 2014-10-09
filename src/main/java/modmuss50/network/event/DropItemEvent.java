@@ -7,12 +7,12 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 
 public class DropItemEvent {
 
-    @SubscribeEvent
-    public void onItemTossed(ItemTossEvent e) {
-        ItemStack item = e.entityItem.getEntityItem();
-        if (item.getItem() == NetworkItems.tablet && item.getItemDamage() != 2) {
-            //This breaks the tablet when dropped
-            e.entityItem.getEntityItem().setItemDamage(2);
-        }
-    }
+	@SubscribeEvent
+	public void onItemTossed(ItemTossEvent e) {
+		ItemStack item = e.entityItem.getEntityItem();
+		if (item.getItem() == NetworkItems.tablet && item.getItemDamage() != 2) {
+			//This breaks the tablet when dropped
+			e.entityItem.getEntityItem().setItemDamage(2);
+		}
+	}
 }

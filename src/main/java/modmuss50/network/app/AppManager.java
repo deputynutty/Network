@@ -9,18 +9,18 @@ import java.util.ArrayList;
 
 public class AppManager {
 
-    public static ArrayList<App> apps = new ArrayList<App>();
+	public static ArrayList<App> apps = new ArrayList<App>();
 
-    public static void init() {
-        FMLLog.info("[NetworkAppManager] Initialising app database");
+	public static void init() {
+		FMLLog.info("[NetworkAppManager] Initialising app database");
 
-        addApp(new AppSettings());
-        addApp(new AppBrowser());
-        addApp(new AppFileExplorer());
-    }
+		addApp(new AppSettings());
+		addApp(new AppBrowser());
+		addApp(new AppFileExplorer());
+	}
 
-    public static void addApp(App app) {
-        apps.add(app);
-        FMLLog.info("[NetworkAppManager] Adding " + app.getAppName() + " to app database");
-    }
+	public static void addApp(App app) {
+		apps.add(app);
+		FMLLog.info("[NetworkAppManager] Adding " + app.getAppName() + " to app database");
+	}
 }

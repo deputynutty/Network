@@ -6,8 +6,8 @@ import modmuss50.network.compact.NEI.InfusionNei;
 
 public class ClientNEI {
 
-    public static void init() {
-        API.registerRecipeHandler(new InfusionNei());
-    }
+	public static void init() {
+		API.registerRecipeHandler(new InfusionNei());
+	}
 
 }

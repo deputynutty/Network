@@ -13,22 +13,22 @@ import java.util.Random;
 
 public class BlockTabletCrafter extends Block {
 
-    public BlockTabletCrafter() {
-        super(Material.circuits);
-    }
+	public BlockTabletCrafter() {
+		super(Material.circuits);
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess iba, int x, int y, int z) {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            String name = Minecraft.getMinecraft().thePlayer.getDisplayName();
-            if (name.equals("roboyobo") || name.equals("tattyseal") || name.equals("mark123mark")) {
-                Random rand = new Random();
-                Color col = Color.getHSBColor(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
-                return col.getRGB();
-            }
-        }
-        return super.colorMultiplier(iba, x, y, z);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess iba, int x, int y, int z) {
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			String name = Minecraft.getMinecraft().thePlayer.getDisplayName();
+			if (name.equals("roboyobo") || name.equals("tattyseal") || name.equals("mark123mark")) {
+				Random rand = new Random();
+				Color col = Color.getHSBColor(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+				return col.getRGB();
+			}
+		}
+		return super.colorMultiplier(iba, x, y, z);
+	}
 
 }

@@ -18,35 +18,35 @@ import java.util.Random;
 
 public class BlockComputer extends BlockBase {
 
-    public BlockComputer() {
-        super(Material.anvil);
-    }
+	public BlockComputer() {
+		super(Material.anvil);
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess iba, int x, int y, int z) {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            String name = Minecraft.getMinecraft().thePlayer.getDisplayName();
-            if (name.equals("roboyobo") || name.equals("tattyseal") || name.equals("mark123mark")) {
-                Random rand = new Random();
-                Color col = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess iba, int x, int y, int z) {
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+			String name = Minecraft.getMinecraft().thePlayer.getDisplayName();
+			if (name.equals("roboyobo") || name.equals("tattyseal") || name.equals("mark123mark")) {
+				Random rand = new Random();
+				Color col = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
 
-                return col.getRGB();
-            }
-        }
-        return super.colorMultiplier(iba, x, y, z);
-    }
+				return col.getRGB();
+			}
+		}
+		return super.colorMultiplier(iba, x, y, z);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World var1, int var2) {
-        return new TileEntityComputer();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World var1, int var2) {
+		return new TileEntityComputer();
+	}
 
-    @Override
-    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+	@Override
+	public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
 
-        par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.computerGuiID, par1World, (int) x, (int) y, (int) z);
-        return true;
-    }
+		par5EntityPlayer.openGui(NetworkCore.instance, GuiHandler.computerGuiID, par1World, (int) x, (int) y, (int) z);
+		return true;
+	}
 
 }

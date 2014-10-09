@@ -15,19 +15,19 @@ import net.minecraft.world.World;
  */
 public class ItemPartWireNFC extends JItemMultiPart {
 
-    public ItemPartWireNFC() {
-        super();
-        setCreativeTab(NetworkCore.Network);
-        setUnlocalizedName("Network.parts.wireNFC");
-        setTextureName("network:wirenfc");
-    }
+	public ItemPartWireNFC() {
+		super();
+		setCreativeTab(NetworkCore.Network);
+		setUnlocalizedName("Network.parts.wireNFC");
+		setTextureName("network:wirenfc");
+	}
 
-    @Override
-    public TMultiPart newPart(ItemStack itemStack, EntityPlayer player, World world, BlockCoord blockCoord, int i, Vector3 vector3) {
-        PartWireNFC w = (PartWireNFC) MultiPartRegistry.createPart(Multipart.wireNfcName, false);
-        if (w != null) {
-            w.onPlaced();
-        }
-        return w;
-    }
+	@Override
+	public TMultiPart newPart(ItemStack itemStack, EntityPlayer player, World world, BlockCoord blockCoord, int i, Vector3 vector3) {
+		PartWireNFC w = (PartWireNFC) MultiPartRegistry.createPart(Multipart.wireNfcName, false);
+		if (w != null) {
+			w.onPlaced();
+		}
+		return w;
+	}
 }

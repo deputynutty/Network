@@ -5,13 +5,13 @@ import net.minecraft.item.Item;
 
 public class ItemBattery extends Item implements IPowerSinkUpgrade {
 
-    public ItemBattery() {
-        super();
-        setMaxStackSize(16);
-    }
+	public ItemBattery() {
+		super();
+		setMaxStackSize(16);
+	}
 
-    @Override
-    public int capacity() {
-        return 1000000;
-    }
+	@Override
+	public int capacity() {
+		return 1000000;
+	}
 }

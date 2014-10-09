@@ -5,16 +5,16 @@ import modmuss50.network.api.power.IEnergyFace;
 
 public class TileEntityCreativePower extends BaseTile implements IEnergyFace {
 
-    EnergySystem energySystem = new EnergySystem(100000, 10000, true, false);
+	EnergySystem energySystem = new EnergySystem(100000, 10000, true, false);
 
-    @Override
-    public void updateEntity() {
-        super.updateEntity();
-        energySystem.setPower(energySystem.getPowerStorageSize());
-    }
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		energySystem.setPower(energySystem.getPowerStorageSize());
+	}
 
-    @Override
-    public EnergySystem ENERGY_SYSTEM() {
-        return energySystem;
-    }
+	@Override
+	public EnergySystem ENERGY_SYSTEM() {
+		return energySystem;
+	}
 }

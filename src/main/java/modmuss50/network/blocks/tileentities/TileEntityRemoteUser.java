@@ -2,8 +2,8 @@ package modmuss50.network.blocks.tileentities;
 
 import cpw.mods.fml.common.Loader;
 import modmuss50.network.api.IRemoteTile;
-import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.api.WorldCoordinate;
+import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.compact.FMP.PartCable;
 import modmuss50.network.netty.ChannelHandler;
 import net.minecraft.block.Block;
@@ -24,154 +24,154 @@ import java.util.Queue;
 
 public class TileEntityRemoteUser extends BaseTile implements IInventory {
 
-    public ArrayList<TileEntity> remotetiles = new ArrayList<TileEntity>();
+	public ArrayList<TileEntity> remotetiles = new ArrayList<TileEntity>();
 
-    public void updateEntity() {
-        super.updateEntity();
-        remotetiles.clear();
-        findRemoteTile();
+	public void updateEntity() {
+		super.updateEntity();
+		remotetiles.clear();
+		findRemoteTile();
 
-        // for (int i = 0; i < remotetiles.size(); i++) {
-        // System.out.println(remotetiles.get(i).getBlockType().getUnlocalizedName());
-        // }
-    }
+		// for (int i = 0; i < remotetiles.size(); i++) {
+		// System.out.println(remotetiles.get(i).getBlockType().getUnlocalizedName());
+		// }
+	}
 
-    public void findRemoteTile() {
-        int BlockX = this.xCoord;
-       int BlockY = this.yCoord;
-       int BlockZ = this.zCoord;
-       World World = this.getWorldObj();
+	public void findRemoteTile() {
+		int BlockX = this.xCoord;
+		int BlockY = this.yCoord;
+		int BlockZ = this.zCoord;
+		World World = this.getWorldObj();
 
-        List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
-        int cableMaxLenghth = 128;
-        Queue<WorldCoordinate> queue = new PriorityQueue<WorldCoordinate>();
-        WorldCoordinate start = new WorldCoordinate(BlockX, BlockY, BlockZ, 0);
-        queue.add(start);
-        visited.add(start);
+		List<WorldCoordinate> visited = new ArrayList<WorldCoordinate>();
+		int cableMaxLenghth = 128;
+		Queue<WorldCoordinate> queue = new PriorityQueue<WorldCoordinate>();
+		WorldCoordinate start = new WorldCoordinate(BlockX, BlockY, BlockZ, 0);
+		queue.add(start);
+		visited.add(start);
 
-        while (!queue.isEmpty()) {
-            WorldCoordinate element = queue.poll();
+		while (!queue.isEmpty()) {
+			WorldCoordinate element = queue.poll();
 
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
-                        if (Math.abs(x) + Math.abs(y) + Math.abs(z) == 1) {
-                            WorldCoordinate target = new WorldCoordinate(element.getX() + x, element.getY() + y, element.getZ() + z, element.getDepth() + 1);
+			for (int x = -1; x <= 1; x++) {
+				for (int y = -1; y <= 1; y++) {
+					for (int z = -1; z <= 1; z++) {
+						if (Math.abs(x) + Math.abs(y) + Math.abs(z) == 1) {
+							WorldCoordinate target = new WorldCoordinate(element.getX() + x, element.getY() + y, element.getZ() + z, element.getDepth() + 1);
 
-                            if (!visited.contains(target)) {
-                                visited.add(target);
-                                if (element.getDepth() < cableMaxLenghth) {
-                                    Block block = World.getBlock(target.getX(), target.getY(), target.getZ());
-                                    TileEntity tile = World.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                    int meta = World.getBlockMetadata(target.getX(), target.getY(), target.getZ());
-                                    TileEntity tileEntity = World.getTileEntity(target.getX(), target.getY(), target.getZ());
-                                    if (tileEntity != null && tileEntity instanceof IRemoteTile) {
-                                        remotetiles.add(tileEntity);
+							if (!visited.contains(target)) {
+								visited.add(target);
+								if (element.getDepth() < cableMaxLenghth) {
+									Block block = World.getBlock(target.getX(), target.getY(), target.getZ());
+									TileEntity tile = World.getTileEntity(target.getX(), target.getY(), target.getZ());
+									int meta = World.getBlockMetadata(target.getX(), target.getY(), target.getZ());
+									TileEntity tileEntity = World.getTileEntity(target.getX(), target.getY(), target.getZ());
+									if (tileEntity != null && tileEntity instanceof IRemoteTile) {
+										remotetiles.add(tileEntity);
 
-                                    } else {
+									} else {
 
-                                    }
+									}
 
-                                    if (isCable(tile) && target.getDepth() < cableMaxLenghth) {
-                                        queue.add(target);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+									if (isCable(tile) && target.getDepth() < cableMaxLenghth) {
+										queue.add(target);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 
-        }
+		}
 
-    }
+	}
 
-    // ####INV STUFFS
+	// ####INV STUFFS
 
-    @Override
-    public int getSizeInventory() {
-        return 0;
-    }
+	@Override
+	public int getSizeInventory() {
+		return 0;
+	}
 
-    @Override
-    public ItemStack getStackInSlot(int var1) {
-        return null;
-    }
+	@Override
+	public ItemStack getStackInSlot(int var1) {
+		return null;
+	}
 
-    @Override
-    public ItemStack decrStackSize(int var1, int var2) {
-        return null;
-    }
+	@Override
+	public ItemStack decrStackSize(int var1, int var2) {
+		return null;
+	}
 
-    @Override
-    public ItemStack getStackInSlotOnClosing(int var1) {
-        return null;
-    }
+	@Override
+	public ItemStack getStackInSlotOnClosing(int var1) {
+		return null;
+	}
 
-    @Override
-    public void setInventorySlotContents(int var1, ItemStack var2) {
+	@Override
+	public void setInventorySlotContents(int var1, ItemStack var2) {
 
-    }
+	}
 
-    @Override
-    public String getInventoryName() {
-        return "RemoteUser";
-    }
+	@Override
+	public String getInventoryName() {
+		return "RemoteUser";
+	}
 
-    @Override
-    public boolean hasCustomInventoryName() {
-        return false;
-    }
+	@Override
+	public boolean hasCustomInventoryName() {
+		return false;
+	}
 
-    @Override
-    public int getInventoryStackLimit() {
-        return 0;
-    }
+	@Override
+	public int getInventoryStackLimit() {
+		return 0;
+	}
 
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer var1) {
-        return true;
-    }
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer var1) {
+		return true;
+	}
 
-    @Override
-    public void openInventory() {
+	@Override
+	public void openInventory() {
 
-    }
+	}
 
-    @Override
-    public void closeInventory() {
+	@Override
+	public void closeInventory() {
 
-    }
+	}
 
-    @Override
-    public boolean isItemValidForSlot(int var1, ItemStack var2) {
-        return false;
-    }
+	@Override
+	public boolean isItemValidForSlot(int var1, ItemStack var2) {
+		return false;
+	}
 
-    public Packet getDescriptionPacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        writeToNBT(nbtTag);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
-    }
+	public Packet getDescriptionPacket() {
+		NBTTagCompound nbtTag = new NBTTagCompound();
+		writeToNBT(nbtTag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbtTag);
+	}
 
-    @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
-        worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
-        readFromNBT(packet.func_148857_g());
-    }
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+		worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+		readFromNBT(packet.func_148857_g());
+	}
 
-    public void syncTile() {
-        ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
-    }
+	public void syncTile() {
+		ChannelHandler.sendPacketToAllPlayers(getDescriptionPacket(), worldObj);
+	}
 
-    public boolean isCable(TileEntity tile) {
-        if (Loader.isModLoaded("ForgeMultipart")) {
-            return PartCable.isCable(tile);
-        }
+	public boolean isCable(TileEntity tile) {
+		if (Loader.isModLoaded("ForgeMultipart")) {
+			return PartCable.isCable(tile);
+		}
 
-        if (tile instanceof IEnergyFace)
-            return true;
+		if (tile instanceof IEnergyFace)
+			return true;
 
-        return tile instanceof TileEntityCable;
-    }
+		return tile instanceof TileEntityCable;
+	}
 }

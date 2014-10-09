@@ -7,12 +7,12 @@ import net.minecraft.item.Item;
  */
 public class itemFilter extends Item {
 
-    //TODO give this a gui so you can selcet what blocks can go in the chest, also need a whilelist and black list version
+	//TODO give this a gui so you can selcet what blocks can go in the chest, also need a whilelist and black list version
 
-    public itemFilter() {
-        super();
-        setMaxStackSize(1);
-    }
+	public itemFilter() {
+		super();
+		setMaxStackSize(1);
+	}
 
 
 }

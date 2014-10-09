@@ -15,16 +15,16 @@ import net.minecraft.world.World;
  */
 public class ItemPartWire extends JItemMultiPart {
 
-    public ItemPartWire() {
-        super();
-        setCreativeTab(NetworkCore.Network);
-        setUnlocalizedName("Network.parts.wire");
-        setTextureName("network:wire");
-    }
+	public ItemPartWire() {
+		super();
+		setCreativeTab(NetworkCore.Network);
+		setUnlocalizedName("Network.parts.wire");
+		setTextureName("network:wire");
+	}
 
-    @Override
-    public TMultiPart newPart(ItemStack itemStack, EntityPlayer player, World world, BlockCoord blockCoord, int i, Vector3 vector3) {
-        PartWire w = (PartWire) MultiPartRegistry.createPart(Multipart.wireName, false);
-        return w;
-    }
+	@Override
+	public TMultiPart newPart(ItemStack itemStack, EntityPlayer player, World world, BlockCoord blockCoord, int i, Vector3 vector3) {
+		PartWire w = (PartWire) MultiPartRegistry.createPart(Multipart.wireName, false);
+		return w;
+	}
 }

@@ -14,18 +14,18 @@ import sourceteam.mods.lib.client.AnimatedBlock.RenderAnimatedTile;
 
 public class ClientProxy extends CommonProxy {
 
-    @Override
-    public void initRenderers() {
-        //load some of the renders
-        RenderingRegistry.registerEntityRenderingHandler(ServerCart.class, new RenderCustomCart());
+	@Override
+	public void initRenderers() {
+		//load some of the renders
+		RenderingRegistry.registerEntityRenderingHandler(ServerCart.class, new RenderCustomCart());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidGen.class, new RenderFluidGen());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RenderMonitor());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new RenderAnimatedTile());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidGen.class, new RenderFluidGen());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMonitor.class, new RenderMonitor());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new RenderAnimatedTile());
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityDrone.class, new RenderRobot());
+		RenderingRegistry.registerEntityRenderingHandler(EntityDrone.class, new RenderRobot());
 
-        MinecraftForge.EVENT_BUS.register(new MobHealthBars());
-    }
+		MinecraftForge.EVENT_BUS.register(new MobHealthBars());
+	}
 }

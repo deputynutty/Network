@@ -10,12 +10,12 @@ import net.minecraft.world.World;
  */
 public class BlockPump extends BlockBase {
 
-    public BlockPump() {
-        super(Material.iron);
-    }
+	public BlockPump() {
+		super(Material.iron);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityPump();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		return new TileEntityPump();
+	}
 }

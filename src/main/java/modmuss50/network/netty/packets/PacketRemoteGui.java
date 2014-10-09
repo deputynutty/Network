@@ -8,46 +8,46 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class PacketRemoteGui extends AbstractPacket {
 
-    int x;
-    int y;
-    int z;
+	int x;
+	int y;
+	int z;
 
-    public PacketRemoteGui(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+	public PacketRemoteGui(int x, int y, int z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
-    public PacketRemoteGui() {
-    }
+	public PacketRemoteGui() {
+	}
 
-    @Override
-    public void encodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
-        buffer.writeInt(x);
-        buffer.writeInt(y);
-        buffer.writeInt(x);
-    }
+	@Override
+	public void encodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
+		buffer.writeInt(x);
+		buffer.writeInt(y);
+		buffer.writeInt(x);
+	}
 
-    @Override
-    public void decodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
-        this.x = buffer.readInt();
-        this.y = buffer.readInt();
-        this.z = buffer.readInt();
-    }
+	@Override
+	public void decodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
+		this.x = buffer.readInt();
+		this.y = buffer.readInt();
+		this.z = buffer.readInt();
+	}
 
-    @Override
-    public void handleClientSide(EntityPlayer player) {
-        Block irt = player.worldObj.getBlock(x, y, z);
-        irt.onBlockActivated(player.worldObj, x, y, z, player, 0, 0.5F, 0.5F, 0.5F);
-    }
+	@Override
+	public void handleClientSide(EntityPlayer player) {
+		Block irt = player.worldObj.getBlock(x, y, z);
+		irt.onBlockActivated(player.worldObj, x, y, z, player, 0, 0.5F, 0.5F, 0.5F);
+	}
 
-    @Override
-    public void handleServerSide(EntityPlayer player) {
-        //Block irt = player.worldObj.getBlock(x, y, z);
-        //irt.onBlockActivated(player.worldObj, x, y, z, player, 0, 0.5F, 0.5F, 0.5F);
+	@Override
+	public void handleServerSide(EntityPlayer player) {
+		//Block irt = player.worldObj.getBlock(x, y, z);
+		//irt.onBlockActivated(player.worldObj, x, y, z, player, 0, 0.5F, 0.5F, 0.5F);
 
-        System.out.println("The server say hi!");
-        //    player.worldObj.getBlock(x, y, z).onBlockActivated(player.worldObj, x, y, z, player, 1, 0F, 0F, 0F);
+		System.out.println("The server say hi!");
+		//    player.worldObj.getBlock(x, y, z).onBlockActivated(player.worldObj, x, y, z, player, 1, 0F, 0F, 0F);
 
 
 //        TileEntityInfusionFurnace tileentityfurnace = (TileEntityInfusionFurnace) player.worldObj.getTileEntity(x, y, z);
@@ -58,5 +58,5 @@ public class PacketRemoteGui extends AbstractPacket {
 //        }
 
 
-    }
+	}
 }

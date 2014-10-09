@@ -4,14 +4,14 @@ import net.minecraft.item.Item;
 
 public class IWirelessItem extends Item {
 
-    public String User;
+	public String User;
 
-    public IWirelessItem() {
-        super();
-    }
+	public IWirelessItem() {
+		super();
+	}
 
 	/*
-     * @Override public void onCreated(ItemStack itemstack, World world,
+	 * @Override public void onCreated(ItemStack itemstack, World world,
 	 * EntityPlayer player) { itemstack.stackTagCompound = new NBTTagCompound();
 	 * itemstack.stackTagCompound.setString("User", player.getDisplayName()); }
 	 */

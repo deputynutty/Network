@@ -23,9 +23,6 @@ import modmuss50.network.init.*;
 import modmuss50.network.items.NetworkItems;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,131 +36,131 @@ import java.util.logging.Logger;
 @Mod(modid = "network", name = "Network", version = "@MODVERSION@", dependencies = "required-after:sourcecore")
 public class NetworkCore implements ISourceMod {
 
-    //this is the main packet handler
-    public static final PacketPipeline packetPipeline = new PacketPipeline();
+	//this is the main packet handler
+	public static final PacketPipeline packetPipeline = new PacketPipeline();
 
-    //load the proxy s here
-    @SidedProxy(clientSide = "modmuss50.network.ClientProxy", serverSide = "modmuss50.network.CommonProxy")
-    public static CommonProxy proxy;
+	//load the proxy s here
+	@SidedProxy(clientSide = "modmuss50.network.ClientProxy", serverSide = "modmuss50.network.CommonProxy")
+	public static CommonProxy proxy;
 
-    //The network insance
-    @Instance("network")
-    public static NetworkCore instance;
+	//The network insance
+	@Instance("network")
+	public static NetworkCore instance;
 
-    //The network logger
-    public static Logger networkLog = Logger.getLogger("Network");
+	//The network logger
+	public static Logger networkLog = Logger.getLogger("Network");
 
-    //This is the creative tab, it has a custom search bar
-    public static CreativeTabs Network = new CreativeTabs("network") {
-        @Override
-        public Item getTabIconItem() {
-            return NetworkItems.tablet;
-        }
+	//This is the creative tab, it has a custom search bar
+	public static CreativeTabs Network = new CreativeTabs("network") {
+		@Override
+		public Item getTabIconItem() {
+			return NetworkItems.tablet;
+		}
 
-        @Override
-        public boolean hasSearchBar() {
-            return true;
-        }
+		@Override
+		public boolean hasSearchBar() {
+			return true;
+		}
 
-        ;
-    }.setBackgroundImageName("item_search.png");//setting the background to the vanilla search one here
+		;
+	}.setBackgroundImageName("item_search.png");//setting the background to the vanilla search one here
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        networkLog.info("Starting Network");//Log out to the logger saying that the mod is starting to init
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		networkLog.info("Starting Network");//Log out to the logger saying that the mod is starting to init
 
-        initConfig.loadConfig(event.getSuggestedConfigurationFile());//load the config
+		initConfig.loadConfig(event.getSuggestedConfigurationFile());//load the config
 
-        ModRegistry.registerMod(this);//register the mod with source core
+		ModRegistry.registerMod(this);//register the mod with source core
 
-        //some of the entity registry
-        int entityID;
-        entityID = EntityRegistry.findGlobalUniqueEntityId();
-        EntityRegistry.registerGlobalEntityID(ServerCart.class, "DiamondCart", entityID);
-        EntityRegistry.registerModEntity(ServerCart.class, "DiamondCart", 2, instance, 64, 5, true);
+		//some of the entity registry
+		int entityID;
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(ServerCart.class, "DiamondCart", entityID);
+		EntityRegistry.registerModEntity(ServerCart.class, "DiamondCart", 2, instance, 64, 5, true);
 
-        //register the gui handler
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		//register the gui handler
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
-        //register the drop item event for the tablets
-        MinecraftForge.EVENT_BUS.register(new DropItemEvent());
+		//register the drop item event for the tablets
+		MinecraftForge.EVENT_BUS.register(new DropItemEvent());
 
-        MinecraftForge.EVENT_BUS.register(new BlockBreakEvent());
+		MinecraftForge.EVENT_BUS.register(new BlockBreakEvent());
 
-        //call the item system
-        ItemSystem.preInit(event);
-    }
+		//call the item system
+		ItemSystem.preInit(event);
+	}
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
 
-        //load the renderes
-        proxy.initRenderers();
+		//load the renderes
+		proxy.initRenderers();
 
-        //load the 2 packet handlers
-        packetPipeline.initalise();
-        ChannelHandler.setChannels(NetworkRegistry.INSTANCE.newChannel("Network_Sim", new ChannelHandler()));
+		//load the 2 packet handlers
+		packetPipeline.initalise();
+		ChannelHandler.setChannels(NetworkRegistry.INSTANCE.newChannel("Network_Sim", new ChannelHandler()));
 
-        //load the items
-        initItems.loadItems();
+		//load the items
+		initItems.loadItems();
 
-        //load the blocks
-        initBlocks.loadBlocks();
+		//load the blocks
+		initBlocks.loadBlocks();
 
-        //load the app manager
-        AppManager.init();
+		//load the app manager
+		AppManager.init();
 
-        //load the recipes
-        initItems.Recipes();
+		//load the recipes
+		initItems.Recipes();
 
-        //load the item system
-        ItemSystem.init(event);
+		//load the item system
+		ItemSystem.init(event);
 
-        //Load the entity's
-        initEntitys.initEntitys();
+		//Load the entity's
+		initEntitys.initEntitys();
 
-        CompactManager.init();
+		CompactManager.init();
 
-    }
+	}
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
 
-        //post the packet handler
-        packetPipeline.postInitialise();
-        //post the item system
-        ItemSystem.postInit(event);
-    }
+		//post the packet handler
+		packetPipeline.postInitialise();
+		//post the item system
+		ItemSystem.postInit(event);
+	}
 
-    @EventHandler
-    public void serverInit(FMLServerStartingEvent event) {
-        //load the commands
-        initCommand.loadcommands(event);
-    }
+	@EventHandler
+	public void serverInit(FMLServerStartingEvent event) {
+		//load the commands
+		initCommand.loadcommands(event);
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BaseModGui settingsScreen() {
-        return null;
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BaseModGui settingsScreen() {
+		return null;
+	}
 
-    @Override
-    public String modId() {
-        return "network";
-    }
+	@Override
+	public String modId() {
+		return "network";
+	}
 
-    @Override
-    public String modName() {
-        return "Network";
-    }
+	@Override
+	public String modName() {
+		return "Network";
+	}
 
-    @Override
-    public String modVersion() {
-        return "@MODVERSION@";
-    }
+	@Override
+	public String modVersion() {
+		return "@MODVERSION@";
+	}
 
-    @Override
-    public String recomenedMinecraftVeriosion() {
-        return "1.7.10";
-    }
+	@Override
+	public String recomenedMinecraftVeriosion() {
+		return "1.7.10";
+	}
 }

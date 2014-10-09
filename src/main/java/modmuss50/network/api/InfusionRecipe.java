@@ -7,12 +7,12 @@ import net.minecraft.item.ItemStack;
  */
 public class InfusionRecipe {
 
-    public ItemStack input;
-    public ItemStack output;
+	public ItemStack input;
+	public ItemStack output;
 
-    public InfusionRecipe(ItemStack input, ItemStack output) {
-        this.input = input;
-        this.output = output;
-    }
+	public InfusionRecipe(ItemStack input, ItemStack output) {
+		this.input = input;
+		this.output = output;
+	}
 
 }

@@ -6,13 +6,13 @@ import net.minecraft.world.World;
 
 public class RailBase extends BlockRail {
 
-    public RailBase() {
-        super();
-    }
+	public RailBase() {
+		super();
+	}
 
-    @Override
-    public float getRailMaxSpeed(World world, EntityMinecart cart, int y, int x, int z) {
-        return 5.65f;
-    }
+	@Override
+	public float getRailMaxSpeed(World world, EntityMinecart cart, int y, int x, int z) {
+		return 5.65f;
+	}
 
 }

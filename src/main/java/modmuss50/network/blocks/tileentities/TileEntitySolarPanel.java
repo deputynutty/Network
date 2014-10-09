@@ -6,29 +6,29 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntitySolarPanel extends BaseTile implements IEnergyFace {
 
-    EnergySystem energySystem;
+	EnergySystem energySystem;
 
-    public TileEntitySolarPanel() {
-        this.energySystem = new EnergySystem(10000, 0, true, false);
-    }
+	public TileEntitySolarPanel() {
+		this.energySystem = new EnergySystem(10000, 0, true, false);
+	}
 
-    @Override
-    public void updateEntity() {
-        energySystem.tryInsertEnergy(1);
-    }
+	@Override
+	public void updateEntity() {
+		energySystem.tryInsertEnergy(1);
+	}
 
-    @Override
-    public EnergySystem ENERGY_SYSTEM() {
-        return energySystem;
-    }
+	@Override
+	public EnergySystem ENERGY_SYSTEM() {
+		return energySystem;
+	}
 
-    @Override
-    public void writeToNBT(NBTTagCompound tag) {
-        energySystem.writeToNBT(tag);
-    }
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		energySystem.writeToNBT(tag);
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        energySystem.readFromNBT(tag);
-    }
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		energySystem.readFromNBT(tag);
+	}
 }

@@ -22,88 +22,85 @@ import java.util.Random;
  * Created by Mark on 28/07/2014.
  */
 public class BlockInfusionFurnace extends BlockBase {
-    public IIcon[] icons = new IIcon[2];
+	public IIcon[] icons = new IIcon[2];
 
-    public BlockInfusionFurnace() {
-        super(Material.iron);
-    }
+	public BlockInfusionFurnace() {
+		super(Material.iron);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World var1, int var2) {
-        return new TileEntityInfusionFurnace();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World var1, int var2) {
+		return new TileEntityInfusionFurnace();
+	}
 
-    /**
-     * Called upon block activation (right click on the block.)
-     */
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
-        // if (world.isRemote) {
-        // return true;
-        // }
-        // else {
-        TileEntityInfusionFurnace tileentityfurnace = (TileEntityInfusionFurnace) world.getTileEntity(x, y, z);
+	/**
+	 * Called upon block activation (right click on the block.)
+	 */
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
+		if (!canBlockBeused(world, x, y, z, player))
+			return false;
+		TileEntityInfusionFurnace tileentityfurnace = (TileEntityInfusionFurnace) world.getTileEntity(x, y, z);
 
-        if (tileentityfurnace != null) {
-            player.openGui(NetworkCore.instance, 12, world, x, y, z);
-        }
+		if (tileentityfurnace != null) {
+			player.openGui(NetworkCore.instance, 12, world, x, y, z);
+		}
 
-        return true;
-        // }
-    }
+		return true;
+	}
 
-    @Override
-    public void breakBlock(World w, int x, int y, int z, Block b, int m) {
-        TileEntityInfusionFurnace te = (TileEntityInfusionFurnace) w.getTileEntity(x, y, z);
+	@Override
+	public void breakBlock(World w, int x, int y, int z, Block b, int m) {
+		TileEntityInfusionFurnace te = (TileEntityInfusionFurnace) w.getTileEntity(x, y, z);
 
-        if (te != null) {
-            for (int i = 0; i < te.getSizeInventory(); i++) {
-                if (te.getStackInSlot(i) != null) {
-                    new Random().nextInt(2);
-                    EntityItem e = new EntityItem(w, (double) x + new Random().nextInt(2), (double) y, (double) z + new Random().nextInt(2), te.getStackInSlot(i));
-                    w.spawnEntityInWorld(e);
-                }
-            }
-        }
-        super.breakBlock(w, x, y, z, b, m);
-    }
+		if (te != null) {
+			for (int i = 0; i < te.getSizeInventory(); i++) {
+				if (te.getStackInSlot(i) != null) {
+					new Random().nextInt(2);
+					EntityItem e = new EntityItem(w, (double) x + new Random().nextInt(2), (double) y, (double) z + new Random().nextInt(2), te.getStackInSlot(i));
+					w.spawnEntityInWorld(e);
+				}
+			}
+		}
+		super.breakBlock(w, x, y, z, b, m);
+	}
 
-    /**
-     * Called when the block is placed in the world.
-     */
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase p, ItemStack i) {
-        int l = MathHelper.floor_double((double) (p.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+	/**
+	 * Called when the block is placed in the world.
+	 */
+	public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase p, ItemStack i) {
+		int l = MathHelper.floor_double((double) (p.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-        if (l == 0) {
-            w.setBlockMetadataWithNotify(x, y, z, 2, 2);
-        }
+		if (l == 0) {
+			w.setBlockMetadataWithNotify(x, y, z, 2, 2);
+		}
 
-        if (l == 1) {
-            w.setBlockMetadataWithNotify(x, y, z, 5, 2);
-        }
+		if (l == 1) {
+			w.setBlockMetadataWithNotify(x, y, z, 5, 2);
+		}
 
-        if (l == 2) {
-            w.setBlockMetadataWithNotify(x, y, z, 3, 2);
-        }
+		if (l == 2) {
+			w.setBlockMetadataWithNotify(x, y, z, 3, 2);
+		}
 
-        if (l == 3) {
-            w.setBlockMetadataWithNotify(x, y, z, 4, 2);
-        }
-        super.onBlockPlacedBy(w, x, y, z, p, i);
-    }
+		if (l == 3) {
+			w.setBlockMetadataWithNotify(x, y, z, 4, 2);
+		}
+		super.onBlockPlacedBy(w, x, y, z, p, i);
+	}
 
-    /**
-     * Gets the block's texture. Args: side, meta
-     */
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
-        return p_149691_1_ == 1 ? this.icons[0] : (p_149691_1_ == 0 ? this.icons[0] : (p_149691_1_ != p_149691_2_ ? this.icons[0] : this.icons[1]));
-    }
+	/**
+	 * Gets the block's texture. Args: side, meta
+	 */
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
+		return p_149691_1_ == 1 ? this.icons[0] : (p_149691_1_ == 0 ? this.icons[0] : (p_149691_1_ != p_149691_2_ ? this.icons[0] : this.icons[1]));
+	}
 
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister p_149651_1_) {
-        this.icons[1] = p_149651_1_.registerIcon("network:FurnaceFront");
-        this.icons[0] = p_149651_1_.registerIcon("network:ItemConvayor_side");
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister p_149651_1_) {
+		this.icons[1] = p_149651_1_.registerIcon("network:FurnaceFront");
+		this.icons[0] = p_149651_1_.registerIcon("network:ItemConvayor_side");
+	}
 
 
 }

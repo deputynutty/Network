@@ -10,79 +10,79 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerPowerUserBase extends Container {
-    private IInventory lowerChestInventory;
-    private int numRows = 3;
+	private IInventory lowerChestInventory;
+	private int numRows = 3;
 
-    private TileEntityRemoteUser tileEntity;
+	private TileEntityRemoteUser tileEntity;
 
-    public ContainerPowerUserBase(InventoryPlayer player, TileEntityRemoteUser tile) {
-        this.tileEntity = tile;
-        lowerChestInventory = this.tileEntity;
+	public ContainerPowerUserBase(InventoryPlayer player, TileEntityRemoteUser tile) {
+		this.tileEntity = tile;
+		lowerChestInventory = this.tileEntity;
 
-        // this.addSlotToContainer(new Slot(this.tileEntity, 0, 8, 24));
+		// this.addSlotToContainer(new Slot(this.tileEntity, 0, 8, 24));
 
-        this.bindPlayerInventory(player);
-    }
+		this.bindPlayerInventory(player);
+	}
 
-    protected void bindPlayerInventory(InventoryPlayer par1InventoryPlayer) {
-        int i;
-        for (i = 0; i < 3; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-            }
-        }
+	protected void bindPlayerInventory(InventoryPlayer par1InventoryPlayer) {
+		int i;
+		for (i = 0; i < 3; ++i) {
+			for (int j = 0; j < 9; ++j) {
+				this.addSlotToContainer(new Slot(par1InventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+			}
+		}
 
-        for (i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, i, 8 + i * 18, 142));
-        }
-    }
+		for (i = 0; i < 9; ++i) {
+			this.addSlotToContainer(new Slot(par1InventoryPlayer, i, 8 + i * 18, 142));
+		}
+	}
 
-    public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-        return this.lowerChestInventory.isUseableByPlayer(par1EntityPlayer);
-    }
+	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
+		return this.lowerChestInventory.isUseableByPlayer(par1EntityPlayer);
+	}
 
-    /**
-     * Called when a player shift-clicks on a slot. You must override this or
-     * you will crash when someone does that.
-     */
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
-        ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(par2);
+	/**
+	 * Called when a player shift-clicks on a slot. You must override this or
+	 * you will crash when someone does that.
+	 */
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+		ItemStack itemstack = null;
+		Slot slot = (Slot) this.inventorySlots.get(par2);
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+		if (slot != null && slot.getHasStack()) {
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
 
-            if (par2 < this.numRows * 9) {
-                if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true)) {
-                    return null;
-                }
-            } else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false)) {
-                return null;
-            }
+			if (par2 < this.numRows * 9) {
+				if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots.size(), true)) {
+					return null;
+				}
+			} else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false)) {
+				return null;
+			}
 
-            if (itemstack1.stackSize == 0) {
-                slot.putStack((ItemStack) null);
-            } else {
-                slot.onSlotChanged();
-            }
-        }
+			if (itemstack1.stackSize == 0) {
+				slot.putStack((ItemStack) null);
+			} else {
+				slot.onSlotChanged();
+			}
+		}
 
-        return itemstack;
-    }
+		return itemstack;
+	}
 
-    /**
-     * Called when the container is closed.
-     */
-    public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-        super.onContainerClosed(par1EntityPlayer);
-        this.lowerChestInventory.closeInventory();
-    }
+	/**
+	 * Called when the container is closed.
+	 */
+	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
+		super.onContainerClosed(par1EntityPlayer);
+		this.lowerChestInventory.closeInventory();
+	}
 
-    /**
-     * Return this chest container's lower chest inventory.
-     */
-    public IInventory getLowerChestInventory() {
-        return this.lowerChestInventory;
-    }
+	/**
+	 * Return this chest container's lower chest inventory.
+	 */
+	public IInventory getLowerChestInventory() {
+		return this.lowerChestInventory;
+	}
 }

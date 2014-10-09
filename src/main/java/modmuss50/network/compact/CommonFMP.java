@@ -12,16 +12,16 @@ import net.minecraft.item.ItemStack;
 
 public class CommonFMP {
 
-    public static void init() {
-        Multipart.init();
+	public static void init() {
+		Multipart.init();
 
-        GameRegistry.addShapelessRecipe(new ItemStack(Multipart.cablepartitem, 1), new ItemStack(MicroblockProxy.sawIron()), new ItemStack(NetworkBlocks.networkCable));
-        GameRegistry.addShapelessRecipe(new ItemStack(Multipart.cablepartitem, 1), new ItemStack(MicroblockProxy.sawDiamond()), new ItemStack(NetworkBlocks.networkCable));
-        GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWire), "   ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"));
-        GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWireNFC), " d ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"), 'd', Items.diamond);
-        GameRegistry.addRecipe(new ItemStack(NetworkBlocks.infusionFurnace), "ldg", "cfc", "ehe", 'l', Blocks.lapis_block, 'd', Blocks.diamond_block, 'g', Blocks.gold_block, 'c', Multipart.cablepartitem, 'f', Blocks.furnace, 'e', Blocks.enchanting_table, 'h', Blocks.ender_chest);
+		GameRegistry.addShapelessRecipe(new ItemStack(Multipart.cablepartitem, 1), new ItemStack(MicroblockProxy.sawIron()), new ItemStack(NetworkBlocks.networkCable));
+		GameRegistry.addShapelessRecipe(new ItemStack(Multipart.cablepartitem, 1), new ItemStack(MicroblockProxy.sawDiamond()), new ItemStack(NetworkBlocks.networkCable));
+		GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWire), "   ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"));
+		GameRegistry.addRecipe(new ItemStack(Multipart.itemPartWireNFC), " d ", "fff", "   ", 'f', ItemPart.getItemstack("FiberCable"), 'd', Items.diamond);
+		GameRegistry.addRecipe(new ItemStack(NetworkBlocks.infusionFurnace), "ldg", "cfc", "ehe", 'l', Blocks.lapis_block, 'd', Blocks.diamond_block, 'g', Blocks.gold_block, 'c', Multipart.cablepartitem, 'f', Blocks.furnace, 'e', Blocks.enchanting_table, 'h', Blocks.ender_chest);
 
 
-    }
+	}
 
 }

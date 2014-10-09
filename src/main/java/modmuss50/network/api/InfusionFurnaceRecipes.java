@@ -11,32 +11,32 @@ import java.util.ArrayList;
  */
 public class InfusionFurnaceRecipes {
 
-    public static InfusionFurnaceRecipes smeltingBase = new InfusionFurnaceRecipes();
+	public static InfusionFurnaceRecipes smeltingBase = new InfusionFurnaceRecipes();
 
-    public ArrayList<InfusionRecipe> recpies = new ArrayList<InfusionRecipe>();
+	public ArrayList<InfusionRecipe> recpies = new ArrayList<InfusionRecipe>();
 
-    public static InfusionFurnaceRecipes smelting() {
-        return smeltingBase;
-    }
+	public static InfusionFurnaceRecipes smelting() {
+		return smeltingBase;
+	}
 
-    public void addRecipe(Block block, ItemStack itemStack) {
-        this.addRecipe(Item.getItemFromBlock(block), itemStack);
-    }
+	public void addRecipe(Block block, ItemStack itemStack) {
+		this.addRecipe(Item.getItemFromBlock(block), itemStack);
+	}
 
-    public void addRecipe(Item item, ItemStack itemStack) {
-        this.addRecipe(new ItemStack(item, 1, 32767), itemStack);
-    }
+	public void addRecipe(Item item, ItemStack itemStack) {
+		this.addRecipe(new ItemStack(item, 1, 32767), itemStack);
+	}
 
-    public void addRecipe(ItemStack input, ItemStack output) {
-        this.recpies.add(new InfusionRecipe(input, output));
-    }
+	public void addRecipe(ItemStack input, ItemStack output) {
+		this.recpies.add(new InfusionRecipe(input, output));
+	}
 
-    public ItemStack getSmeltingResult(ItemStack itemStack) {
-        for (int i = 0; i < recpies.size(); i++) {
-            if (recpies.get(i).input.getItem().equals(itemStack.getItem()) && recpies.get(i).input.getItemDamage() == itemStack.getItemDamage()) {
-                return recpies.get(i).output;
-            }
-        }
-        return null;
-    }
+	public ItemStack getSmeltingResult(ItemStack itemStack) {
+		for (int i = 0; i < recpies.size(); i++) {
+			if (recpies.get(i).input.getItem().equals(itemStack.getItem()) && recpies.get(i).input.getItemDamage() == itemStack.getItemDamage()) {
+				return recpies.get(i).output;
+			}
+		}
+		return null;
+	}
 }
