@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import modmuss50.network.app.AppManager;
+import modmuss50.network.blocks.event.BlockBreakEvent;
 import modmuss50.network.client.gui.GuiHandler;
 import modmuss50.network.compact.CompactManager;
 import modmuss50.network.dataSystems.itemSystem.ItemSystem;
@@ -42,7 +43,7 @@ public class NetworkCore implements ISourceMod {
     public static final PacketPipeline packetPipeline = new PacketPipeline();
 
     //load the proxy s here
-    @SidedProxy(clientSide = "modmuss50.network.ClientProxy", serverSide = "Cmodmuss50.network.ommonProxy")
+    @SidedProxy(clientSide = "modmuss50.network.ClientProxy", serverSide = "modmuss50.network.CommonProxy")
     public static CommonProxy proxy;
 
     //The network insance
@@ -86,6 +87,8 @@ public class NetworkCore implements ISourceMod {
 
         //register the drop item event for the tablets
         MinecraftForge.EVENT_BUS.register(new DropItemEvent());
+
+        MinecraftForge.EVENT_BUS.register(new BlockBreakEvent());
 
         //call the item system
         ItemSystem.preInit(event);

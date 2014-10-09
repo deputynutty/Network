@@ -86,6 +86,7 @@ public class BlockNetworkedFurnace extends BlockBase {
         if (l == 3) {
             w.setBlockMetadataWithNotify(x, y, z, 4, 2);
         }
+        super.onBlockPlacedBy(w, x, y, z, p, i);
     }
 
     /**
