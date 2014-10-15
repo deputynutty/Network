@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockNetworkedFurnace extends BlockBase {
-	public IIcon[] icons = new IIcon[3];
+	public IIcon[] icons = new IIcon[2];
 
 	public BlockNetworkedFurnace() {
 		super(Material.iron);
@@ -89,15 +89,14 @@ public class BlockNetworkedFurnace extends BlockBase {
 	 * Gets the block's texture. Args: side, meta
 	 */
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		return side == 1 ? this.icons[2] : (side == 0 ? this.icons[2] : (side != meta ? this.icons[0] : this.icons[1]));
+	public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
+		return p_149691_1_ == 1 ? this.icons[0] : (p_149691_1_ == 0 ? this.icons[0] : (p_149691_1_ != p_149691_2_ ? this.icons[0] : this.icons[1]));
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister p_149651_1_) {
 		this.icons[1] = p_149651_1_.registerIcon("network:FurnaceFront");
-		this.icons[0] = p_149651_1_.registerIcon("network:base");
-		this.icons[2] = p_149651_1_.registerIcon("network:base_vert");
+		this.icons[0] = p_149651_1_.registerIcon("network:ItemConvayor_side");
 	}
 
 }
