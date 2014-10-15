@@ -7,7 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import sourceteam.mods.lib.client.GuiRenderHelper;
+import modmuss50.mods.lib.client.GuiRenderHelper;
 
 /**
  * Created by Mark on 28/07/2014.

@@ -6,7 +6,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
-import sourceteam.mods.lib.client.RenderItemUtils;
+import modmuss50.mods.lib.client.RenderItemUtils;
 
 public class GuiItemList extends GuiScreen {
 

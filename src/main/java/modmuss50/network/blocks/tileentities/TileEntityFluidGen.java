@@ -16,6 +16,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import modmuss50.mods.lib.Location;
 
 public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInventory, IRemoteTile, IEnergyFace {
 
@@ -307,5 +308,10 @@ public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInve
 	@Override
 	public EnergySystem ENERGY_SYSTEM() {
 		return energySystem;
+	}
+
+	@Override
+	public Location getLocation() {
+		return new Location(this.xCoord, this.yCoord, this.zCoord);
 	}
 }

@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import sourceteam.mods.lib.Location;
+import modmuss50.mods.lib.Location;
 
 /**
  * Created by Mark on 19/04/14.

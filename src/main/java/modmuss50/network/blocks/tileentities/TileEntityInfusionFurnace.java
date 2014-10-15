@@ -16,6 +16,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
+import modmuss50.mods.lib.Location;
 
 /**
  * Created by Mark on 28/07/2014.
@@ -272,4 +273,10 @@ public class TileEntityInfusionFurnace extends BaseTile implements IInventory, I
 	public EnergySystem ENERGY_SYSTEM() {
 		return null;
 	}
+
+	@Override
+	public Location getLocation() {
+		return new Location(this.xCoord, this.yCoord, this.zCoord);
+	}
+
 }

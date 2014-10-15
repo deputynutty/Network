@@ -36,6 +36,9 @@ public class initItems {
 		NetworkItems.drone = new ItemDrone().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "drone").setTextureName("network:drone");
 		registerItem(NetworkItems.drone);
 
+		NetworkItems.pinPad = new ItemPinPad().setCreativeTab(NetworkCore.Network).setUnlocalizedName(prefix + "pinPad").setTextureName("network:pinPad");
+		registerItem(NetworkItems.pinPad);
+
 	}
 
 	public static void registerItem(Item item) {

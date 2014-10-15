@@ -16,9 +16,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import sourceteam.mods.lib.Location;
-import sourceteam.mods.lib.client.IColour;
-import sourceteam.mods.lib.client.IRGBColour;
+import modmuss50.mods.lib.Location;
+import modmuss50.mods.lib.client.IColour;
+import modmuss50.mods.lib.client.IRGBColour;
 
 import java.util.ArrayList;
 import java.util.List;

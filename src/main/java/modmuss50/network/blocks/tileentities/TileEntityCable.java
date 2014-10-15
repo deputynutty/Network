@@ -6,7 +6,8 @@ import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.compact.FMP.PartCable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import sourceteam.mods.lib.BlockHelper;
+import modmuss50.mods.lib.BlockHelper;
+import modmuss50.mods.lib.Location;
 
 /**
  * Created by Mark on 21/02/14.
@@ -158,5 +159,10 @@ public class TileEntityCable extends BaseTile implements IEnergyFace {
 	@Override
 	public EnergySystem ENERGY_SYSTEM() {
 		return null;
+	}
+
+	@Override
+	public Location getLocation() {
+		return new Location(this.xCoord, this.yCoord, this.zCoord);
 	}
 }

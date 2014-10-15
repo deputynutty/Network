@@ -3,6 +3,7 @@ package modmuss50.network.blocks.tileentities;
 import modmuss50.network.api.power.EnergySystem;
 import modmuss50.network.api.power.IEnergyFace;
 import net.minecraft.nbt.NBTTagCompound;
+import modmuss50.mods.lib.Location;
 
 public class TileEntitySolarPanel extends BaseTile implements IEnergyFace {
 
@@ -30,5 +31,10 @@ public class TileEntitySolarPanel extends BaseTile implements IEnergyFace {
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		energySystem.readFromNBT(tag);
+	}
+
+	@Override
+	public Location getLocation() {
+		return new Location(this.xCoord, this.yCoord, this.zCoord);
 	}
 }

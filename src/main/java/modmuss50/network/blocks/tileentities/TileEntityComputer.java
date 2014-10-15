@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import modmuss50.mods.lib.Location;
 
 public class TileEntityComputer extends BaseTile implements IInventory, IEnergyFace {
 
@@ -121,5 +122,10 @@ public class TileEntityComputer extends BaseTile implements IInventory, IEnergyF
 	@Override
 	public EnergySystem ENERGY_SYSTEM() {
 		return null;
+	}
+
+	@Override
+	public Location getLocation() {
+		return new Location(this.xCoord, this.yCoord, this.zCoord);
 	}
 }

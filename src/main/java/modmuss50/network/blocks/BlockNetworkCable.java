@@ -28,29 +28,8 @@ public class BlockNetworkCable extends BlockBase {
 
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new TileEntityPowerImputCable();
+		return new TileEntityCable();
 	}
-
-	// @Override
-	// public boolean removedByPlayer(World world, EntityPlayer player, int x,
-	// int y, int z)
-	// {
-	// TileEntityCable tile = (TileEntityCable) world.getTileEntity(x, y, z);
-	// if(tile != null)
-	// {
-	// TileEntityServer powerSink = (TileEntityServer)
-	// world.getTileEntity(tile.getSerX(), tile.getSerY(), tile.getSerZ());
-	// if(powerSink != null)
-	// {
-	// powerSink.needsUpdate = true;
-	// powerSink.upTick = 0;
-	// System.out.println("UPDATING");
-	// }
-	// }
-	// world.removeTileEntity(x , y, z);
-	// return super.removedByPlayer(world, player, x, y, z);
-	//
-	// }
 
 	@Override
 	public int getRenderType() {
@@ -68,36 +47,12 @@ public class BlockNetworkCable extends BlockBase {
 
 
 	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axis, List list, Entity entity) {
-		// setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
-
+		//Doing this to fix old tiles in the world
+		//Can be removed in 1.9
+		if(world.getTileEntity(x, y, z) instanceof TileEntityPowerImputCable){
+			world.setTileEntity(x, y, z, new TileEntityCable());
+		}
 		TileEntityCable theTile = (TileEntityCable) world.getTileEntity(x, y, z);
-
-		// if (theTile != null) {
-		// if (theTile.sideCache[0] != 0) {
-		// setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.7F, 0.7F);
-		// super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
-		// }
-		// if (theTile.sideCache[1] != 0) {
-		// setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 1.0F, 0.7F);
-		// super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
-		// }
-		// if (theTile.sideCache[2] != 0) {
-		// setBlockBounds(0.3F, 0.3F, 0.0F, 0.7F, 0.7F, 0.7F);
-		// super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
-		// }
-		// if (theTile.sideCache[3] != 0) {
-		// setBlockBounds(0.3F, 0.3F, 0.3F, 0.7F, 0.7F, 1.0F);
-		// super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
-		// }
-		// if (theTile.sideCache[4] != 0) {
-		// setBlockBounds(0.0F, 0.3F, 0.3F, 0.7F, 0.7F, 0.7F);
-		// super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
-		// }
-		// if (theTile.sideCache[5] != 0) {
-		// setBlockBounds(0.3F, 0.3F, 0.3F, 1.0F, 0.7F, 0.7F);
-		// super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
-		// }
-		// }
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
 	}

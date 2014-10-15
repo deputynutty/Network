@@ -28,6 +28,7 @@ public class GuiHandler implements IGuiHandler {
 	public static int computerGuiID = 13;
 	public static int StorageChest = 14;
 	public static int DroneID = 15;
+	public static int pinPadID = 16;
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -135,6 +136,8 @@ public class GuiHandler implements IGuiHandler {
 				return new GuiStorageChest(player.inventory, (TileEntityBlockStorageContainer) te);
 			} else if (ID == DroneID) {
 				return new GuiDrone(player, world, x, y, z);
+			} else if (ID == pinPadID) {
+				return new GuiPinPad(x, y, z, world, player);
 			}
 
 		return null;

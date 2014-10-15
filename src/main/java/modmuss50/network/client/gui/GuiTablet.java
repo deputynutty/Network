@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import sourceteam.mods.lib.api.Colors;
+import modmuss50.mods.lib.api.Colors;
 
 public class GuiTablet extends GuiScreen {
 

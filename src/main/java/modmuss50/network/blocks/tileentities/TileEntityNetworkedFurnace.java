@@ -16,6 +16,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
+import modmuss50.mods.lib.Location;
 
 public class TileEntityNetworkedFurnace extends BaseTile implements IInventory, IRemoteTile, IEnergyFace {
 	public ItemStack[] items;
@@ -272,5 +273,10 @@ public class TileEntityNetworkedFurnace extends BaseTile implements IInventory, 
 	@Override
 	public EnergySystem ENERGY_SYSTEM() {
 		return energySystem;
+	}
+
+	@Override
+	public Location getLocation() {
+		return new Location(this.xCoord, this.yCoord, this.zCoord);
 	}
 }

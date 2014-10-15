@@ -23,7 +23,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import sourceteam.mods.lib.Functions;
+import modmuss50.mods.lib.Functions;
 
 import java.util.*;
 

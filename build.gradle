@@ -30,7 +30,7 @@ task deleteOldArtifacts(type: Delete) {
 
 classes.dependsOn deleteOldArtifacts
 
-group = 'sourceteam.network'
+group = 'modmuss50.network'
 archivesBaseName = "network"
 
 def ENV = System.getenv()

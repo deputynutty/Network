@@ -10,7 +10,7 @@ import modmuss50.network.client.render.*;
 import modmuss50.network.entity.minecart.ServerCart;
 import modmuss50.network.entity.robot.EntityDrone;
 import net.minecraftforge.common.MinecraftForge;
-import sourceteam.mods.lib.client.AnimatedBlock.RenderAnimatedTile;
+import modmuss50.mods.lib.client.AnimatedBlock.RenderAnimatedTile;
 
 public class ClientProxy extends CommonProxy {
 

@@ -11,8 +11,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import sourceteam.mods.lib.Location;
-import sourceteam.mods.lib.invUtil;
+import modmuss50.mods.lib.Location;
+import modmuss50.mods.lib.invUtil;
 
 import java.util.ArrayList;
 import java.util.List;

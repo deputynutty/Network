@@ -12,6 +12,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.retroGenerator.RetroactiveWorldGenerator;
 import modmuss50.network.app.AppManager;
 import modmuss50.network.blocks.event.BlockBreakEvent;
 import modmuss50.network.client.gui.GuiHandler;
@@ -23,17 +24,18 @@ import modmuss50.network.init.*;
 import modmuss50.network.items.NetworkItems;
 import modmuss50.network.netty.ChannelHandler;
 import modmuss50.network.netty.PacketPipeline;
+import modmuss50.network.world.WorldGen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import sourceteam.mods.core.client.BaseModGui;
-import sourceteam.mods.core.mod.ModRegistry;
-import sourceteam.mods.lib.mod.ISourceMod;
+import modmuss50.mods.core.client.BaseModGui;
+import modmuss50.mods.core.mod.ModRegistry;
+import modmuss50.mods.lib.mod.ISourceMod;
 
 import java.util.logging.Logger;
 
 //Give some of the basic info about the mod here
-@Mod(modid = "network", name = "Network", version = "@MODVERSION@", dependencies = "required-after:sourcecore")
+@Mod(modid = "network", name = "Network", version = "@MODVERSION@", dependencies = "required-after:modmussCore")
 public class NetworkCore implements ISourceMod {
 
 	//this is the main packet handler
@@ -130,6 +132,8 @@ public class NetworkCore implements ISourceMod {
 		packetPipeline.postInitialise();
 		//post the item system
 		ItemSystem.postInit(event);
+
+		RetroactiveWorldGenerator.registerRetroGenerator(new WorldGen());
 	}
 
 	@EventHandler

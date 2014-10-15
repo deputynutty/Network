@@ -5,6 +5,7 @@ import cpw.mods.fml.common.Loader;
 import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
 import modmuss50.network.compact.FMP.PartCable;
+import modmuss50.network.netty.packets.PacketUpdateEnergySystem;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -209,6 +210,7 @@ public class EnergySystem {
 			EnergySystem energySystem = this.lastFace.ENERGY_SYSTEM();
 			if (energySystem != this && energySystem.getPower() >= this.powerInputSpeed) {
 				if (this.tryRequestPower((IEnergyFace) tileEntity) == true) {
+					PacketUpdateEnergySystem.sendPowerToAllClients(this, lastFace.getLocation());
 					return;
 				} else {
 					this.lastFace = null;
@@ -221,6 +223,7 @@ public class EnergySystem {
 		if (lastFace == null) {
 			this.findAndRequestPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
 		}
+
 	}
 
 	public void writeToNBT(NBTTagCompound tag) {
