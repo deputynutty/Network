@@ -2,6 +2,7 @@ package modmuss50.network.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.core.client.ClientInit;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.api.IPeripheral;
 import modmuss50.network.blocks.tileentities.TileEntityLightPeripheral;
@@ -14,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import modmuss50.mods.core.client.ClientInit;
 
 import java.awt.*;
 

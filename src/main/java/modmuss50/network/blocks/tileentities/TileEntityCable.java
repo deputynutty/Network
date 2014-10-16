@@ -1,13 +1,13 @@
 package modmuss50.network.blocks.tileentities;
 
 import cpw.mods.fml.common.Loader;
+import modmuss50.mods.lib.BlockHelper;
+import modmuss50.mods.lib.Location;
 import modmuss50.network.api.power.EnergySystem;
 import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.compact.FMP.PartCable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.mods.lib.BlockHelper;
-import modmuss50.mods.lib.Location;
 
 /**
  * Created by Mark on 21/02/14.

@@ -1,6 +1,7 @@
 package modmuss50.network.blocks.tileentities;
 
 
+import modmuss50.mods.lib.Location;
 import modmuss50.network.api.IRemoteTile;
 import modmuss50.network.api.power.EnergySystem;
 import modmuss50.network.api.power.IEnergyFace;
@@ -16,7 +17,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import modmuss50.mods.lib.Location;
 
 public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInventory, IRemoteTile, IEnergyFace {
 

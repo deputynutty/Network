@@ -25,4 +25,6 @@ public class NetworkBlocks {
 	public static Block CreativePower;
 	public static Block Pump;
 
+	public static Block MultiblockPower;
+
 }

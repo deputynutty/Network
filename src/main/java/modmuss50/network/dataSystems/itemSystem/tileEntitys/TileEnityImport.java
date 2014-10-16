@@ -1,5 +1,7 @@
 package modmuss50.network.dataSystems.itemSystem.tileEntitys;
 
+import modmuss50.mods.lib.Location;
+import modmuss50.mods.lib.invUtil;
 import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.api.data.DataType;
 import modmuss50.network.api.data.IDataPer;
@@ -13,8 +15,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import modmuss50.mods.lib.Location;
-import modmuss50.mods.lib.invUtil;
 
 import java.util.ArrayList;
 import java.util.List;

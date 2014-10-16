@@ -5,11 +5,11 @@ import codechicken.multipart.MultiPartRegistry;
 import codechicken.multipart.TMultiPart;
 import codechicken.multipart.TileMultipart;
 import cpw.mods.fml.common.registry.GameRegistry;
+import modmuss50.mods.lib.Location;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import modmuss50.mods.lib.Location;
 
 import java.util.List;
 

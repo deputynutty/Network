@@ -10,6 +10,7 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.Functions;
 import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.blocks.tileentities.TileEntityCable;
@@ -23,7 +24,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.mods.lib.Functions;
 
 import java.util.*;
 

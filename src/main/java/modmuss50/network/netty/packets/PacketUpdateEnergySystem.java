@@ -2,21 +2,17 @@ package modmuss50.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import modmuss50.mods.lib.Location;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.api.power.EnergySystem;
 import modmuss50.network.api.power.IEnergyFace;
 import modmuss50.network.netty.AbstractPacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import modmuss50.mods.lib.Location;
 
 public class PacketUpdateEnergySystem extends AbstractPacket {
 
 	int power, x, y, z;
-
-	public static void sendPowerToAllClients(EnergySystem energySystem, Location location){
-		NetworkCore.packetPipeline.sendToAll(new PacketUpdateEnergySystem(location, energySystem.getPower()));
-	}
 
 	public PacketUpdateEnergySystem() {
 
@@ -29,6 +25,9 @@ public class PacketUpdateEnergySystem extends AbstractPacket {
 		z = te.getZ();
 	}
 
+	public static void sendPowerToAllClients(EnergySystem energySystem, Location location) {
+		NetworkCore.packetPipeline.sendToAll(new PacketUpdateEnergySystem(location, energySystem.getPower()));
+	}
 
 	@Override
 	public void encodeInto(ChannelHandlerContext ctx, ByteBuf buffer) {
@@ -49,7 +48,7 @@ public class PacketUpdateEnergySystem extends AbstractPacket {
 	@Override
 	public void handleClientSide(EntityPlayer player) {
 		TileEntity tileEntity = player.worldObj.getTileEntity(x, y, z);
-		if(tileEntity instanceof IEnergyFace){
+		if (tileEntity instanceof IEnergyFace) {
 			EnergySystem energyFace = ((IEnergyFace) tileEntity).ENERGY_SYSTEM();
 			energyFace.setPower(power);
 		}
@@ -58,7 +57,7 @@ public class PacketUpdateEnergySystem extends AbstractPacket {
 	@Override
 	public void handleServerSide(EntityPlayer player) {
 		TileEntity tileEntity = player.worldObj.getTileEntity(x, y, z);
-		if(tileEntity instanceof IEnergyFace){
+		if (tileEntity instanceof IEnergyFace) {
 			EnergySystem energyFace = ((IEnergyFace) tileEntity).ENERGY_SYSTEM();
 			energyFace.setPower(power);
 		}

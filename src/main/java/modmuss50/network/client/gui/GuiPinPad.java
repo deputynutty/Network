@@ -1,10 +1,10 @@
 package modmuss50.network.client.gui;
 
+import modmuss50.mods.lib.api.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import modmuss50.mods.lib.api.Colors;
 
 public class GuiPinPad extends GuiScreen {
 

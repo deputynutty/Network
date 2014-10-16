@@ -1,6 +1,9 @@
 package modmuss50.network.blocks.tileentities;
 
 
+import modmuss50.mods.lib.Location;
+import modmuss50.mods.lib.client.IColour;
+import modmuss50.mods.lib.client.IRGBColour;
 import modmuss50.network.api.IPeripheral;
 import modmuss50.network.api.WorldCoordinate;
 import modmuss50.network.blocks.NetworkBlocks;
@@ -16,9 +19,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import modmuss50.mods.lib.Location;
-import modmuss50.mods.lib.client.IColour;
-import modmuss50.mods.lib.client.IRGBColour;
 
 import java.util.ArrayList;
 import java.util.List;

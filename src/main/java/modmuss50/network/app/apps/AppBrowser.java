@@ -2,9 +2,9 @@ package modmuss50.network.app.apps;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.api.Colors;
 import modmuss50.network.app.App;
 import modmuss50.network.app.appUtil.GuiApp;
-import modmuss50.mods.lib.api.Colors;
 
 public class AppBrowser implements App {
 

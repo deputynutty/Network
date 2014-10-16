@@ -2,10 +2,10 @@ package modmuss50.network.netty.packets;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import modmuss50.mods.lib.Location;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
 import modmuss50.network.netty.AbstractPacket;
 import net.minecraft.entity.player.EntityPlayer;
-import modmuss50.mods.lib.Location;
 
 public class PacketSetTeleporterFQ extends AbstractPacket {
 

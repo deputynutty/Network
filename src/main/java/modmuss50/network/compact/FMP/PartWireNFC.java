@@ -12,6 +12,8 @@ import codechicken.multipart.*;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.Functions;
+import modmuss50.mods.lib.Location;
 import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.client.particles.NetworkParticleHelper;
 import modmuss50.network.client.render.RenderWireNFC;
@@ -24,8 +26,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.mods.lib.Functions;
-import modmuss50.mods.lib.Location;
 
 import java.util.*;
 

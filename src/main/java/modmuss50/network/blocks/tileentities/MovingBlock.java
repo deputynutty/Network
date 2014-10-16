@@ -1,9 +1,9 @@
 package modmuss50.network.blocks.tileentities;
 
+import modmuss50.mods.lib.Location;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.mods.lib.Location;
 
 public class MovingBlock {
 
