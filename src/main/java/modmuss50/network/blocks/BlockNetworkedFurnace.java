@@ -2,8 +2,10 @@ package modmuss50.network.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.Location;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityNetworkedFurnace;
+import modmuss50.network.netty.packets.PacketUpdateEnergySystem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -37,6 +39,10 @@ public class BlockNetworkedFurnace extends BlockBase {
 		if (!canBlockBeused(world, x, y, z, player))
 			return false;
 		TileEntityNetworkedFurnace tileentityfurnace = (TileEntityNetworkedFurnace) world.getTileEntity(x, y, z);
+
+		if(!world.isRemote && tileentityfurnace != null){
+			PacketUpdateEnergySystem.sendPowerToAllClients(tileentityfurnace.ENERGY_SYSTEM(), new Location(x, y, z));
+		}
 
 		if (tileentityfurnace != null) {
 			player.openGui(NetworkCore.instance, 8, world, x, y, z);

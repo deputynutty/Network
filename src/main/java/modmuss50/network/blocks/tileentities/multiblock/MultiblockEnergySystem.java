@@ -45,6 +45,8 @@ public class MultiblockEnergySystem extends EnergySystem {
 		if (ticks != 120) {
 			ticks += 1;
 		} else {
+			if(lastFace != null)
+			PacketUpdateEnergySystem.sendPowerToAllClients(this, lastFace.getLocation());
 			//Do this to make sure it will recheck the closest power supply
 			this.lastFace = null;
 			ticks = 0;

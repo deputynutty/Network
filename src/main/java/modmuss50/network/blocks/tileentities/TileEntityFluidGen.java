@@ -36,9 +36,8 @@ public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInve
 
 	@Override
 	public void updateEntity() {
-
 		if (tank.getFluid() != null) {
-			if (energySystem.tryInsertEnergy(100)) {
+			if (energySystem.tryForceInsertEnergy(100)) {
 				tank.drain(1, true);
 			}
 

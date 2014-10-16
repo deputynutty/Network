@@ -103,6 +103,14 @@ public class EnergySystem {
 		return false;
 	}
 
+	public boolean tryForceInsertEnergy(int energy) {
+		if (this.canFitPower(energy, true)) {
+			this.setPower(getPower() + energy);
+			return true;
+		}
+		return false;
+	}
+
 	public boolean canInsertEnergy(int energy) {
 		if (canTakePower && this.getPowerStorageSize() - this.getPower() <= energy) {
 			return true;
@@ -130,6 +138,15 @@ public class EnergySystem {
 
 	public boolean canFitPower(int power) {
 		if(canTakePower){
+			if (this.getPowerStorageSize() - this.getPower() >= power) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean canFitPower(int power, boolean canAdd) {
+		if(canAdd){
 			if (this.getPowerStorageSize() - this.getPower() >= power) {
 				return true;
 			}

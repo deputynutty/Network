@@ -5,7 +5,9 @@ import modmuss50.mods.lib.multiblock.MultiblockValidationException;
 import modmuss50.network.blocks.tileentities.multiblock.TileEntityMultiblockPower;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 
@@ -33,10 +35,9 @@ public class BlockMultiBlockPower extends BlockMultiblockBase {
 				}
 			} else {
 				if (!world.isRemote)
-					player.addChatMessage(new ChatComponentTranslation("POWER: " + Integer.toString(((TileEntityMultiblockPower) tileEntity).ENERGY_SYSTEM().getPower())));
+					player.addChatMessage(new ChatComponentText("POWER  " + Integer.toString(((TileEntityMultiblockPower) tileEntity).ENERGY_SYSTEM().getPower()) + "/" + Integer.toString(((TileEntityMultiblockPower) tileEntity).ENERGY_SYSTEM().getPowerStorageSize()) + " " + Integer.toString(modmuss50.mods.lib.util.Math.percentage(((TileEntityMultiblockPower) tileEntity).ENERGY_SYSTEM().getPowerStorageSize(), ((TileEntityMultiblockPower) tileEntity).ENERGY_SYSTEM().getPower())) + "%"));
 				;
 			}
-
 		}
 		return false;
 	}
