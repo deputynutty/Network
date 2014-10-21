@@ -1,5 +1,6 @@
 package modmuss50.network.entity.robot;
 
+import modmuss50.mods.lib.Location;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
@@ -9,7 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import modmuss50.mods.lib.Location;
 
 
 public class EntityDrone extends EntityLivingBase {

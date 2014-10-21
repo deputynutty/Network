@@ -1,5 +1,6 @@
 package modmuss50.network.blocks.tileentities;
 
+import modmuss50.mods.lib.Location;
 import modmuss50.network.api.IRemoteTile;
 import modmuss50.network.items.ItemPart;
 import modmuss50.network.items.NetworkItems;
@@ -16,7 +17,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.mods.lib.Location;
 
 import java.util.ArrayList;
 

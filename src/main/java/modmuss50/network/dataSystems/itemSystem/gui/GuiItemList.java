@@ -1,12 +1,12 @@
 package modmuss50.network.dataSystems.itemSystem.gui;
 
 import codechicken.nei.ItemList;
+import modmuss50.mods.lib.client.RenderItemUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
-import modmuss50.mods.lib.client.RenderItemUtils;
 
 public class GuiItemList extends GuiScreen {
 

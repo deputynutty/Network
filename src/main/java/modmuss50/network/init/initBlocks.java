@@ -5,6 +5,7 @@ import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.*;
 import modmuss50.network.blocks.rails.RailBase;
 import modmuss50.network.blocks.tileentities.*;
+import modmuss50.network.blocks.tileentities.multiblock.TileEntityMultiblockPower;
 
 public class initBlocks {
 
@@ -93,6 +94,10 @@ public class initBlocks {
 		GameRegistry.registerBlock(NetworkBlocks.BlockMover, prefix + "BlockMover");
 		GameRegistry.registerTileEntity(TileEntityMover.class, prefix + "TileEntityMover");
 
+
+		NetworkBlocks.MultiblockPower = new BlockMultiBlockPower().setBlockName(prefix + "BlockMultiBlockPower").setHardness(1.5F).setCreativeTab(NetworkCore.Network).setBlockTextureName("network:BlockMultiBlockPower");
+		GameRegistry.registerBlock(NetworkBlocks.MultiblockPower, prefix + "BlockMultiBlockPower");
+		GameRegistry.registerTileEntity(TileEntityMultiblockPower.class, prefix + "TileEntityMultiblockPower");
 	}
 
 }

@@ -2,6 +2,7 @@ package modmuss50.network.blocks.tileentities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.Location;
 import modmuss50.network.api.IRemoteTile;
 import modmuss50.network.api.InfusionFurnaceRecipes;
 import modmuss50.network.api.power.EnergySystem;
@@ -16,7 +17,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
-import modmuss50.mods.lib.Location;
 
 /**
  * Created by Mark on 28/07/2014.

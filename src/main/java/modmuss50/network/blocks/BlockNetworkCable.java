@@ -49,7 +49,7 @@ public class BlockNetworkCable extends BlockBase {
 	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axis, List list, Entity entity) {
 		//Doing this to fix old tiles in the world
 		//Can be removed in 1.9
-		if(world.getTileEntity(x, y, z) instanceof TileEntityPowerImputCable){
+		if (world.getTileEntity(x, y, z) instanceof TileEntityPowerImputCable) {
 			world.setTileEntity(x, y, z, new TileEntityCable());
 		}
 		TileEntityCable theTile = (TileEntityCable) world.getTileEntity(x, y, z);

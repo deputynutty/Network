@@ -1,5 +1,6 @@
 package modmuss50.network.blocks;
 
+import modmuss50.mods.lib.Location;
 import modmuss50.network.NetworkCore;
 import modmuss50.network.blocks.tileentities.TileEntityTeleporter;
 import modmuss50.network.netty.packets.PacketSetTeleporterFQ;
@@ -8,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import modmuss50.mods.lib.Location;
 
 /**
  * Created by Mark on 19/04/14.

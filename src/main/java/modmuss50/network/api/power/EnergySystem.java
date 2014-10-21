@@ -26,7 +26,7 @@ public class EnergySystem {
 
 	public IEnergyFace lastFace;
 
-	int ticks;
+	protected int ticks;
 
 	public EnergySystem() {
 		setPowerInputSpeed(100);
@@ -79,7 +79,7 @@ public class EnergySystem {
 		this.powerInputSpeed = powerInputSpeed;
 	}
 
-	public boolean isCanGivePower() {
+	public boolean getCanGivePower() {
 		return canGivePower;
 	}
 
@@ -87,7 +87,7 @@ public class EnergySystem {
 		this.canGivePower = canGivePower;
 	}
 
-	public boolean isCanTakePower() {
+	public boolean getCanTakePower() {
 		return canTakePower;
 	}
 
@@ -97,6 +97,14 @@ public class EnergySystem {
 
 	public boolean tryInsertEnergy(int energy) {
 		if (this.canFitPower(energy)) {
+			this.setPower(getPower() + energy);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean tryForceInsertEnergy(int energy) {
+		if (this.canFitPower(energy, true)) {
 			this.setPower(getPower() + energy);
 			return true;
 		}
@@ -120,7 +128,6 @@ public class EnergySystem {
 	}
 
 	public boolean tryRequestPower(IEnergyFace iEnergyFace) {
-
 		if (iEnergyFace.ENERGY_SYSTEM().tryTakeEnergy(this.getPowerInputSpeed()) == true) {
 			if (this.tryInsertEnergy(this.getPowerInputSpeed())) {
 				return true;
@@ -130,8 +137,19 @@ public class EnergySystem {
 	}
 
 	public boolean canFitPower(int power) {
-		if (this.getPowerStorageSize() - this.getPower() >= power) {
-			return true;
+		if(canTakePower){
+			if (this.getPowerStorageSize() - this.getPower() >= power) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean canFitPower(int power, boolean canAdd) {
+		if(canAdd){
+			if (this.getPowerStorageSize() - this.getPower() >= power) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -163,7 +181,7 @@ public class EnergySystem {
 									TileEntity tileEntity = world.getTileEntity(target.getX(), target.getY(), target.getZ());
 									if (tileEntity != null && tileEntity instanceof IEnergyFace) {
 										EnergySystem energySystem = ((IEnergyFace) tileEntity).ENERGY_SYSTEM();
-										if (energySystem != this && energySystem.getPower() >= this.powerInputSpeed) {
+										if (energySystem != null && energySystem != this && energySystem.getPower() >= this.powerInputSpeed) {
 											if (this.tryRequestPower((IEnergyFace) tileEntity) == true) {
 												//     System.out.println(getPower());
 												this.lastFace = (IEnergyFace) tileEntity;

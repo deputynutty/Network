@@ -11,6 +11,7 @@ import codechicken.microblock.ISidedHollowConnect;
 import codechicken.multipart.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import modmuss50.mods.lib.Functions;
 import modmuss50.network.api.data.IDataPer;
 import modmuss50.network.client.render.RenderWire;
 import net.minecraft.client.particle.EffectRenderer;
@@ -22,7 +23,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.util.ForgeDirection;
-import modmuss50.mods.lib.Functions;
 
 import java.util.*;
 

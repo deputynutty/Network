@@ -1,5 +1,6 @@
 package modmuss50.network.client.gui;
 
+import modmuss50.mods.lib.client.GuiRenderHelper;
 import modmuss50.network.blocks.containers.ContainerFluidGen;
 import modmuss50.network.blocks.tileentities.BaseTile;
 import modmuss50.network.blocks.tileentities.TileEntityFluidGen;
@@ -8,7 +9,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import modmuss50.mods.lib.client.GuiRenderHelper;
 
 public class GuiTank extends GuiContainer {
 	private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");
@@ -24,7 +24,7 @@ public class GuiTank extends GuiContainer {
 	 * the items)
 	 */
 	protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-		String s = "Lava Heater";
+		String s = "Lava Generator";
 		this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, GuiContants.guiColour);
 
 		s = Integer.toString(tile.tank.getFluidAmount()) + "/" + Integer.toString(tile.tank.getCapacity());
@@ -36,6 +36,8 @@ public class GuiTank extends GuiContainer {
 			BaseTile baseTile = (BaseTile) tile;
 			this.fontRendererObj.drawString("Owner: " + baseTile.getOwner(), 28, 28, GuiContants.guiColour);
 		}
+
+
 	}
 
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
@@ -46,6 +48,11 @@ public class GuiTank extends GuiContainer {
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
 		GuiRenderHelper.drawTankGui(k + 10, l + 10, tile, this);
+
+		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		GuiRenderHelper.drawPowerBar(k + 65, l + 54, tile.ENERGY_SYSTEM().getPowerStorageSize(), tile.ENERGY_SYSTEM().getPower(), this);
+		GuiRenderHelper.drawItemContainer(k + 56 - 1, l + 35 - 1, this);
+		GuiRenderHelper.drawItemContainer(k + 116 - 1, l + 35 - 1, this);
 
 	}
 

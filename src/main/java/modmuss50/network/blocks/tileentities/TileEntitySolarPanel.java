@@ -1,21 +1,21 @@
 package modmuss50.network.blocks.tileentities;
 
+import modmuss50.mods.lib.Location;
 import modmuss50.network.api.power.EnergySystem;
 import modmuss50.network.api.power.IEnergyFace;
 import net.minecraft.nbt.NBTTagCompound;
-import modmuss50.mods.lib.Location;
 
 public class TileEntitySolarPanel extends BaseTile implements IEnergyFace {
 
 	EnergySystem energySystem;
 
 	public TileEntitySolarPanel() {
-		this.energySystem = new EnergySystem(10000, 0, true, false);
+		this.energySystem = new EnergySystem(10000, 10, true, false);
 	}
 
 	@Override
 	public void updateEntity() {
-		energySystem.tryInsertEnergy(1);
+		energySystem.tryForceInsertEnergy(1);
 	}
 
 	@Override

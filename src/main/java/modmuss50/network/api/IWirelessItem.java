@@ -17,14 +17,14 @@ public class IWirelessItem extends Item {
 	 */
 
 	/*
-     * @Override public void onUpdate(ItemStack itemstack, World world, Entity
+	 * @Override public void onUpdate(ItemStack itemstack, World world, Entity
 	 * entity, int k, boolean j) { itemstack.stackTagCompound = new
 	 * NBTTagCompound(); if(itemstack.stackTagCompound != null) { User =
 	 * itemstack.stackTagCompound.getString("User"); } }
 	 */
 
 	/*
-     * @Override public ItemStack onItemRightClick(ItemStack par1ItemStack,
+	 * @Override public ItemStack onItemRightClick(ItemStack par1ItemStack,
 	 * World par2World,EntityPlayer par3EntityPlayer) {
 	 * 
 	 * 

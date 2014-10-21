@@ -1,5 +1,6 @@
 package modmuss50.network.client.gui;
 
+import modmuss50.mods.lib.client.GuiRenderHelper;
 import modmuss50.network.blocks.containers.ContainerNetworkedFurnace;
 import modmuss50.network.blocks.tileentities.TileEntityNetworkedFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -7,7 +8,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import modmuss50.mods.lib.client.GuiRenderHelper;
 
 public class GuiNetworkedFurnace extends GuiContainer {
 	private static final ResourceLocation GuiTextures = new ResourceLocation("network", "textures/gui/BasePoweredGui.png");
