@@ -6,10 +6,10 @@ import modmuss50.mods.lib.multiblock.rectangular.RectangularMultiblockController
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class MultiBlockPower extends RectangularMultiblockControllerBase {
+public class MultiBlockPowerSystem extends RectangularMultiblockControllerBase {
 	public MultiblockEnergySystem energySystem = new MultiblockEnergySystem(100000, 10000, true, true, this);
 
-	public MultiBlockPower(World world) {
+	public MultiBlockPowerSystem(World world) {
 		super(world);
 	}
 
@@ -80,8 +80,8 @@ public class MultiBlockPower extends RectangularMultiblockControllerBase {
 	//This lets us copy the power from the old master block.
 	@Override
 	protected void onAssimilated(MultiblockControllerBase assimilator) {
-		if(assimilator instanceof MultiBlockPower){
-			MultiBlockPower power = (MultiBlockPower) assimilator;
+		if(assimilator instanceof MultiBlockPowerSystem){
+			MultiBlockPowerSystem power = (MultiBlockPowerSystem) assimilator;
 			getEnergySystem().power = power.getEnergySystem().getPower();
 		}
 

@@ -58,12 +58,12 @@ public class TileEntityMultiblockPower extends RectangularMultiblockTileEntityBa
 
 	@Override
 	public MultiblockControllerBase createNewMultiblock() {
-		return new MultiBlockPower(worldObj);
+		return new MultiBlockPowerSystem(worldObj);
 	}
 
 	@Override
 	public Class<? extends MultiblockControllerBase> getMultiblockControllerType() {
-		return MultiBlockPower.class;
+		return MultiBlockPowerSystem.class;
 	}
 
 
@@ -81,7 +81,7 @@ public class TileEntityMultiblockPower extends RectangularMultiblockTileEntityBa
 	}
 
 
-	public MultiBlockPower getMultiblockControllerPower() {
-		return (MultiBlockPower) super.getMultiblockController();
+	public MultiBlockPowerSystem getMultiblockControllerPower() {
+		return (MultiBlockPowerSystem) super.getMultiblockController();
 	}
 }
