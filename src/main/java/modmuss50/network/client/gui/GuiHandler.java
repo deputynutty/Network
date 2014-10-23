@@ -39,7 +39,7 @@ public class GuiHandler implements IGuiHandler {
 			return null;
 		}
 		if (ID == PowerUserBaseID) {
-			return new ContainerFluidGen(player.inventory, (TileEntityFluidGen) te);
+			return new modmuss50.network.blocks.containers.ContainerFluidGen(player.inventory, (TileEntityFluidGen) te);
 		}
 
 		// if (ID == BcUserID) {
@@ -47,7 +47,7 @@ public class GuiHandler implements IGuiHandler {
 		// (TileEntityBCUser) te);
 		// }
 		if (ID == NetworkedFurnace) {
-			return new ContainerNetworkedFurnace((TileEntityNetworkedFurnace) te, player);
+			return new modmuss50.network.blocks.containers.ContainerNetworkedFurnace((TileEntityNetworkedFurnace) te, player);
 		}
 
 		if (ID == BlockMoverID) {

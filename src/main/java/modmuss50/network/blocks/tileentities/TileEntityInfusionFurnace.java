@@ -108,13 +108,11 @@ public class TileEntityInfusionFurnace extends BaseTile implements IInventory, I
 	public void smelt() {
 		boolean removePower = false;
 
-		if (isSmelting && !worldObj.isRemote && energySystem.getPower() >= getNeededPower()) {
+		if (isSmelting && !worldObj.isRemote && this.ENERGY_SYSTEM().tryTakeEnergyFromSelf(this.getNeededPower())) {
 			timeSmelted += 1;
 
 			ItemStack input = getStackInSlot(0);
 			ItemStack output = getStackInSlot(2);
-
-			energySystem.power -= getNeededPower();
 
 			if (input == null) {
 				isSmelting = false;
@@ -150,6 +148,7 @@ public class TileEntityInfusionFurnace extends BaseTile implements IInventory, I
 		super.updateEntity();
 		determineIfSmelting();
 		smelt();
+        energySystem.tick(this);
 	}
 
 	@Override
@@ -271,7 +270,7 @@ public class TileEntityInfusionFurnace extends BaseTile implements IInventory, I
 
 	@Override
 	public EnergySystem ENERGY_SYSTEM() {
-		return null;
+		return energySystem;
 	}
 
 	@Override

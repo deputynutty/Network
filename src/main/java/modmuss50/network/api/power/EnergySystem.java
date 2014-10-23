@@ -127,6 +127,14 @@ public class EnergySystem {
 		return false;
 	}
 
+    public boolean tryTakeEnergyFromSelf(int ammout) {
+        if ( this.power >= ammout) {
+            setPower(getPower() - ammout);
+            return true;
+        }
+        return false;
+    }
+
 	public boolean tryRequestPower(IEnergyFace iEnergyFace) {
 		if (iEnergyFace.ENERGY_SYSTEM().tryTakeEnergy(this.getPowerInputSpeed()) == true) {
 			if (this.tryInsertEnergy(this.getPowerInputSpeed())) {

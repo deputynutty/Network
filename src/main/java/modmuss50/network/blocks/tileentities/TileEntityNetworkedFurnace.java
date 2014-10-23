@@ -106,7 +106,7 @@ public class TileEntityNetworkedFurnace extends BaseTile implements IInventory, 
 	public void smelt() {
 		boolean removePower = false;
 
-		if (isSmelting && !worldObj.isRemote && this.ENERGY_SYSTEM().tryTakeEnergy(this.getNeededPower())) {
+		if (isSmelting && !worldObj.isRemote && this.ENERGY_SYSTEM().tryTakeEnergyFromSelf(this.getNeededPower())) {
 			timeSmelted += 1;
 
 			ItemStack input = getStackInSlot(0);

@@ -17,11 +17,20 @@ public class EntityDrone extends EntityLivingBase {
 	protected static final int scanRadius = 10;
 	public Location nextLocation = null;
 
-	public EntityDrone(World world) {
-		super(Minecraft.getMinecraft().theWorld);
-	}
+    public EntityDrone(World p_i1594_1_) {
+        super(p_i1594_1_);
+        this.applyEntityAttributes();
+        this.setHealth(100F);
+        this.preventEntitySpawning = true;
+        this.field_70770_ap = (float)(Math.random() + 1.0D) * 0.01F;
+        this.setPosition(this.posX, this.posY, this.posZ);
+        this.field_70769_ao = (float)Math.random() * 12398.0F;
+        this.rotationYaw = (float)(Math.random() * Math.PI * 2.0D);
+        this.rotationYawHead = this.rotationYaw;
+        this.stepHeight = 0.5F;
+    }
 
-	@Override
+    @Override
 	public void onUpdate() {
 		if (this.nextLocation != null) {
 			if (this.worldObj.getBlock(nextLocation.getX(), nextLocation.getY() - 2, nextLocation.getZ()) == Blocks.air) {

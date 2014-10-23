@@ -14,7 +14,8 @@ public class ItemDrone extends Item {
 
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer entityPlayer, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 
-		FMLNetworkHandler.openGui(entityPlayer, NetworkCore.instance, 15, world, x, y, z);
+		//FMLNetworkHandler.openGui(entityPlayer, NetworkCore.instance, 15, world, x, y, z);
+        entityPlayer.openGui(NetworkCore.instance, 15, world, x, y, z);
 		return true;
 	}
 }
