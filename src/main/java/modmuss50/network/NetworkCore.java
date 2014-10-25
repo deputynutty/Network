@@ -161,7 +161,7 @@ public class NetworkCore implements ISourceMod {
 	@Override
 	public String modVersion() {
 		return "@MODVERSION@";
-	}
+	}//This is set with the gradle script
 
 	@Override
 	public String recomenedMinecraftVeriosion() {

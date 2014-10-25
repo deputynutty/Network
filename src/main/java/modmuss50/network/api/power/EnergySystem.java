@@ -103,7 +103,7 @@ public class EnergySystem {
 		return false;
 	}
 
-	public boolean tryForceInsertEnergy(int energy) {
+	public boolean tryInsertEnergyToSelf(int energy) {
 		if (this.canFitPower(energy, true)) {
 			this.setPower(getPower() + energy);
 			return true;
@@ -111,6 +111,7 @@ public class EnergySystem {
 		return false;
 	}
 
+	//This checks if there is room and can insertpower remotely
 	public boolean canInsertEnergy(int energy) {
 		if (canTakePower && this.getPowerStorageSize() - this.getPower() <= energy) {
 			return true;
@@ -118,8 +119,16 @@ public class EnergySystem {
 		return false;
 	}
 
-	public boolean tryTakeEnergy(int ammout) {
+	//Checks if can insert energy to self
+	public boolean canInsertEnergyToSelf(int energy) {
+		if (this.getPowerStorageSize() - this.getPower() <= energy) {
+			return true;
+		}
+		return false;
+	}
 
+	//Call this from a remote tile
+	public boolean tryTakeEnergy(int ammout) {
 		if (canGivePower && this.power >= ammout) {
 			setPower(getPower() - ammout);
 			return true;
@@ -127,6 +136,8 @@ public class EnergySystem {
 		return false;
 	}
 
+
+	//Call this from its own tile not from a remote tile. For example a mechine that takes power out of the buffer
     public boolean tryTakeEnergyFromSelf(int ammout) {
         if ( this.power >= ammout) {
             setPower(getPower() - ammout);

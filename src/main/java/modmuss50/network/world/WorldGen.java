@@ -9,14 +9,12 @@ import java.util.Random;
 
 public class WorldGen implements IRetroGenerator {
 
-	private void generateSurface(World world, Random random, int i, int j) {
-		//	if(random.nextInt(64) == 1){
+	private void generateSurface(World world, Random random, int i, int j){
 		int x = i * 16;// + random.nextInt(16);
 		int y = 100;
 		int z = j * 16;// + random.nextInt(16);
-		world.setBlock(x, y, z, NetworkBlocks.networkCable);
+		world.setBlock(x, y, z, NetworkBlocks.computer);
 		System.out.println(x + ":" + y + ":" + z);
-		//	}
 	}
 
 	@Override
@@ -26,7 +24,7 @@ public class WorldGen implements IRetroGenerator {
 
 	@Override
 	public boolean canGenerateIn(World world, Chunk chunk, Random random) {
-		//Tuned this of because this is a test of mmc
+		//Turned this of because this is a test of mmc
 		return false;
 	}
 

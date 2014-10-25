@@ -15,7 +15,7 @@ public class TileEntitySolarPanel extends BaseTile implements IEnergyFace {
 
 	@Override
 	public void updateEntity() {
-		energySystem.tryForceInsertEnergy(1);
+		energySystem.tryInsertEnergyToSelf(1);
 	}
 
 	@Override

@@ -37,7 +37,8 @@ public class TileEntityFluidGen extends BaseTile implements IFluidHandler, IInve
 	@Override
 	public void updateEntity() {
 		if (tank.getFluid() != null) {
-			if (energySystem.tryForceInsertEnergy(100)) {
+			//You get 100 network units for 1 mBucket
+			if (energySystem.tryInsertEnergyToSelf(100)) {
 				tank.drain(1, true);
 			}
 

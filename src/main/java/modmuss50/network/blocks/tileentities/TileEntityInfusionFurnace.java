@@ -215,6 +215,7 @@ public class TileEntityInfusionFurnace extends BaseTile implements IInventory, I
 
 		tag.setTag("Items", items);
 		tag.setBoolean("isSmelting", isSmelting);
+		energySystem.writeToNBT(tag);
 	}
 
 	@Override
@@ -233,6 +234,7 @@ public class TileEntityInfusionFurnace extends BaseTile implements IInventory, I
 		}
 
 		isSmelting = tag.getBoolean("isSmelting");
+		energySystem.readFromNBT(tag);
 	}
 
 	/**
